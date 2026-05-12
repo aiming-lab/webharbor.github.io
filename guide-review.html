@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Review Pipeline Guide — WebHarbor</title>
+<link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">&#x2693;</span>
+      <span class="brand-name">WebHarbor</span>
+    </a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="guide-create.html">Create Guide</a>
+      <a href="index.html#contribute">Contribute</a>
+    </nav>
+    <a class="nav-cta" href="https://github.com/aiming-lab/WebHarbor" target="_blank" rel="noopener">GitHub &rarr;</a>
+  </div>
+</header>
+
+<main>
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag">Reviewer Guide</span>
+      <h2>How to review a website environment</h2>
+      <p class="section-lede">
+        Reviewing is as important as building. A mirror that passes automated
+        checks can still be trivially easy, visually broken, or functionally
+        shallow. Your job is to catch what machines miss. Review 5 environments
+        to join the author list.
+      </p>
+    </div>
+
+    <!-- ===== TOOLING ===== -->
+    <div class="thesis" style="margin-bottom:50px;">
+      <span class="thesis-kicker">Tooling</span>
+      <p>
+        We provide a <code>review-env</code> skill that guides you through
+        each checklist systematically. Clone the repo and use
+        coding agent (e.g., Claude Code or CodeX) to assist your review:
+      </p>
+    </div>
+    <div class="code-block" style="margin-bottom:20px;">
+      <div class="code-head">
+        <span class="code-lbl">shell</span>
+        <button class="copy-btn" data-copy="git clone https://github.com/aiming-lab/WebHarbor.git && cd WebHarbor">Copy</button>
+      </div>
+      <pre><code>git clone https://github.com/aiming-lab/WebHarbor.git && cd WebHarbor</code></pre>
+    </div>
+    <p style="margin-bottom:50px; color:var(--text-soft); line-height:1.7;">
+      The <code>review-env</code> skill includes visual fidelity checks, functional depth tests,
+      task quality audits with leak detection, and a structured PR review template.
+      The <code>harden-env</code> skill covers the 13 known leak archetypes we've catalogued from
+      building the initially released 15 mirrors.
+    </p>
+
+    <!-- ===== OVERVIEW ===== -->
+    <h3 class="compare-title">Review pipeline overview</h3>
+    <div class="evo-flow" style="margin-bottom:30px;">
+      <div class="evo-step">
+        <div class="evo-num">1</div>
+        <h4>Check out &amp; build</h4>
+        <p><code>gh pr checkout</code>, <code>./scripts/fetch_assets.sh</code>, <code>./scripts/build.sh</code>, then run on alt ports (<code>:8201</code>, <code>:41000-41014</code>) so you don't collide with any running container.</p>
+      </div>
+      <div class="evo-arrow">&rarr;</div>
+      <div class="evo-step">
+        <div class="evo-num">2</div>
+        <h4>Mechanical checks</h4>
+        <p>All 15 sites return 200, byte-identical reset passes (<code>md5sum instance/&lt;site&gt;.db == instance_seed/&lt;site&gt;.db</code>), HF revision SHA verified.</p>
+      </div>
+      <div class="evo-arrow">&rarr;</div>
+      <div class="evo-step">
+        <div class="evo-num">3</div>
+        <h4>Visual + functional</h4>
+        <p>Side-by-side with the real site. Auth, search, CRUD, detail pages, form validation all work.</p>
+      </div>
+      <div class="evo-arrow">&rarr;</div>
+      <div class="evo-step">
+        <div class="evo-num">4</div>
+        <h4>Task quality audit</h4>
+        <p>Walk through each task in <code>tasks.jsonl</code>: solvability, answer-leak detection, distractor density, difficulty.</p>
+      </div>
+    </div>
+
+    <h3 class="compare-title">Mechanical checks</h3>
+    <p style="margin-bottom:16px; color:var(--text-soft); line-height:1.7;">
+      If any of these fail, request changes immediately &mdash; don't bother
+      with the deeper review yet.
+    </p>
+    <div class="code-block" style="margin-bottom:40px;">
+      <div class="code-head"><span class="code-lbl">shell</span></div>
+      <pre><code>gh pr checkout &lt;pr-number&gt;
+./scripts/fetch_assets.sh
+./scripts/build.sh webharbor:dev
+docker run -d --rm --name wh-review \
+  -p 8201:8101 -p 41000-41014:40000-40014 webharbor:dev
+
+# all 15 sites return 200
+for p in $(seq 41000 41014); do
+  curl -so /dev/null -w "$p:%{http_code}\n" http://localhost:$p/
+done
+
+# byte-identical reset
+curl -X POST http://localhost:8201/reset/&lt;site&gt;
+docker exec wh-review md5sum \
+  /opt/WebSyn/&lt;site&gt;/instance/&lt;site&gt;.db \
+  /opt/WebSyn/&lt;site&gt;/instance_seed/&lt;site&gt;.db
+# the two md5s MUST match
+
+# parallel reset still works for everyone
+time curl -X POST http://localhost:8201/reset-all
+
+# verify HF revision pin
+cat .assets-revision
+# check the SHA exists at huggingface.co/datasets/ChilleD/WebHarbor</code></pre>
+    </div>
+
+    <!-- ===== CHECKLIST 1: VISUAL ===== -->
+    <h3 class="compare-title">Checklist 1: Visual fidelity</h3>
+    <p style="margin-bottom:16px; color:var(--text-soft); line-height:1.7;">
+      Open the mirror and the real website side by side. Check:
+    </p>
+    <div class="approach-grid" style="margin-bottom:40px;">
+      <div class="approach-card">
+        <h3>Layout accuracy</h3>
+        <p>Does the page structure (header, nav, sidebar, footer, grid) match the real site? Are major sections in the right order?</p>
+      </div>
+      <div class="approach-card">
+        <h3>Real images</h3>
+        <p>Are product photos, article images, and logos real (not placeholders or colored rectangles)? Check at least 3 detail pages.</p>
+      </div>
+      <div class="approach-card">
+        <h3>Typography &amp; colors</h3>
+        <p>Do fonts, colors, and spacing roughly match? The mirror doesn't need pixel-perfection, but should feel like the same brand.</p>
+      </div>
+      <div class="approach-card">
+        <h3>Working navigation</h3>
+        <p>Click every top-level nav link, category link, and footer link. Do they lead to real pages (not 404s)?</p>
+      </div>
+    </div>
+
+    <!-- ===== CHECKLIST 2: FUNCTIONAL ===== -->
+    <h3 class="compare-title">Checklist 2: Functional depth</h3>
+    <p style="margin-bottom:16px; color:var(--text-soft); line-height:1.7;">
+      Test the site's interactive features by actually using them:
+    </p>
+    <div class="approach-grid" style="margin-bottom:40px;">
+      <div class="approach-card">
+        <h3>Auth flows</h3>
+        <p>Register a new account, log out, log back in. Reset password if available. Test with seeded accounts (<code>alice.j@test.com</code> / <code>TestPass123!</code>).</p>
+      </div>
+      <div class="approach-card">
+        <h3>Search &amp; browse</h3>
+        <p>Search for 3+ different queries. Do results make sense? Are there enough results (&ge;6)? Does multi-word search work (not just exact match)?</p>
+      </div>
+      <div class="approach-card">
+        <h3>CRUD operations</h3>
+        <p>Add items to cart/bookmarks/lists. Remove them. Edit account settings. Submit forms. Check that state changes persist across page navigation.</p>
+      </div>
+      <div class="approach-card">
+        <h3>Detail pages</h3>
+        <p>Open 5+ detail pages (products, articles, courses). Are specs, descriptions, and metadata populated? Are images loading?</p>
+      </div>
+    </div>
+
+    <!-- ===== CHECKLIST 3: TASK QUALITY ===== -->
+    <h3 class="compare-title">Checklist 3: Task quality &amp; difficulty</h3>
+    <p style="margin-bottom:16px; color:var(--text-soft); line-height:1.7;">
+      This is the most important check. For each of the 15&#8211;20 proposed tasks:
+    </p>
+
+    <div class="problem-grid" style="margin-bottom:20px;">
+      <article class="problem-card">
+        <div class="problem-head">
+          <span class="prob-id">A</span>
+          <h3>Answer leak check</h3>
+        </div>
+        <p>
+          Can you find the answer without navigating to a detail page?
+          If the answer appears in a search result title, card subtitle, or
+          page heading, it's a <strong>leak</strong>. The answer must require
+          reading a detail page, comparing specs, or multi-step reasoning.
+        </p>
+      </article>
+      <article class="problem-card">
+        <div class="problem-head">
+          <span class="prob-id">B</span>
+          <h3>Distractor adequacy</h3>
+        </div>
+        <p>
+          When you search for the task's target, do you see items that look
+          similar but don't satisfy all constraints? There should be
+          near-miss distractors that require careful reading to distinguish
+          from the correct answer. If every result satisfies the task, it's
+          <strong>too easy</strong>.
+        </p>
+      </article>
+      <article class="problem-card">
+        <div class="problem-head">
+          <span class="prob-id">C</span>
+          <h3>Meaningful difficulty</h3>
+        </div>
+        <p>
+          Would a frontier model (e.g., GPT-5) solve this in one click?
+          Good tasks require multiple steps: search, filter, open detail pages,
+          compare, reason about constraints. Include at least 3&#8211;5 tasks
+          that require &ge;5 steps.
+        </p>
+      </article>
+    </div>
+
+    <div class="thesis" style="margin-bottom:40px;">
+      <span class="thesis-kicker">Key question</span>
+      <p>
+        <strong>Would you be satisfied if this task appeared in a published
+        benchmark?</strong> If the task is trivially solvable, has leaked
+        answers, or tests only surface-level browsing, request changes.
+        A mirror with 10 well-designed tasks is worth more than one with 100
+        trivial ones.
+      </p>
+    </div>
+
+    <!-- ===== COMMON ISSUES ===== -->
+    <h3 class="compare-title">Common issues we've seen</h3>
+    <p style="margin-bottom:16px; color:var(--text-soft); line-height:1.7;">
+      Based on reviewing 15+ mirrors, these are the patterns that coding agents
+      most frequently get wrong:
+    </p>
+
+    <div class="compare-table-scroll" style="margin-bottom:40px;">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th class="compare-dim">Issue</th>
+            <th>What it looks like</th>
+            <th>How to fix</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="compare-dim">Answer in title</td>
+            <td>Task: "find a camera with 10x zoom" &rarr; product named "Canon ELPH 360 (12x Zoom)"</td>
+            <td>Strip constraint values from card-level fields. Push to specs/description only.</td>
+          </tr>
+          <tr>
+            <td class="compare-dim">Single-item catalog</td>
+            <td>Task: "buy iPhone 17" &rarr; database contains only 1 phone</td>
+            <td>Seed 20+ phones across brands, models, price ranges. Agent must search and compare.</td>
+          </tr>
+          <tr>
+            <td class="compare-dim">Broken search</td>
+            <td>"Boston Celtic players" returns 0 results (strict AND match fails)</td>
+            <td>Use token-overlap scored search. Count matching tokens, filter score > 0.</td>
+          </tr>
+          <tr>
+            <td class="compare-dim">Placeholder images</td>
+            <td>Products show colored rectangles or "Image coming soon" boxes</td>
+            <td>Scrape real product images from the live site. Every visible item needs a real photo.</td>
+          </tr>
+          <tr>
+            <td class="compare-dim">Fake forms</td>
+            <td>Checkout form has fields but submit does nothing, or always succeeds without validation</td>
+            <td>Forms must validate, persist to DB, and redirect correctly. Test the full flow end-to-end.</td>
+          </tr>
+          <tr>
+            <td class="compare-dim">Count leak</td>
+            <td>Task: "how many courses in X?" &rarr; heading says "4 courses"</td>
+            <td>Remove count labels. Show the items; let the agent count them.</td>
+          </tr>
+          <tr>
+            <td class="compare-dim">Byte-identity fails</td>
+            <td>After <code>/reset/&lt;site&gt;</code>, md5 of <code>instance/&lt;site&gt;.db</code> doesn't match <code>instance_seed/&lt;site&gt;.db</code></td>
+            <td>A <code>seed_*()</code> function isn't idempotent. Gate it at the function level (early-return on populated DB), not per-row.</td>
+          </tr>
+          <tr>
+            <td class="compare-dim">JSON-backed handlers</td>
+            <td>Handler reads from <code>scraped_data/*.json</code> at request time</td>
+            <td>All runtime data must come from <code>instance_seed/&lt;site&gt;.db</code>. Fold scrape JSON into the seed DB via <code>seed_data.py</code>.</td>
+          </tr>
+          <tr>
+            <td class="compare-dim">Cross-site imports</td>
+            <td><code>sites/foo/app.py</code> imports from <code>sites/bar/</code></td>
+            <td>Sites must be isolated. Each runs as its own Flask process. Grep for <code>from sites.</code> in the diff.</td>
+          </tr>
+          <tr>
+            <td class="compare-dim">Stale HF pin</td>
+            <td><code>.assets-revision</code> points to a nonexistent or unmerged HF commit</td>
+            <td>Verify the SHA exists at <code>huggingface.co/datasets/ChilleD/WebHarbor</code> and is merged into main.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ===== HOW TO SUBMIT ===== -->
+    <h3 class="compare-title">How to submit your review</h3>
+    <ol style="color:var(--text-soft); line-height:1.8; margin-bottom:40px; padding-left:24px;">
+      <li>Go to the <a href="https://github.com/aiming-lab/WebHarbor/pulls" target="_blank">open Pull Requests</a> on GitHub.</li>
+      <li>Pick a PR for creating a new environment.</li>
+      <li>Deploy locally and run through all 3 checklists above.</li>
+      <li>Leave a structured comment on the PR:
+        <ul style="margin-top:8px;">
+          <li>Visual fidelity: PASS / FAIL (with screenshots)</li>
+          <li>Functional depth: PASS / FAIL (list issues found)</li>
+          <li>Task quality: PASS / FAIL per task (note any leaks or triviality)</li>
+        </ul>
+      </li>
+      <li>If issues are found, work with the contributor to iterate until all checklists pass.</li>
+      <li>Approve the PR when satisfied.</li>
+    </ol>
+
+    <div class="thesis" style="margin-bottom:40px;">
+      <span class="thesis-kicker">Author list</span>
+      <p>
+        Reviewing <strong>5 environments</strong> (with thorough checklist
+        reports) earns a spot on the final paper's author list. We track
+        reviews via GitHub PR activity.
+      </p>
+    </div>
+
+    <div style="display:flex; gap:14px; flex-wrap:wrap;">
+      <a class="btn btn-primary" href="https://github.com/aiming-lab/WebHarbor/pulls" target="_blank">
+        Browse open PRs
+      </a>
+      <a class="btn btn-ghost" href="index.html#contribute">
+        Back to Contribution
+      </a>
+    </div>
+
+  </div>
+</section>
+</main>
+
+</body>
+</html>

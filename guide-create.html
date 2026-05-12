@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Website Contribution Guide — WebHarbor</title>
+<link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/style.css" />
+<!-- Prism.js for code block with line numbers -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">&#x2693;</span>
+      <span class="brand-name">WebHarbor</span>
+    </a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="guide-review.html">Review Guide</a>
+      <a href="index.html#contribute">Contribute</a>
+    </nav>
+    <a class="nav-cta" href="https://github.com/aiming-lab/WebHarbor" target="_blank" rel="noopener">GitHub &rarr;</a>
+  </div>
+</header>
+
+<main>
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag">Contributor Guide</span>
+      <h2>How to synthesize a new website environment</h2>
+      <p class="section-lede">
+        This guide walks you through building a high-quality, multimodal
+        mirror site for WebHarbor. The process combines coding agents for
+        rapid construction with human review for quality assurance.
+        Expect 1 day of work per site.
+      </p>
+    </div>
+
+    <!-- ===== TOOLING ===== -->
+    <div class="thesis" style="margin-bottom:50px;">
+      <span class="thesis-kicker">Tooling</span>
+      <p>
+        We provide coding agent skills that automate each phase of this pipeline.
+        Clone the repo and use coding agent (e.g., Claude Code or CodeX) with the built-in skills:
+      </p>
+    </div>
+    <div class="code-block" style="margin-bottom:20px;">
+      <div class="code-head">
+        <span class="code-lbl">shell</span>
+        <button class="copy-btn" data-copy="git clone https://github.com/aiming-lab/WebHarbor.git && cd WebHarbor">Copy</button>
+      </div>
+      <pre><code>git clone https://github.com/aiming-lab/WebHarbor.git && cd WebHarbor</code></pre>
+    </div>
+    <div class="compare-table-scroll" style="margin-bottom:50px;">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th class="compare-dim">Phase</th>
+            <th>Skill</th>
+            <th>What it does</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="compare-dim">Phase 1</td><td><code>clone-website</code></td><td>Scrape, harvest assets, build Flask backend, replicate frontend</td></tr>
+          <tr><td class="compare-dim">Phase 2</td><td><code>design-tasks</code></td><td>Generate 15-20 benchmark tasks covering full site functionality</td></tr>
+          <tr><td class="compare-dim">Phase 3</td><td><code>evolve-env</code></td><td>Evolve the mirror to support each task, detect agent pitfalls</td></tr>
+          <tr><td class="compare-dim">Phase 4</td><td><code>harden-env</code></td><td>De-leak answers, add distractors, broaden catalog, cross-field consistency</td></tr>
+          <tr><td class="compare-dim">Phase 5</td><td><code>seed-database</code></td><td>Finalize DB seeds, scored search, persistence, test user accounts</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ===== ONE-SHOT PROMPT ===== -->
+    <h3 class="compare-title">⚡ Fastest path: one-shot prompt to Coding Agent</h3>
+    <p style="margin-bottom:16px; color:var(--text-soft); line-height:1.7;">
+      Once you've cloned the repo (so the <code>.claude/skills/</code>
+      directory is available), paste the prompt below into
+      your favorite coding agent with your target website
+      filled in. The agent will run Phases 1&#8211;5 end-to-end and stop
+      before submitting the PR.
+    </p>
+    <p style="margin-bottom:24px; color:var(--text-muted); font-size:0.92rem; line-height:1.6;">
+      <strong>Tip:</strong> for best results, we recommend using GPT-5.5 or Claude Opus 4.6 level models with high reasoning effort. 
+    </p>
+
+    <div class="code-block prompt-block" style="margin-bottom:20px;">
+      <div class="code-head">
+        <span class="code-lbl">prompt for coding agent</span>
+        <button class="copy-btn" data-copy="I want to contribute a new website mirror to WebHarbor.
+
+        Target site: &lt;REAL_URL&gt;     # e.g. https://www.target-site.com/
+        Site slug:   &lt;SLUG&gt;         # e.g. target_site (lowercase, snake_case)
+        
+        Follow the WebHarbor contribution pipeline end-to-end using the local skills under .claude/skills/. Specifically:
+        
+        Phase 1 — Use the `clone-website` skill:
+          - Run ./scripts/new_site.py &lt;SLUG&gt; to scaffold sites/&lt;SLUG&gt;/
+          - Register the site in websyn_start.sh, control_server.py, Dockerfile
+          - Scrape structure, harvest real assets (no placeholders), build the Flask + SQLAlchemy app
+          - Replicate the frontend with Jinja2 templates matching the original site
+          - Seed an initial idempotent DB (seed_database + seed_benchmark_users with alice.j@test.com et al.)
+        
+        Phase 2 — Use the `design-tasks` skill:
+          - Write 15-20 benchmark tasks to sites/&lt;SLUG&gt;/tasks.jsonl
+          - Cover the site's full functional breadth (search, browse, cart, checkout, account, etc.)
+          - Include 3-5 hard tasks that require multi-step reasoning
+          - Use the WebVoyager schema: {web_name, id, ques, web, upstream_url}
+        
+        Phase 3 — Use the `evolve-env` skill:
+          - Manually walk through each task; extend the mirror to support it
+          - Detect and fix task info leaks, superficial completion, insufficient distractors
+        
+        Phase 4 — Use the `harden-env` skill:
+          - Audit every task against the 4 hardening dimensions (de-leak / distractors / catalog breadth / cross-field consistency)
+          - Check the 13 known leak archetypes
+          - Re-verify byte-identical reset
+        
+        Phase 5 — Use the `seed-database` skill:
+          - Confirm all seed_*() functions are idempotent at the function level
+          - Stabilize instance_seed/&lt;SLUG&gt;.db (boot-and-freeze cycle until md5 matches)
+          - Implement scored token-overlap search if not already
+        
+        Verification (after each phase and at the end):
+          ./scripts/build.sh webharbor:dev
+          docker run -d --rm --name wh-test -p 8201:8101 -p 41000-41014:40000-40014 webharbor:dev
+          curl -X POST http://localhost:8201/reset/&lt;SLUG&gt;
+          docker exec wh-test md5sum /opt/WebSyn/&lt;SLUG&gt;/instance/&lt;SLUG&gt;.db /opt/WebSyn/&lt;SLUG&gt;/instance_seed/&lt;SLUG&gt;.db
+          # the two md5s MUST match
+        
+        Stop before opening the PR. Print a summary of:
+          - Files added / modified
+          - Number of seeded rows per major model
+          - Tasks count in tasks.jsonl
+          - Byte-identical reset confirmation
+          - Anything that needs human review or fixing
+          - Detailed steps how to finally submit the PR (HuggingFace assets PR + GitHub PR + .assets-revision bump) 
+        
+        
+        DO NOT STOP UNLESS YOU FINISH ALL THE STEPS. THE WHOLE TASK CAN BE HOURS OF WORK, SO BE PATIENT AND PERSISTENT. IF YOU ENCOUNTER AN ERROR, FIX IT AND KEEP GOING.
+        
+        I will review your output and then drive the PR submission myself (HuggingFace assets PR + GitHub PR + .assets-revision bump)">Copy</button>
+      </div>
+      <pre class="line-numbers"><code class="language-none">I want to contribute a new website mirror to WebHarbor.
+
+Target site: &lt;REAL_URL&gt;     # e.g. https://www.target-site.com/
+Site slug:   &lt;SLUG&gt;         # e.g. target_site (lowercase, snake_case)
+
+Follow the WebHarbor contribution pipeline end-to-end using the local skills under .claude/skills/. Specifically:
+
+Phase 1 — Use the `clone-website` skill:
+  - Run ./scripts/new_site.py &lt;SLUG&gt; to scaffold sites/&lt;SLUG&gt;/
+  - Register the site in websyn_start.sh, control_server.py, Dockerfile
+  - Scrape structure, harvest real assets (no placeholders), build the Flask + SQLAlchemy app
+  - Replicate the frontend with Jinja2 templates matching the original site
+  - Seed an initial idempotent DB (seed_database + seed_benchmark_users with alice.j@test.com et al.)
+
+Phase 2 — Use the `design-tasks` skill:
+  - Write 15-20 benchmark tasks to sites/&lt;SLUG&gt;/tasks.jsonl
+  - Cover the site's full functional breadth (search, browse, cart, checkout, account, etc.)
+  - Include 3-5 hard tasks that require multi-step reasoning
+  - Use the WebVoyager schema: {web_name, id, ques, web, upstream_url}
+
+Phase 3 — Use the `evolve-env` skill:
+  - Manually walk through each task; extend the mirror to support it
+  - Detect and fix task info leaks, superficial completion, insufficient distractors
+
+Phase 4 — Use the `harden-env` skill:
+  - Audit every task against the 4 hardening dimensions (de-leak / distractors / catalog breadth / cross-field consistency)
+  - Check the 13 known leak archetypes
+  - Re-verify byte-identical reset
+
+Phase 5 — Use the `seed-database` skill:
+  - Confirm all seed_*() functions are idempotent at the function level
+  - Stabilize instance_seed/&lt;SLUG&gt;.db (boot-and-freeze cycle until md5 matches)
+  - Implement scored token-overlap search if not already
+
+Verification (after each phase and at the end):
+  ./scripts/build.sh webharbor:dev
+  docker run -d --rm --name wh-test -p 8201:8101 -p 41000-41014:40000-40014 webharbor:dev
+  curl -X POST http://localhost:8201/reset/&lt;SLUG&gt;
+  docker exec wh-test md5sum /opt/WebSyn/&lt;SLUG&gt;/instance/&lt;SLUG&gt;.db /opt/WebSyn/&lt;SLUG&gt;/instance_seed/&lt;SLUG&gt;.db
+  # the two md5s MUST match
+
+Stop before opening the PR. Print a summary of:
+  - Files added / modified
+  - Number of seeded rows per major model
+  - Tasks count in tasks.jsonl
+  - Byte-identical reset confirmation
+  - Anything that needs human review or fixing
+  - Detailed steps how to finally submit the PR (HuggingFace assets PR + GitHub PR + .assets-revision bump) 
+
+
+DO NOT STOP UNLESS YOU FINISH ALL THE STEPS. THE WHOLE TASK CAN BE HOURS OF WORK, SO BE PATIENT AND PERSISTENT. IF YOU ENCOUNTER AN ERROR, FIX IT AND KEEP GOING.
+
+I will review your output and then drive the PR submission myself (HuggingFace assets PR + GitHub PR + .assets-revision bump).</code></pre>
+    </div>
+
+
+    <!-- ===== STEP-BY-STEP DIVIDER ===== -->
+    <div style="margin: 0 0 50px; padding: 24px 28px; border-left: 4px solid var(--accent); background: var(--bg-alt); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+      <p style="margin: 0 0 6px; font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 600;">
+        Step-by-step manual reference below ↓
+      </p>
+      <p style="margin: 0; color: var(--text-soft); font-size: 0.96rem; line-height: 1.6;">
+        Want to understand each phase yourself, or run them one at a time?
+        The full step-by-step walkthrough follows. Useful both for first-time
+        contributors and for debugging when the one-shot prompt above gets
+        stuck.
+      </p>
+    </div>
+
+    <!-- ===== PHASE 0 ===== -->
+    <h3 class="compare-title">Phase 0: Claim your website</h3>
+    <div class="thesis" style="margin-bottom:40px;">
+      <span class="thesis-kicker">Before you start</span>
+      <p>
+        Browse the <a href="https://docs.google.com/spreadsheets/d/1vZsrQjy9nJKze58fx4kbQtFi85NjVXIWCFyu3ShD7gk/edit?gid=0#gid=0" target="_blank">website tracking sheet</a>
+        and find an unclaimed site. Submit the
+        <a href="https://forms.gle/ngcD1rzAfUEphNmRA" target="_blank">contribution form</a>
+        so we can lock it for you. You're expected to hear from us within 48 hours.
+      </p>
+    </div>
+
+    <!-- ===== PHASE 1 ===== -->
+    <h3 class="compare-title">Phase 1: Fork, scaffold, and clone</h3>
+    <p style="margin-bottom:16px; color:var(--text-soft); line-height:1.7;">
+      WebHarbor lives across two repositories: <a href="https://github.com/aiming-lab/WebHarbor" target="_blank">code on GitHub</a> and heavy
+      assets (seed DBs, images) on the <a href="https://huggingface.co/datasets/ChilleD/WebHarbor" target="_blank">HuggingFace dataset</a>
+      <code>ChilleD/WebHarbor</code>. Fork both, then scaffold a new
+      site under <code>sites/&lt;your_site&gt;/</code>:
+    </p>
+    <div class="code-block" style="margin-bottom:20px;">
+      <div class="code-head">
+        <span class="code-lbl">shell</span>
+        <button class="copy-btn" data-copy="git clone https://github.com/<you>/WebHarbor && cd WebHarbor
+./scripts/fetch_assets.sh
+./scripts/new_site.py mysite">Copy</button>
+      </div>
+      <pre><code>git clone https://github.com/&lt;you&gt;/WebHarbor && cd WebHarbor
+./scripts/fetch_assets.sh           # pull current HF assets (~2.8 GB)
+./scripts/new_site.py mysite        # scaffold sites/mysite/</code></pre>
+    </div>
+    <p style="margin-bottom:16px; color:var(--text-soft); line-height:1.7;">
+      The scaffold creates the standard skeleton:
+    </p>
+    <div class="code-block" style="margin-bottom:30px;">
+      <div class="code-head"><span class="code-lbl">layout</span></div>
+      <pre><code>sites/mysite/
+├── app.py              ← routes + SQLAlchemy models
+├── seed_data.py        ← build-time seed (must be idempotent)
+├── _health.py          ← end-to-end health check
+├── templates/          ← Jinja2 templates
+├── static/{css,js,icons}/        ← small UI, in git
+├── static/images/                ← heavy, in HF dataset
+├── instance_seed/&lt;site&gt;.db       ← seed DB, in HF dataset
+└── tasks.jsonl                   ← benchmark tasks</code></pre>
+    </div>
+    <p style="margin-bottom:30px; color:var(--text-soft); line-height:1.7;">
+      Register the new site in three places (must stay in sync):
+      <code>websyn_start.sh</code> (the <code>SITES=( ... )</code> array),
+      <code>control_server.py</code> (the <code>SITES = [ ... ]</code> list), and
+      <code>Dockerfile</code> (<code>EXPOSE 8101 40000-N</code>).
+    </p>
+
+    <div class="approach-grid" style="margin-bottom:40px;">
+      <div class="approach-card">
+        <h3>Scrape structure</h3>
+        <p>Map the live site's page hierarchy, navigation, and URL patterns. Output goes into <code>scraped_data/</code> (gitignored).</p>
+      </div>
+      <div class="approach-card">
+        <h3>Harvest real assets</h3>
+        <p>Download product images, article photos, logos. Place under <code>static/images/</code> (HF-managed). No placeholders.</p>
+      </div>
+      <div class="approach-card">
+        <h3>Build backend</h3>
+        <p>Edit <code>app.py</code>: SQLAlchemy models, routes, idempotent <code>seed_database()</code>, auth, CRUD.</p>
+      </div>
+      <div class="approach-card">
+        <h3>Replicate frontend</h3>
+        <p>Jinja2 templates that match the original site's layout, typography, and responsive behavior.</p>
+      </div>
+    </div>
+
+    <!-- ===== PHASE 2 ===== -->
+    <h3 class="compare-title">Phase 2: Design tasks (15&#8211;20 per site)</h3>
+    <p style="margin-bottom:16px; color:var(--text-soft); line-height:1.7;">
+      Tasks define what the environment must support. Write them to
+      <code>sites/&lt;site&gt;/tasks.jsonl</code> using the WebVoyager schema
+      (one JSON object per line):
+    </p>
+    <div class="code-block" style="margin-bottom:30px;">
+      <div class="code-head"><span class="code-lbl">tasks.jsonl</span></div>
+      <pre><code>{"web_name": "Mysite", "id": "Mysite--0", "ques": "Search for ...", "web": "http://localhost:40015/", "upstream_url": "https://www.mysite.com/"}
+{"web_name": "Mysite", "id": "Mysite--1", "ques": "Filter products under $30 with 4+ stars ...", "web": "http://localhost:40015/", "upstream_url": "https://www.mysite.com/"}</code></pre>
+    </div>
+    <p style="margin-bottom:16px; color:var(--text-soft); line-height:1.7;">
+      You can adapt tasks from existing benchmarks (WebVoyager, Online-Mind2Web)
+      or synthesize new ones with an LLM &mdash; LLMs have strong knowledge of
+      popular websites and make effective task generators.
+    </p>
+
+    <div class="thesis" style="margin-bottom:20px;">
+      <span class="thesis-kicker">Coverage principle</span>
+      <p>
+        Tasks must cover the site's <strong>full functional breadth</strong>, not just one feature.
+        For example, an Amazon mirror should include tasks across:
+        searching products, filtering by category, reading reviews,
+        adding to cart, checkout flow, order history, account settings,
+        address management, and payment methods.
+      </p>
+    </div>
+
+    <div class="thesis" style="margin-bottom:40px;">
+      <span class="thesis-kicker">Difficulty principle</span>
+      <p>
+        Include tasks that <strong>current frontier models cannot easily solve</strong>:
+        multi-step workflows, disambiguation scenarios (user has 3 payment
+        cards, which one?), cross-page reasoning, and tasks requiring visual
+        understanding of product images or map layouts.
+      </p>
+    </div>
+
+    <!-- ===== PHASE 3 ===== -->
+    <h3 class="compare-title">Phase 3: Task-driven environment evolution</h3>
+    <p style="margin-bottom:16px; color:var(--text-soft); line-height:1.7;">
+      Feed the tasks to a coding agent and let it evolve the environment to
+      support each task. The agent will add routes, templates, database seeds,
+      and form handlers on demand.
+    </p>
+
+    <div class="problem-grid" style="margin-bottom:40px;">
+      <article class="problem-card">
+        <div class="problem-head">
+          <span class="prob-id">!</span>
+          <h3>Task info leak</h3>
+        </div>
+        <p>
+          Coding agents frequently make tasks trivially easy. A "find product X"
+          task becomes solvable without searching because the product is the only
+          item displayed, or appears in the page title. <strong>The answer should
+          never be visible without navigating, searching, and reading.</strong>
+          We believe this is related to reward hacking in agent training.
+        </p>
+      </article>
+      <article class="problem-card">
+        <div class="problem-head">
+          <span class="prob-id">!</span>
+          <h3>Superficial completion</h3>
+        </div>
+        <p>
+          Agents often produce pages that pass automated checks but fail under
+          real interaction: placeholder text, broken forms, missing images,
+          search that only returns exact matches, or checkout flows that
+          skip validation steps.
+        </p>
+      </article>
+      <article class="problem-card">
+        <div class="problem-head">
+          <span class="prob-id">!</span>
+          <h3>Insufficient distractors</h3>
+        </div>
+        <p>
+          If the task asks "buy an iPhone 17", the database must not contain only
+          one phone. Seed <strong>diverse distractor items</strong>: multiple phone
+          models, brands, and price ranges. The agent must compare and select,
+          not just click the only option.
+        </p>
+      </article>
+    </div>
+
+    <!-- ===== PHASE 4 ===== -->
+    <h3 class="compare-title">Phase 4: Hardening (critical)</h3>
+    <p style="margin-bottom:16px; color:var(--text-soft); line-height:1.7;">
+      This is where human review is indispensable. Systematically check each
+      task against the 3 hardening dimensions:
+    </p>
+
+    <div class="approach-grid" style="margin-bottom:20px;">
+      <div class="approach-card">
+        <h3>A. De-leak answers</h3>
+        <p>Task constraint values must NOT appear in card titles, search result snippets, or page headings. Push answer details to spec tables, description prose, or detail-page sections that require click-through.</p>
+      </div>
+      <div class="approach-card">
+        <h3>B. Add near-miss distractors</h3>
+        <p>For each task, ensure the search results contain items that match the query category but fail ONE constraint. Target &le;50% full-match density so agents must read specs.</p>
+      </div>
+      <div class="approach-card">
+        <h3>C. Broaden the catalog</h3>
+        <p>Search queries should return &ge;6 results from multiple sub-categories. If a zip code search returns only pizza shops, add coffee shops, gyms, banks, and pharmacies in the same area.</p>
+      </div>
+      <div class="approach-card">
+        <h3>D. Cross-field consistency</h3>
+        <p>When modifying any product/item field, regenerate ALL related fields (specs, description, features, tags) from the same source of truth to prevent contradictions.</p>
+      </div>
+    </div>
+
+    <div class="thesis" style="margin-bottom:40px;">
+      <span class="thesis-kicker">Why humans are essential</span>
+      <p>
+        Automated tests verify that the environment <em>supports</em> a task,
+        but only a human can verify it's <em>challenging</em>. Can the answer
+        be found without scrolling? Does the search show only the target item?
+        Is the layout visually faithful to the real site? These are judgment
+        calls that require human eyes.
+      </p>
+    </div>
+
+    <!-- ===== PHASE 5 ===== -->
+    <h3 class="compare-title">Phase 5: Stabilize the seed DB &amp; ship to HuggingFace</h3>
+
+    <div class="thesis" style="margin-bottom:30px;">
+      <span class="thesis-kicker">Idempotent seeding (the byte-identical reset invariant)</span>
+      <p>
+        Every <code>seed_*()</code> function in <code>app.py</code> /
+        <code>seed_data.py</code> MUST early-return when the DB is already
+        populated. Per-row gates are NOT enough &mdash; even a no-op
+        <code>db.session.commit()</code> bumps SQLite metadata and breaks
+        <code>/reset/&lt;site&gt;</code> byte-identity. Gate every seed
+        function as a whole:
+      </p>
+    </div>
+    <div class="code-block" style="margin-bottom:30px;">
+      <div class="code-head"><span class="code-lbl">python</span></div>
+      <pre><code>def seed_database():
+    if Product.query.count() > 0:
+        return                # gate the whole function
+    # ... seed rows ...
+
+def seed_benchmark_users():
+    if User.query.filter_by(email='alice.j@test.com').first():
+        return
+    # ... seed 4 users ...</code></pre>
+    </div>
+
+    <div class="approach-grid" style="margin-bottom:30px;">
+      <div class="approach-card">
+        <h3>Realistic volume</h3>
+        <p>Seed 50&#8211;200 items per major entity. Real sites have thousands; a small but diverse catalog preserves the browsing experience.</p>
+      </div>
+      <div class="approach-card">
+        <h3>Scored search</h3>
+        <p>Token-overlap scoring, NOT strict AND. Multi-word queries like "Boston Celtic players" fail strict matching. Count matching tokens, filter score &gt; 0.</p>
+      </div>
+      <div class="approach-card">
+        <h3>Test user accounts</h3>
+        <p>Seed 4 benchmark users (<code>alice.j@test.com</code> etc., password <code>TestPass123!</code>) with pre-existing carts, bookmarks, orders, and profiles for auth-gated tasks.</p>
+      </div>
+      <div class="approach-card">
+        <h3>Runtime data in DB, not JSON</h3>
+        <p>HTTP handlers read from SQLAlchemy, not JSON files. Fold scrape JSON into <code>instance_seed/&lt;site&gt;.db</code> at build time via <code>seed_data.py</code>.</p>
+      </div>
+    </div>
+
+    <div class="thesis" style="margin-bottom:30px;">
+      <span class="thesis-kicker">Two-repo workflow</span>
+      <p>
+        Heavy assets (<code>instance_seed/*.db</code>,
+        <code>static/images/</code>) live on the HuggingFace dataset
+        <code>ChilleD/WebHarbor</code>, not directly in git.
+        <code>.assets-revision</code> pins the exact HF commit. After your
+        DB / images are stable, run:
+      </p>
+    </div>
+    <div class="code-block" style="margin-bottom:40px;">
+      <div class="code-head">
+        <span class="code-lbl">shell</span>
+        <button class="copy-btn" data-copy="./scripts/extract_assets.sh ../wh-static-pr/
+cd ../wh-static-pr
+hf upload-large-folder <your-fork>/WebHarbor . --repo-type dataset
+# open PR on https://huggingface.co/datasets/ChilleD/WebHarbor
+# after merge, bump .assets-revision in the code repo">Copy</button>
+      </div>
+      <pre><code>./scripts/extract_assets.sh ../wh-static-pr/
+cd ../wh-static-pr
+hf upload-large-folder &lt;your-fork&gt;/WebHarbor . --repo-type dataset
+# open PR on https://huggingface.co/datasets/ChilleD/WebHarbor
+# after merge, bump .assets-revision in the code repo</code></pre>
+    </div>
+
+    <!-- ===== PHASE 6 ===== -->
+    <h3 class="compare-title">Phase 6: Pre-PR checks &amp; submission</h3>
+    <p style="margin-bottom:16px; color:var(--text-soft); line-height:1.7;">
+      Run all of these before opening the GitHub PR:
+    </p>
+    <div class="code-block" style="margin-bottom:30px;">
+      <div class="code-head"><span class="code-lbl">shell</span></div>
+      <pre><code># 1. syntax
+python3 -m py_compile sites/&lt;site&gt;/app.py
+
+# 2. build
+./scripts/build.sh webharbor:dev
+
+# 3. run on alt ports
+docker run -d --rm --name wh-test \
+  -p 8201:8101 -p 41000-41014:40000-40014 webharbor:dev
+
+# 4. all 15 sites return 200
+for p in $(seq 41000 41014); do
+  curl -so /dev/null -w "$p:%{http_code}\n" http://localhost:$p/
+done
+
+# 5. byte-identical reset invariant
+curl -X POST http://localhost:8201/reset/&lt;site&gt;
+docker exec wh-test md5sum \
+  /opt/WebSyn/&lt;site&gt;/instance/&lt;site&gt;.db \
+  /opt/WebSyn/&lt;site&gt;/instance_seed/&lt;site&gt;.db
+# the two md5s MUST match
+
+docker stop wh-test</code></pre>
+    </div>
+    <p style="margin-bottom:16px; color:var(--text-soft); line-height:1.7;">
+      Your GitHub PR description should include:
+    </p>
+    <ol style="color:var(--text-soft); line-height:1.8; margin-bottom:40px; padding-left:24px;">
+      <li>The real site mirrored + URL</li>
+      <li>Number of seeded rows per major model</li>
+      <li>Link to the paired HuggingFace PR (asset side)</li>
+      <li>Output of <code>POST /reset/&lt;site&gt;</code> showing <code>ready: true</code></li>
+      <li>Screenshot evidence of visual fidelity vs. the real site</li>
+      <li>15&#8211;20 tasks in <code>sites/&lt;site&gt;/tasks.jsonl</code></li>
+    </ol>
+
+    <div style="display:flex; gap:14px; flex-wrap:wrap;">
+      <a class="btn btn-primary" href="https://forms.gle/ngcD1rzAfUEphNmRA" target="_blank">
+        Submit contribution form
+      </a>
+      <a class="btn btn-ghost" href="index.html#contribute">
+        Back to Contribution
+      </a>
+    </div>
+
+  </div>
+</section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script>
+  // copy buttons (matches main page's copy-btn behavior)
+  document.querySelectorAll(".copy-btn").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      const text = btn.getAttribute("data-copy") || "";
+      try {
+        await navigator.clipboard.writeText(text);
+        const orig = btn.textContent;
+        btn.textContent = "Copied";
+        btn.classList.add("copied");
+        setTimeout(() => { btn.textContent = orig; btn.classList.remove("copied"); }, 1400);
+      } catch (e) {
+        btn.textContent = "Copy failed";
+      }
+    });
+  });
+</script>
+</body>
+</html>

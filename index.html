@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>WebHarbor: Docking Real Websites for Evolving GUI Agent Environments</title>
+<meta name="description" content="WebHarbor docks popular websites into local, stable, Docker-based mirrors with full auth, database, and multimodal content. Environments evolve with agent capability. Starting with 15 sites, scaling to 100." />
+<link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png" />
+<meta property="og:image" content="assets/icons/og-image.jpg" />
+<meta property="og:title" content="WebHarbor: Docking Real Websites for Evolving GUI Agent Environments" />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="container nav-inner">
+    <a href="#top" class="brand">
+      <span class="brand-mark">&#x2693;</span>
+      <span class="brand-name">WebHarbor</span>
+    </a>
+    <nav>
+      <a href="#gallery">Live Demos</a>
+      <a href="#motivation">Motivation</a>
+      <a href="#evolving">Our Approach</a>
+      <a href="#quickstart">Quickstart</a>
+      <a href="#contribute">Contribute</a>
+    </nav>
+    <div class="nav-cta-group">
+      <a class="nav-cta nav-cta-ghost" href="guide-create.html">Contribution Guide</a>
+      <a class="nav-cta nav-cta-ghost" href="guide-review.html">Review Guide</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- =================== HERO =================== -->
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="eyebrow">
+      <span class="dot"></span>
+      Evolving GUI Web Agent Environments
+    </div>
+    <h1 class="hero-title">
+      WebHarbor: Docking Real Websites for<br />
+      <span class="accent">Evolving GUI Agent Environments</span>
+    </h1>
+    <p class="hero-sub">
+      Live websites are often noisy, blocked by reCAPTCHA, and hide their most useful
+      features behind login walls. WebHarbor <strong>docks</strong> them into
+      local Docker mirrors: stable, reproducible, resettable in
+      milliseconds, and <strong>evolves</strong> environments with more functionalities and data as agents grow stronger.
+    </p>
+    <ul class="hero-highlights">
+      <li><strong>Stable &amp; reproducible</strong> no network noise, no content drift, no geo-blocks</li>
+      <li><strong>Deep features unlocked</strong> carts, checkouts, and accounts, all testable</li>
+      <li><strong>Evolving</strong> harder tasks drive richer mirrors, environment evolves</li>
+      <li><strong>RL-ready</strong> sub-second database resets for lightweight environments</li>
+      <li><strong>Community-driven</strong> 15 sites today, let's scale to 100 and beyond, together</li>
+    </ul>
+
+    <div class="hero-quickstart">
+      <p class="hero-qs-label">Start deploying 15 <a href="https://github.com/MinorJerry/WebVoyager/blob/main/data/WebVoyager_data.jsonl" target="_blank" rel="noopener">WebVoyager</a> sites locally with one command:</p>
+      <div class="hero-qs-cmd">
+        <code>docker run -p 40000-40014:40000-40014 battalion7244/webharbor:latest</code>
+        <button class="copy-btn" data-copy="docker run -p 40000-40014:40000-40014 battalion7244/webharbor:latest">Copy</button>
+      </div>
+    </div>
+
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="https://github.com/aiming-lab/WebHarbor" target="_blank" rel="noopener">
+        <span>💻 Code on GitHub</span><span class="arr">&nearr;</span>
+      </a>
+      <a class="btn btn-ghost" href="https://huggingface.co/datasets/ChilleD/WebHarbor" target="_blank" rel="noopener">🤗 Dataset</a>
+      <a class="btn btn-ghost" href="https://docs.google.com/spreadsheets/d/1vZsrQjy9nJKze58fx4kbQtFi85NjVXIWCFyu3ShD7gk/edit?gid=0#gid=0" target="_blank" rel="noopener">📊 Track Sheet</a>
+      <a class="btn btn-ghost" href="https://forms.gle/ngcD1rzAfUEphNmRA" target="_blank" rel="noopener">📝 Request Form</a>
+    </div>
+    <div class="hero-strip" id="hero-strip">
+      <div class="strip-track"></div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== SECTION OUTLINE =================== -->
+<section id="outline" class="section outline">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag">Contents</span>
+      <h2>Page outline</h2>
+    </div>
+    <ol class="outline-list">
+      <li>
+        <a href="#gallery">
+          <span class="ol-num">01</span>
+          <span class="ol-body">
+            <span class="ol-title">15 live demos</span>
+            <span class="ol-desc">15 live websites running in Docker containers.</span>
+          </span>
+          <span class="ol-arrow">&darr;</span>
+        </a>
+      </li>
+      <li>
+        <a href="#motivation">
+          <span class="ol-num">02</span>
+          <span class="ol-body">
+            <span class="ol-title">Motivation</span>
+            <span class="ol-desc">Why current environments (live, offline, or toy) can't evaluate the real web.</span>
+          </span>
+          <span class="ol-arrow">&darr;</span>
+        </a>
+      </li>
+      <li>
+        <a href="#evolving">
+          <span class="ol-num">03</span>
+          <span class="ol-body">
+            <span class="ol-title">Evolving Environments</span>
+            <span class="ol-desc">Coding agents build, humans verify, tasks drive environment evolution.</span>
+          </span>
+          <span class="ol-arrow">&darr;</span>
+        </a>
+      </li>
+      <li>
+        <a href="#quickstart">
+          <span class="ol-num">04</span>
+          <span class="ol-body">
+            <span class="ol-title">Quickstart</span>
+            <span class="ol-desc">One command to deploy live website environments, locally.</span>
+          </span>
+          <span class="ol-arrow">&darr;</span>
+        </a>
+      </li>
+      <li>
+        <a href="#contribute">
+          <span class="ol-num">05</span>
+          <span class="ol-body">
+            <span class="ol-title">Contribution</span>
+            <span class="ol-desc">Scale with community power. Contribute now!</span>
+          </span>
+          <span class="ol-arrow">&darr;</span>
+        </a>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- =================== GALLERY (15 LIVE DEMOS) =================== -->
+<section id="gallery" class="section bordered">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag">01 &middot; 15 live demos</span>
+      <h2>Real websites, running locally, with every feature unlocked.</h2>
+      <p class="section-lede">
+        Each clip below is a <em>real interaction</em> captured against a
+        running WebHarbor mirror: shopping&nbsp;carts, flight&nbsp;search,
+        map&nbsp;directions, issue&nbsp;tracking, meal&nbsp;planning, and scoreboard&nbsp;stats.
+        These are the deep, login-gated features that live websites can never reach.
+      </p>
+    </div>
+
+    <div class="gallery" id="gallery-grid">
+      <!-- populated from JS -->
+    </div>
+  </div>
+</section>
+
+<!-- =================== MOTIVATION =================== -->
+<section id="motivation" class="section bordered">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag">02 &middot; Motivation</span>
+      <h2>The web is multimodal, deep, and gated. Current benchmarks and environments are none of these.</h2>
+      <p class="section-lede">
+        Real websites have rich visual layouts, product images, interactive
+        maps, and deeply nested functionality behind login walls. Existing
+        web agent benchmarks either fight the live web&rsquo;s instability or
+        retreat into toy environments that don&rsquo;t resemble it.
+      </p>
+    </div>
+
+    <div class="problem-grid">
+      <article class="problem-card">
+        <div class="problem-head">
+          <span class="prob-id">a</span>
+          <h3>Live-site eval</h3>
+          <span class="prob-sub">WebVoyager, Online-Mind2Web</span>
+        </div>
+        <p>
+          reCAPTCHA, geo-blocks, network flakiness, and content drift inflate
+          eval noise. Multiple WebVoyager sites are effectively inaccessible.
+          Tasks never require login, so coverage is limited to surface-level
+          fact lookups.
+        </p>
+      </article>
+
+      <article class="problem-card">
+        <div class="problem-head">
+          <span class="prob-id">b</span>
+          <h3>Offline traces</h3>
+          <span class="prob-sub">Mind2Web</span>
+        </div>
+        <p>
+          No interactive environment, no state, no consequence of a wrong
+          click. Useful for supervised pre-training but fundamentally
+          unsuited to evaluating agents that must act, not just predict.
+        </p>
+      </article>
+
+      <article class="problem-card">
+        <div class="problem-head">
+          <span class="prob-id">c</span>
+          <h3>Synthetic Environments</h3>
+          <span class="prob-sub">WebArena</span>
+        </div>
+        <p>
+          Some synthetic browser environments built from coloured rectangles instead of real images; a
+          handful of sites with no multimodal richness. WebArena is
+          content-rich but heavyweight, and slow resets make RL-scale
+          rollouts impractical.
+        </p>
+      </article>
+    </div>
+
+    <div class="thesis">
+      <span class="thesis-kicker">Core insight</span>
+      <p>
+        The bottleneck isn&rsquo;t the agent. It&rsquo;s
+        <strong>the environment</strong>. We need web environments that are
+        <em>stable</em> (no eval noise), <em>multimodal</em> (real images
+        and layouts), <em>deep</em> (auth-gated flows), and
+        <em>evolving</em> (growing with agent capability).
+      </p>
+    </div>
+    <!-- comparison table -->
+    <div class="compare-wrap">
+      <h3 class="compare-title">How WebHarbor compares</h3>
+      <div class="compare-table-scroll">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th class="compare-dim"></th>
+              <th>WebArena</th>
+              <th>WebVoyager</th>
+              <th>Online-Mind2Web</th>
+              <th class="compare-ours">WebHarbor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="compare-dim">Environment</td>
+              <td>Self-hosted (synthetic)</td>
+              <td>Live web</td>
+              <td>Live web</td>
+              <td class="compare-ours">Self-hosted (synthetic)</td>
+            </tr>
+            <tr>
+              <td class="compare-dim"># of Sites</td>
+              <td>5</td>
+              <td>15</td>
+              <td>100+</td>
+              <td class="compare-ours">15 (100+ planned)</td>
+            </tr>
+            <tr>
+              <td class="compare-dim">Eval Stability</td>
+              <td><span class="cmp-ok">Stable</span></td>
+              <td><span class="cmp-bad">Noisy</span> (reCAPTCHA, geo-blocks, tasks outdated)</td>
+              <td><span class="cmp-bad">Noisy</span> (reCAPTCHA, geo-blocks)</td>
+              <td><span class="cmp-ok">Stable</span></td>
+            </tr>
+            <tr>
+              <td class="compare-dim">Login &amp; Deep Features</td>
+              <td class="compare-ours"><span class="cmp-good">Fully unlocked</span></td>
+              <td><span class="cmp-bad">Not supported</span></td>
+              <td><span class="cmp-bad">Not supported</span></td>
+              <td class="compare-ours"><span class="cmp-good">Fully unlocked</span></td>
+            </tr>
+            <tr>
+              <td class="compare-dim">Reset Speed</td>
+              <td><span class="cmp-bad">Slow</span> (Docker restart)</td>
+              <td>N/A (live)</td>
+              <td>N/A (live)</td>
+              <td class="compare-ours"><span class="cmp-good">Fast</span> (SQLite reset)</td>
+            </tr>
+            <tr>
+              <td class="compare-dim">Evolution</td>
+              <td>Static, frozen</td>
+              <td><span class="cmp-bad">Tasks outdated</span></td>
+              <td><span class="cmp-ok">Tasks updated</span></td>
+              <td class="compare-ours"><span class="cmp-good">Evolving</span>env grows with tasks</td>
+            </tr>
+            <tr>
+              <td class="compare-dim">RL Compatible</td>
+              <td><span class="cmp-bad">Impractical</span> (slow reset)</td>
+              <td><span class="cmp-bad">No</span> (noisy, live)</td>
+              <td><span class="cmp-bad">No</span> (noisy, live)</td>
+              <td class="compare-ours"><span class="cmp-good">Yes</span> (fast reset, deterministic)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- =================== EVOLVING ENVIRONMENTS (OUR APPROACH) =================== -->
+<section id="evolving" class="section bordered">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag">03 &middot; Evolving Environments: Our Approach</span>
+      <h2>Coding agents build. Humans verify. Tasks drive evolution.</h2>
+      <p class="section-lede">
+        WebHarbor environments are built by coding agents (e.g. Claude Code with
+        specialized skills), then rigorously reviewed by human annotators to
+        ensure multimodal fidelity and functional depth. Tasks from existing
+        benchmarks (starting with
+        <a href="https://github.com/MinorJerry/WebVoyager" target="_blank" rel="noopener">WebVoyager</a>)
+        define what the environment support and look like.
+      </p>
+    </div>
+
+    <!-- build pipeline: 4 steps -->
+    <div class="evo-flow">
+      <div class="evo-step">
+        <div class="evo-num">1</div>
+        <h4>Coding agent builds</h4>
+        <p>A coding agent with specialized skills scrapes the real site's structure, assets, and catalog, then generates a full-stack mirror — SQLite database, REST backend, and frontend — with auth and CRUD flows.</p>
+      </div>
+      <div class="evo-arrow">&rarr;</div>
+      <div class="evo-step">
+        <div class="evo-num">2</div>
+        <h4>Human-in-the-loop review</h4>
+        <p>Human reviewers verify every mirror for visual fidelity, functional correctness, and data quality. This step is essential: we observe that agents frequently take shortcuts, produce superficially correct but broken pages, or skip edge cases.</p>
+      </div>
+      <div class="evo-arrow">&rarr;</div>
+      <div class="evo-step">
+        <div class="evo-num">3</div>
+        <h4>Task-driven scoping</h4>
+        <p>Cloning an entire live website is impractical. Instead, tasks define what features the mirror must support. Every task is verified to run against the environment with grounded truth checks.</p>
+      </div>
+      <div class="evo-arrow">&rarr;</div>
+      <div class="evo-step">
+        <div class="evo-num">4</div>
+        <h4>Environment evolves</h4>
+        <p>Once agents master existing tasks, we can have harder ones that require deeper site features. The coding agent extends the mirror on demand. The environment is never "done"; it grows alongside agent capability.</p>
+      </div>
+    </div>
+
+    <!-- why humans matter -->
+    <div class="thesis" style="margin-top:46px;">
+      <span class="thesis-kicker">Why humans are essential</span>
+      <p>
+        Building high-quality, multimodal web environments cannot be fully
+        automated, currently. We observe that coding agents frequently
+        <strong>hack</strong> their way through: using placeholder images,
+        skipping complex layouts, producing pages that pass automated checks
+        but fail under real interaction. Human review catches these issues
+        and ensures every mirror matches the look, feel, and depth of the
+        real site.
+      </p>
+    </div>
+
+    <!-- why evolving -->
+    <div class="thesis" style="margin-top:20px;">
+      <span class="thesis-kicker">Why evolving</span>
+      <p>
+        A live website like Amazon has millions of products, thousands of routes,
+        and decades of accumulated functionality. Cloning it entirely is neither
+        tractable nor necessary. But we can ensure every task has
+        full environment support. When agents master those tasks, we expand:
+        harder tasks &rarr; more features, richer data, deeper flows. The
+        environment <strong>evolves</strong> with the agent.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- =================== VISION =================== -->
+<div class="container hinge-inner">
+  <p class="hinge-q">Our vision</p>
+  <p class="hinge-a">
+    Leverage code to <span class="accent">mirror the world</span>.
+    Cultivate the agent.
+    Prepare it to interact with and learn from <span class="accent">the real world itself</span>.
+  </p>
+</div>
+
+<!-- =================== QUICKSTART =================== -->
+<section id="quickstart" class="section bordered quickstart">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag">04 &middot; Quickstart</span>
+      <h2>One command, 15 sites.</h2>
+      <p class="section-lede">
+        All mirrors ship in a single Docker image. Each site binds to a
+        fixed port offset from 40000; point your agent at
+        <code>http://localhost:40000&ndash;40014</code>.
+      </p>
+    </div>
+
+    <div class="code-block">
+      <div class="code-head">
+        <span class="code-lbl">shell</span>
+        <button class="copy-btn" data-copy="docker run -p 40000-40014:40000-40014 battalion7244/webharbor:latest">Copy</button>
+      </div>
+      <pre><code>docker run -p 40000-40014:40000-40014 battalion7244/webharbor:latest</code></pre>
+    </div>
+
+    <p style="color:var(--text-soft); line-height:1.8; margin:0;">
+      Sites are mapped to ports <code>:40000</code> through <code>:40014</code> in order:
+      Allrecipes, Amazon, Apple, ArXiv, BBC&nbsp;News, Booking, GitHub,
+      Google&nbsp;Flights, Google&nbsp;Maps, Google&nbsp;Search, Hugging&nbsp;Face,
+      Wolfram&nbsp;Alpha, Cambridge&nbsp;Dictionary, Coursera, and ESPN.
+    </p>
+  </div>
+</section>
+
+<!-- =================== CONTRIBUTION =================== -->
+<section id="contribute" class="section bordered">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag">05 &middot; Contribution</span>
+      <h2>Scale to 100+ sites with community power.</h2>
+      <p class="section-lede">
+        We have built 15 high-quality website environments that fully support
+        the <a href="https://github.com/MinorJerry/WebVoyager" target="_blank" rel="noopener">WebVoyager</a>
+        benchmark. Our next goal is to scale to <strong>100+ websites</strong>,
+        covering all environments in
+        <a href="https://huggingface.co/datasets/osunlp/Online-Mind2Web" target="_blank" rel="noopener">Online-Mind2Web</a>
+        (147 sites).
+        We are inviting the community to build this together.
+      </p>
+    </div>
+
+    <!-- two tracks -->
+    <h3 class="compare-title">Two tracks to join the author list</h3>
+    <div class="impact-grid" style="margin-bottom: 40px;">
+
+      <div class="impact-card">
+        <h3>Track A: Contribute a new website</h3>
+        <p>
+          Using coding agent to build a new mirror site (frontend + backend + database + tasks).
+          Contributing <strong>one website</strong> qualifies you for consideration for the
+          final paper's author list, subject to review and quality standards.
+        </p>
+        <ol style="margin:16px 0 0; padding-left:20px; color:var(--text-soft); font-size:0.92rem; line-height:1.7;">
+          <li>Browse the <a href="https://docs.google.com/spreadsheets/d/1vZsrQjy9nJKze58fx4kbQtFi85NjVXIWCFyu3ShD7gk/edit?gid=0#gid=0" target="_blank" rel="noopener">website tracking sheet</a> and find an unclaimed site you're interested in.</li>
+          <li>Submit the <a href="https://forms.gle/ngcD1rzAfUEphNmRA" target="_blank" rel="noopener">contribution form</a> to claim it. We will lock it to prevent duplicate work.</li>
+          <li>Once confirmed, follow our <a href="guide-create.html">Website Contribution Guide</a> to build and submit a PR.</li>
+        </ol>
+      </div>
+
+      <div class="impact-card">
+        <h3>Track B: Review environments</h3>
+        <p>
+          Review submitted mirror sites by checking visual fidelity, functional
+          correctness, and task grounding. <strong>Reviewing 5 environments</strong>
+          earns a spot on the author list.
+        </p>
+        <ol style="margin:16px 0 0; padding-left:20px; color:var(--text-soft); font-size:0.92rem; line-height:1.7;">
+          <li>Browse open <a href="https://github.com/aiming-lab/WebHarbor/pulls" target="_blank" rel="noopener">Pull Requests</a> on GitHub.</li>
+          <li>Review the submitted environment: does it support all proposed tasks? Are the tasks meaningful and challenging?</li>
+          <li>Follow our recommended <a href="guide-review.html">Review Pipeline</a> for systematic verification.</li>
+        </ol>
+      </div>
+
+    </div>
+
+    <!-- acknowledgement track -->
+    <div class="thesis">
+      <span class="thesis-kicker">Acknowledgement</span>
+      <p>
+        Any improvement to existing environments (bug fixes, UI polish, data
+        enrichment, task suggestions, or even feedback) qualifies for the
+        paper's acknowledgement section. Every contribution
+        matters.
+      </p>
+    </div>
+
+    <!-- CTA buttons -->
+    <div style="display:flex; gap:14px; flex-wrap:wrap; margin-top:36px;">
+      <a class="btn btn-primary" href="https://docs.google.com/spreadsheets/d/1vZsrQjy9nJKze58fx4kbQtFi85NjVXIWCFyu3ShD7gk/edit?gid=0#gid=0" target="_blank" rel="noopener">
+        View website tracking sheet
+      </a>
+      <a class="btn btn-ghost" href="https://forms.gle/ngcD1rzAfUEphNmRA" target="_blank" rel="noopener">
+        Submit contribution form
+      </a>
+      <a class="btn btn-ghost" href="https://github.com/aiming-lab/WebHarbor/pulls" target="_blank" rel="noopener">
+        Review open PRs
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- =================== CITATION =================== -->
+<section id="citation" class="section bordered citation-section">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag">Citation</span>
+      <h2>BibTeX</h2>
+    </div>
+    <div class="code-block">
+      <div class="code-head">
+        <span class="code-lbl">bibtex</span>
+        <button class="copy-btn" data-copy="@misc{webharbor2026,&#10;  title        = {WebHarbor: Docking Real Websites for Evolving GUI Agent Environments},&#10;  author       = {{WebHarbor Team and Contributors}},&#10;  year         = {2026},&#10;  url          = {https://aiming-lab.github.io/webharbor.github.io},&#10;  note         = {Project website.}&#10;}">Copy</button>
+      </div>
+      <pre><code>@misc{webharbor2026,
+  title        = {WebHarbor: Docking Real Websites for Evolving GUI Agent Environments},
+  author       = {{WebHarbor Team and Contributors}},
+  year         = {2026},
+  url          = {https://aiming-lab.github.io/webharbor.github.io},
+  note         = {Project website.}
+}</code></pre>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<!-- =================== LIGHTBOX =================== -->
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Demo preview">
+  <button class="lb-close" id="lb-close" aria-label="Close">&times;</button>
+  <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous">&lsaquo;</button>
+  <button class="lb-nav lb-next" id="lb-next" aria-label="Next">&rsaquo;</button>
+  <div class="lb-stage">
+    <img class="lb-img" id="lb-img" alt="" />
+    <div class="lb-caption" id="lb-caption">
+      <div class="lb-title" id="lb-title"></div>
+      <div class="lb-sub"   id="lb-sub"></div>
+    </div>
+  </div>
+</div>
+
+<script src="assets/main.js"></script>
+</body>
+</html>

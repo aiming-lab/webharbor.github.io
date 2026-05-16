@@ -69,17 +69,17 @@
     </ul>
 
     <div class="hero-quickstart">
-      <div class="hero-qs-badge-row">
-        <a href="#validation" class="hero-qs-badge">
-          <span class="hero-qs-badge-mark">&#10003;</span>
-          Validated &mdash; model rankings match live-web benchmarks
-          <span class="hero-qs-badge-arrow">&rarr;</span>
-        </a>
-      </div>
       <p class="hero-qs-label">Start deploying 15 <a href="https://github.com/MinorJerry/WebVoyager/blob/main/data/WebVoyager_data.jsonl" target="_blank" rel="noopener">WebVoyager</a> sites locally with one command:</p>
       <div class="hero-qs-cmd">
         <code>docker run -p 40000-40014:40000-40014 battalion7244/webharbor:latest</code>
         <button class="copy-btn" data-copy="docker run -p 40000-40014:40000-40014 battalion7244/webharbor:latest">Copy</button>
+      </div>
+      <div class="hero-qs-badge-row">
+        <a href="#validation" class="hero-qs-badge">
+          <span class="hero-qs-badge-mark">&#10003;</span>
+          Validated &mdash; model rankings on the docked WebVoyager sites match live-web benchmarks
+          <span class="hero-qs-badge-arrow">&rarr;</span>
+        </a>
       </div>
     </div>
 
@@ -400,6 +400,16 @@
   </div>
 </section>
 
+<!-- =================== VISION =================== -->
+<div class="container hinge-inner">
+  <p class="hinge-q">Our vision</p>
+  <p class="hinge-a">
+    Leverage code to <span class="accent">mirror the world</span>.
+    Cultivate the agent.
+    Prepare it to interact with and learn from <span class="accent">the real world itself</span>.
+  </p>
+</div>
+
 <!-- =================== VALIDATION =================== -->
 <section id="validation" class="section bordered">
   <div class="container">
@@ -413,9 +423,9 @@
         real web, we evaluated three vision-language web agents on
         <strong>WebHarbor-WebVoyager</strong> and on three independent live-web benchmarks.
         The relative ordering
-        <strong><a href="https://huggingface.co/Qwen/Qwen3-VL-4B-Thinking" target="_blank" rel="noopener">Qwen3-VL-4B-Thinking</a> &lt; <a href="https://huggingface.co/Qwen/Qwen3-VL-235B-A22B-Thinking" target="_blank" rel="noopener">Qwen3-VL-235B-A22B-Thinking</a> &lt; <a href="https://arxiv.org/pdf/2605.15040" target="_blank" rel="noopener">Orchard-GUI-4B</a></strong>
-        is preserved on every benchmark &mdash; confirming WebHarbor ranks models
-        consistently with prior evaluations.
+        <a href="https://huggingface.co/Qwen/Qwen3-VL-4B-Thinking" target="_blank" rel="noopener">Qwen3-VL-4B-Thinking</a> &lt; <a href="https://huggingface.co/Qwen/Qwen3-VL-235B-A22B-Thinking" target="_blank" rel="noopener">Qwen3-VL-235B-A22B-Thinking</a> &lt; <a href="https://arxiv.org/pdf/2605.15040" target="_blank" rel="noopener">Orchard-GUI-4B</a>
+        is preserved on every benchmark &mdash; confirming <strong>WebHarbor ranks models
+        consistently with prior evaluations.</strong>
       </p>
     </div>
 
@@ -434,16 +444,6 @@
     </p>
   </div>
 </section>
-
-<!-- =================== VISION =================== -->
-<div class="container hinge-inner">
-  <p class="hinge-q">Our vision</p>
-  <p class="hinge-a">
-    Leverage code to <span class="accent">mirror the world</span>.
-    Cultivate the agent.
-    Prepare it to interact with and learn from <span class="accent">the real world itself</span>.
-  </p>
-</div>
 
 <!-- =================== QUICKSTART =================== -->
 <section id="quickstart" class="section bordered quickstart">

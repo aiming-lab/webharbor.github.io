@@ -380,7 +380,7 @@ code {
 }
 .hero-qs-badge-row {
   text-align: center;
-  margin: 0 0 12px;
+  margin: 16px 0 0;
 }
 .hero-qs-badge {
   display: inline-flex;

@@ -378,6 +378,48 @@ code {
   margin: 0 0 14px;
   text-align: center;
 }
+.hero-qs-badge-row {
+  text-align: center;
+  margin: 0 0 12px;
+}
+.hero-qs-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--teal);
+  background: var(--teal-soft);
+  border: 1px solid rgba(13, 115, 119, 0.22);
+  padding: 6px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 1px 2px rgba(13, 115, 119, 0.08);
+}
+.hero-qs-badge:hover {
+  background: rgba(13, 115, 119, 0.14);
+  border-color: var(--teal);
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(13, 115, 119, 0.12);
+}
+.hero-qs-badge-mark {
+  font-weight: 700;
+  font-size: 0.85em;
+}
+.hero-qs-badge-arrow {
+  font-family: var(--sans);
+  font-weight: 700;
+  opacity: 0.7;
+  transition: transform 0.2s, opacity 0.2s;
+}
+.hero-qs-badge:hover .hero-qs-badge-arrow {
+  transform: translateX(2px);
+  opacity: 1;
+}
 .hero-qs-cmd {
   display: flex;
   align-items: center;
@@ -777,6 +819,44 @@ code {
   border-radius: 5px;
   border: 1px solid #FECACA;
   font-size: 0.84rem;
+}
+
+/* ---- VALIDATION ---- */
+.validation-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  padding: 24px 22px 18px;
+  margin: 0;
+}
+#validation-chart {
+  width: 100%;
+  height: 520px;
+}
+.validation-caption {
+  margin: 22px 0 0;
+  font-size: 0.94rem;
+  color: var(--text-soft);
+  line-height: 1.65;
+  max-width: 80ch;
+}
+.validation-pill {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+  color: var(--warm);
+  background: var(--warm-soft);
+  border: 1px solid rgba(196, 113, 59, 0.25);
+  padding: 2px 9px;
+  border-radius: 5px;
+  vertical-align: 1px;
+}
+@media (max-width: 720px) {
+  #validation-chart { height: 460px; }
+  .validation-card { padding: 16px 12px 12px; }
 }
 
 /* ---- HINGE ---- */

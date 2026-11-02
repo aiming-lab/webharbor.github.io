@@ -1,0 +1,64 @@
+name: Redirect to the WebHarbor project page
+
+# The page source stays in this repository, but it is published from
+# aiming-lab/WebHarbor at https://aiming-lab.github.io/WebHarbor/. This site
+# only redirects old links there, keeping the path and #anchor.
+# Repository Settings -> Pages -> Source must be "GitHub Actions".
+# Optional secret WEBHARBOR_DISPATCH_TOKEN (fine-grained token with Contents:
+# write on aiming-lab/WebHarbor) redeploys that site on every push here.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  redirect:
+    runs-on: ubuntu-latest
+    env:
+      DISPATCH_TOKEN: ${{ secrets.WEBHARBOR_DISPATCH_TOKEN }}
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build redirect stubs
+        run: |
+          mkdir -p _redirect
+          target=https://aiming-lab.github.io/WebHarbor/
+          for page in index.html guide-create.html guide-review.html 404.html; do
+            dest="$target"
+            case "$page" in guide-*) dest="$target$page" ;; esac
+            cat > "_redirect/$page" <<EOF
+          <!doctype html>
+          <meta charset="utf-8">
+          <title>WebHarbor</title>
+          <link rel="canonical" href="$dest">
+          <meta http-equiv="refresh" content="0; url=$dest">
+          <script>
+            var rest = location.pathname.replace(/^\/webharbor\.github\.io\/?/i, "");
+            location.replace("$target" + rest + location.search + location.hash);
+          </script>
+          <p>WebHarbor has moved to <a href="$dest">$dest</a>.</p>
+          EOF
+          done
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _redirect
+      - id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Redeploy https://aiming-lab.github.io/WebHarbor/
+        if: env.DISPATCH_TOKEN != ''
+        env:
+          GH_TOKEN: ${{ env.DISPATCH_TOKEN }}
+        run: gh api repos/aiming-lab/WebHarbor/dispatches -f event_type=project-page-updated

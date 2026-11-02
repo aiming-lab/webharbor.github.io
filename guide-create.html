@@ -23,7 +23,7 @@
     <nav>
       <a href="index.html">Home</a>
       <a href="guide-review.html">Review Guide</a>
-      <a href="index.html#contribute">Contribute</a>
+      <a href="index.html#community">Contribute</a>
     </nav>
     <a class="nav-cta" href="https://github.com/aiming-lab/WebHarbor" target="_blank" rel="noopener">GitHub &rarr;</a>
   </div>
@@ -42,6 +42,8 @@
         Expect 1 day of work per site.
       </p>
     </div>
+    <div role="note" style="margin:0 0 36px;padding:16px 20px;border-radius:14px;background:#FFF3E0;border:1px solid #F3D3A5;color:#6B4A1E;font-size:15px;"><strong style="color:#7A4300;">Contributions to the current release are closed.</strong> This guide stays online for reference. WebHarbor now ships 153 websites; see the <a href="index.html#quickstart">quickstart</a> for the current build and run commands.</div>
+
 
     <!-- ===== TOOLING ===== -->
     <div class="thesis" style="margin-bottom:50px;">
@@ -129,8 +131,8 @@
         
         Verification (after each phase and at the end):
           ./scripts/build.sh webharbor:dev
-          docker run -d --rm --name wh-test -p 8201:8101 -p 41000-41014:40000-40014 webharbor:dev
-          curl -X POST http://localhost:8201/reset/&lt;SLUG&gt;
+          docker run -d --rm --name wh-test -e WEBSYN_CONTROL_TOKEN -p 8201:8101 -p 41000-41152:40000-40152 webharbor:dev
+          curl -H "Authorization: Bearer $WEBSYN_CONTROL_TOKEN" -X POST http://localhost:8201/reset/&lt;SLUG&gt;
           docker exec wh-test md5sum /opt/WebSyn/&lt;SLUG&gt;/instance/&lt;SLUG&gt;.db /opt/WebSyn/&lt;SLUG&gt;/instance_seed/&lt;SLUG&gt;.db
           # the two md5s MUST match
         
@@ -183,8 +185,8 @@ Phase 5 — Use the `seed-database` skill:
 
 Verification (after each phase and at the end):
   ./scripts/build.sh webharbor:dev
-  docker run -d --rm --name wh-test -p 8201:8101 -p 41000-41014:40000-40014 webharbor:dev
-  curl -X POST http://localhost:8201/reset/&lt;SLUG&gt;
+  docker run -d --rm --name wh-test -e WEBSYN_CONTROL_TOKEN -p 8201:8101 -p 41000-41152:40000-40152 webharbor:dev
+  curl -H "Authorization: Bearer $WEBSYN_CONTROL_TOKEN" -X POST http://localhost:8201/reset/&lt;SLUG&gt;
   docker exec wh-test md5sum /opt/WebSyn/&lt;SLUG&gt;/instance/&lt;SLUG&gt;.db /opt/WebSyn/&lt;SLUG&gt;/instance_seed/&lt;SLUG&gt;.db
   # the two md5s MUST match
 
@@ -497,17 +499,18 @@ python3 -m py_compile sites/&lt;site&gt;/app.py
 # 2. build
 ./scripts/build.sh webharbor:dev
 
-# 3. run on alt ports
+# 3. run on alt ports (the control plane needs a token of at least 32 characters)
+export WEBSYN_CONTROL_TOKEN="$(python3 -c 'import secrets; print(secrets.token_urlsafe(48))')"
 docker run -d --rm --name wh-test \
-  -p 8201:8101 -p 41000-41014:40000-40014 webharbor:dev
+  -e WEBSYN_CONTROL_TOKEN -p 8201:8101 -p 41000-41152:40000-40152 webharbor:dev
 
-# 4. all 15 sites return 200
-for p in $(seq 41000 41014); do
+# 4. all 153 sites return 200
+for p in $(seq 41000 41152); do
   curl -so /dev/null -w "$p:%{http_code}\n" http://localhost:$p/
 done
 
 # 5. byte-identical reset invariant
-curl -X POST http://localhost:8201/reset/&lt;site&gt;
+curl -H "Authorization: Bearer $WEBSYN_CONTROL_TOKEN" -X POST http://localhost:8201/reset/&lt;site&gt;
 docker exec wh-test md5sum \
   /opt/WebSyn/&lt;site&gt;/instance/&lt;site&gt;.db \
   /opt/WebSyn/&lt;site&gt;/instance_seed/&lt;site&gt;.db
@@ -531,7 +534,7 @@ docker stop wh-test</code></pre>
       <a class="btn btn-primary" href="https://forms.gle/ngcD1rzAfUEphNmRA" target="_blank">
         Submit contribution form
       </a>
-      <a class="btn btn-ghost" href="index.html#contribute">
+      <a class="btn btn-ghost" href="index.html#community">
         Back to Contribution
       </a>
     </div>

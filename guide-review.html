@@ -21,7 +21,7 @@
     <nav>
       <a href="index.html">Home</a>
       <a href="guide-create.html">Create Guide</a>
-      <a href="index.html#contribute">Contribute</a>
+      <a href="index.html#community">Contribute</a>
     </nav>
     <a class="nav-cta" href="https://github.com/aiming-lab/WebHarbor" target="_blank" rel="noopener">GitHub &rarr;</a>
   </div>
@@ -40,6 +40,8 @@
         to join the author list.
       </p>
     </div>
+    <div role="note" style="margin:0 0 36px;padding:16px 20px;border-radius:14px;background:#FFF3E0;border:1px solid #F3D3A5;color:#6B4A1E;font-size:15px;"><strong style="color:#7A4300;">Contributions to the current release are closed.</strong> This guide stays online for reference. WebHarbor now ships 153 websites; see the <a href="index.html#quickstart">quickstart</a> for the current build and run commands.</div>
+
 
     <!-- ===== TOOLING ===== -->
     <div class="thesis" style="margin-bottom:50px;">
@@ -70,13 +72,13 @@
       <div class="evo-step">
         <div class="evo-num">1</div>
         <h4>Check out &amp; build</h4>
-        <p><code>gh pr checkout</code>, <code>./scripts/fetch_assets.sh</code>, <code>./scripts/build.sh</code>, then run on alt ports (<code>:8201</code>, <code>:41000-41014</code>) so you don't collide with any running container.</p>
+        <p><code>gh pr checkout</code>, <code>./scripts/fetch_assets.sh</code>, <code>./scripts/build.sh</code>, then run on alt ports (<code>:8201</code>, <code>:41000-41152</code>) so you don't collide with any running container.</p>
       </div>
       <div class="evo-arrow">&rarr;</div>
       <div class="evo-step">
         <div class="evo-num">2</div>
         <h4>Mechanical checks</h4>
-        <p>All 15 sites return 200, byte-identical reset passes (<code>md5sum instance/&lt;site&gt;.db == instance_seed/&lt;site&gt;.db</code>), HF revision SHA verified.</p>
+        <p>All 153 sites return 200, byte-identical reset passes (<code>md5sum instance/&lt;site&gt;.db == instance_seed/&lt;site&gt;.db</code>), HF revision SHA verified.</p>
       </div>
       <div class="evo-arrow">&rarr;</div>
       <div class="evo-step">
@@ -102,16 +104,17 @@
       <pre><code>gh pr checkout &lt;pr-number&gt;
 ./scripts/fetch_assets.sh
 ./scripts/build.sh webharbor:dev
+export WEBSYN_CONTROL_TOKEN="$(python3 -c 'import secrets; print(secrets.token_urlsafe(48))')"
 docker run -d --rm --name wh-review \
-  -p 8201:8101 -p 41000-41014:40000-40014 webharbor:dev
+  -e WEBSYN_CONTROL_TOKEN -p 8201:8101 -p 41000-41152:40000-40152 webharbor:dev
 
-# all 15 sites return 200
-for p in $(seq 41000 41014); do
+# all 153 sites return 200
+for p in $(seq 41000 41152); do
   curl -so /dev/null -w "$p:%{http_code}\n" http://localhost:$p/
 done
 
 # byte-identical reset
-curl -X POST http://localhost:8201/reset/&lt;site&gt;
+curl -H "Authorization: Bearer $WEBSYN_CONTROL_TOKEN" -X POST http://localhost:8201/reset/&lt;site&gt;
 docker exec wh-review md5sum \
   /opt/WebSyn/&lt;site&gt;/instance/&lt;site&gt;.db \
   /opt/WebSyn/&lt;site&gt;/instance_seed/&lt;site&gt;.db
@@ -331,7 +334,7 @@ cat .assets-revision
       <a class="btn btn-primary" href="https://github.com/aiming-lab/WebHarbor/pulls" target="_blank">
         Browse open PRs
       </a>
-      <a class="btn btn-ghost" href="index.html#contribute">
+      <a class="btn btn-ghost" href="index.html#community">
         Back to Contribution
       </a>
     </div>

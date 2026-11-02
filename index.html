@@ -1,693 +1,631 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>WebHarbor: Docking Real Websites for Evolving GUI Agent Environments</title>
-<meta name="description" content="WebHarbor docks popular websites into local, stable, Docker-based mirrors with full auth, database, and multimodal content. Environments evolve with agent capability. Starting with 15 sites, scaling to 100." />
-<link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico" />
-<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png" />
-<meta property="og:image" content="assets/icons/og-image.jpg" />
-<meta property="og:title" content="WebHarbor: Docking Real Websites for Evolving GUI Agent Environments" />
-<meta property="og:type" content="website" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="assets/style.css" />
-<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" defer></script>
+<meta name="description" content="WebHarbor is a suite of 153 executable, Dockerized website environments that reconstruct real web services, with 3,518 tasks for reproducible evaluation and reinforcement learning of GUI web agents.">
+<meta name="theme-color" content="#F6F5F0">
+<meta property="og:type" content="website">
+<meta property="og:title" content="WebHarbor: Docking Real Websites for Evolving GUI Agent Environments">
+<meta property="og:description" content="153 executable website environments and 3,518 tasks for GUI web agents. Real look, real logins, real state, fully offline and resettable.">
+<meta property="og:url" content="https://aiming-lab.github.io/webharbor.github.io/">
+<meta property="og:image" content="https://aiming-lab.github.io/webharbor.github.io/assets/icons/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/icons/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/home.css?v=202611012009">
 </head>
 <body>
 
-<header class="site-nav">
-  <div class="container nav-inner">
-    <a href="#top" class="brand">
-      <span class="brand-mark">&#x2693;</span>
-      <span class="brand-name">WebHarbor</span>
-    </a>
-    <nav>
-      <a href="#gallery">Live Demos</a>
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">⚓</span>WebHarbor</a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="#explore">Websites</a>
       <a href="#motivation">Motivation</a>
-      <a href="#evolving">Our Approach</a>
-      <a href="#validation">Validation</a>
+      <a href="#approach">Approach</a>
+      <a href="#suite">Suite</a>
+      <a href="#results">Results</a>
       <a href="#quickstart">Quickstart</a>
-      <a href="#contribute">Contribute</a>
-    </nav>
-    <div class="nav-cta-group">
-      <a class="nav-cta nav-cta-ghost" href="guide-create.html">Contribution Guide</a>
-      <a class="nav-cta nav-cta-ghost" href="guide-review.html">Review Guide</a>
+      <a href="#community">Community</a>
+      <span class="nav-ctas">
+        <a class="nav-cta ghost" href="https://huggingface.co/datasets/ChilleD/WebHarbor" target="_blank" rel="noopener">Dataset</a>
+        <a class="nav-cta" href="https://github.com/aiming-lab/WebHarbor" target="_blank" rel="noopener">GitHub</a>
+      </span>
     </div>
   </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wall" role="group" aria-label="The 153 WebHarbor websites. Select one to explore it.">
+    <div class="row" style="--dur:170s"><div class="track"><button class="tile" data-slug="ticketmaster" data-strip="assets/wall/ticketmaster.webp" style="background-image:url(assets/wall/ticketmaster.webp)" aria-label="Ticketmaster: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Ticketmaster<em>:40110</em></span></button><button class="tile" data-slug="american_express" data-strip="assets/wall/american_express.webp" style="background-image:url(assets/wall/american_express.webp)" aria-label="American Express: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">American Express<em>:40067</em></span></button><button class="tile" data-slug="kaggle" data-strip="assets/wall/kaggle.webp" style="background-image:url(assets/wall/kaggle.webp)" aria-label="Kaggle: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Kaggle<em>:40027</em></span></button><button class="tile" data-slug="recreation_gov" data-strip="assets/wall/recreation_gov.webp" style="background-image:url(assets/wall/recreation_gov.webp)" aria-label="Recreation.gov: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Recreation.gov<em>:40035</em></span></button><button class="tile" data-slug="us_appliance" data-strip="assets/wall/us_appliance.webp" style="background-image:url(assets/wall/us_appliance.webp)" aria-label="US Appliance: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">US Appliance<em>:40125</em></span></button><button class="tile" data-slug="google_search" data-strip="assets/wall/google_search.webp" style="background-image:url(assets/wall/google_search.webp)" aria-label="Google Search: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Google Search<em>:40009</em></span></button><button class="tile" data-slug="usps" data-strip="assets/wall/usps.webp" style="background-image:url(assets/wall/usps.webp)" aria-label="USPS: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">USPS<em>:40129</em></span></button><button class="tile" data-slug="drugs_com" data-strip="assets/wall/drugs_com.webp" style="background-image:url(assets/wall/drugs_com.webp)" aria-label="Drugs.com: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Drugs.com<em>:40042</em></span></button><button class="tile" data-slug="carvana" data-strip="assets/wall/carvana.webp"  aria-label="Carvana: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Carvana<em>:40134</em></span></button><button class="tile" data-slug="league_of_legends" data-strip="assets/wall/league_of_legends.webp"  aria-label="League of Legends: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">League of Legends<em>:40078</em></span></button><button class="tile" data-slug="cboe" data-strip="assets/wall/cboe.webp"  aria-label="Cboe: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Cboe<em>:40063</em></span></button><button class="tile" data-slug="stanford_university" data-strip="assets/wall/stanford_university.webp"  aria-label="Stanford University: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Stanford University<em>:40148</em></span></button><button class="tile" data-slug="cookpad" data-strip="assets/wall/cookpad.webp"  aria-label="Cookpad: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Cookpad<em>:40040</em></span></button><button class="tile" data-slug="marriott" data-strip="assets/wall/marriott.webp"  aria-label="Marriott: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Marriott<em>:40086</em></span></button><button class="tile" data-slug="cars_com" data-strip="assets/wall/cars_com.webp"  aria-label="Cars.com: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Cars.com<em>:40136</em></span></button><button class="tile" data-slug="apartments_com" data-strip="assets/wall/apartments_com.webp"  aria-label="Apartments.com: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Apartments.com<em>:40115</em></span></button><button class="tile" data-slug="landwatch" data-strip="assets/wall/landwatch.webp"  aria-label="LandWatch: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">LandWatch<em>:40084</em></span></button><button class="tile" data-slug="qatar_airways" data-strip="assets/wall/qatar_airways.webp"  aria-label="Qatar Airways: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Qatar Airways<em>:40101</em></span></button><button class="tile" data-slug="the_weather_network" data-strip="assets/wall/the_weather_network.webp"  aria-label="The Weather Network: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">The Weather Network<em>:40112</em></span></button><button class="tile" data-slug="rotten_tomatoes" data-strip="assets/wall/rotten_tomatoes.webp"  aria-label="Rotten Tomatoes: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Rotten Tomatoes<em>:40021</em></span></button><button class="tile" data-slug="steam" data-strip="assets/wall/steam.webp"  aria-label="Steam: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Steam<em>:40150</em></span></button><button class="tile" data-slug="espn" data-strip="assets/wall/espn.webp"  aria-label="ESPN: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">ESPN<em>:40014</em></span></button></div></div>
+    <div class="row" style="--dur:125s"><div class="track"><button class="tile" data-slug="wineaccess" data-strip="assets/wall/wineaccess.webp" style="background-image:url(assets/wall/wineaccess.webp)" aria-label="WineAccess: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">WineAccess<em>:40052</em></span></button><button class="tile" data-slug="microsoft_azure" data-strip="assets/wall/microsoft_azure.webp" style="background-image:url(assets/wall/microsoft_azure.webp)" aria-label="Microsoft Azure: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Microsoft Azure<em>:40143</em></span></button><button class="tile" data-slug="fedex" data-strip="assets/wall/fedex.webp" style="background-image:url(assets/wall/fedex.webp)" aria-label="FedEx: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">FedEx<em>:40024</em></span></button><button class="tile" data-slug="allrecipes" data-strip="assets/wall/allrecipes.webp" style="background-image:url(assets/wall/allrecipes.webp)" aria-label="Allrecipes: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Allrecipes<em>:40000</em></span></button><button class="tile" data-slug="parkers" data-strip="assets/wall/parkers.webp" style="background-image:url(assets/wall/parkers.webp)" aria-label="Parkers: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Parkers<em>:40097</em></span></button><button class="tile" data-slug="boardgamegeek" data-strip="assets/wall/boardgamegeek.webp" style="background-image:url(assets/wall/boardgamegeek.webp)" aria-label="BoardGameGeek: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">BoardGameGeek<em>:40036</em></span></button><button class="tile" data-slug="nyse" data-strip="assets/wall/nyse.webp" style="background-image:url(assets/wall/nyse.webp)" aria-label="NYSE: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">NYSE<em>:40146</em></span></button><button class="tile" data-slug="wolfram_alpha" data-strip="assets/wall/wolfram_alpha.webp" style="background-image:url(assets/wall/wolfram_alpha.webp)" aria-label="Wolfram Alpha: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Wolfram Alpha<em>:40011</em></span></button><button class="tile" data-slug="flightaware" data-strip="assets/wall/flightaware.webp"  aria-label="FlightAware: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">FlightAware<em>:40072</em></span></button><button class="tile" data-slug="discogs" data-strip="assets/wall/discogs.webp"  aria-label="Discogs: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Discogs<em>:40046</em></span></button><button class="tile" data-slug="nvidia" data-strip="assets/wall/nvidia.webp"  aria-label="NVIDIA: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">NVIDIA<em>:40028</em></span></button><button class="tile" data-slug="gov_uk" data-strip="assets/wall/gov_uk.webp"  aria-label="GOV.UK: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">GOV.UK<em>:40032</em></span></button><button class="tile" data-slug="university_of_michigan" data-strip="assets/wall/university_of_michigan.webp"  aria-label="University of Michigan: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">University of Michigan<em>:40147</em></span></button><button class="tile" data-slug="accuweather" data-strip="assets/wall/accuweather.webp"  aria-label="AccuWeather: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">AccuWeather<em>:40031</em></span></button><button class="tile" data-slug="united_airlines" data-strip="assets/wall/united_airlines.webp"  aria-label="United Airlines: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">United Airlines<em>:40124</em></span></button><button class="tile" data-slug="tourradar" data-strip="assets/wall/tourradar.webp"  aria-label="TourRadar: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">TourRadar<em>:40114</em></span></button><button class="tile" data-slug="megabus" data-strip="assets/wall/megabus.webp"  aria-label="Megabus: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Megabus<em>:40087</em></span></button><button class="tile" data-slug="americas_health_rankings" data-strip="assets/wall/americas_health_rankings.webp"  aria-label="America’s Health Rankings: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">America’s Health Rankings<em>:40066</em></span></button><button class="tile" data-slug="huggingface" data-strip="assets/wall/huggingface.webp"  aria-label="Hugging Face: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Hugging Face<em>:40010</em></span></button><button class="tile" data-slug="birkenstock" data-strip="assets/wall/birkenstock.webp"  aria-label="Birkenstock: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Birkenstock<em>:40065</em></span></button><button class="tile" data-slug="dillards" data-strip="assets/wall/dillards.webp"  aria-label="Dillard&#x27;s: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Dillard&#x27;s<em>:40074</em></span></button><button class="tile" data-slug="jcpenney" data-strip="assets/wall/jcpenney.webp"  aria-label="JCPenney: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">JCPenney<em>:40083</em></span></button></div></div>
+    <div class="row" style="--dur:99s"><div class="track"><button class="tile" data-slug="compass" data-strip="assets/wall/compass.webp" style="background-image:url(assets/wall/compass.webp)" aria-label="Compass: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Compass<em>:40022</em></span></button><button class="tile" data-slug="ted" data-strip="assets/wall/ted.webp" style="background-image:url(assets/wall/ted.webp)" aria-label="TED: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">TED<em>:40019</em></span></button><button class="tile" data-slug="google_finance" data-strip="assets/wall/google_finance.webp" style="background-image:url(assets/wall/google_finance.webp)" aria-label="Google Finance: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Google Finance<em>:40047</em></span></button><button class="tile" data-slug="iclr" data-strip="assets/wall/iclr.webp" style="background-image:url(assets/wall/iclr.webp)" aria-label="ICLR: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">ICLR<em>:40140</em></span></button><button class="tile" data-slug="amtrak" data-strip="assets/wall/amtrak.webp" style="background-image:url(assets/wall/amtrak.webp)" aria-label="Amtrak: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Amtrak<em>:40039</em></span></button><button class="tile" data-slug="speedo" data-strip="assets/wall/speedo.webp" style="background-image:url(assets/wall/speedo.webp)" aria-label="Speedo: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Speedo<em>:40103</em></span></button><button class="tile" data-slug="github" data-strip="assets/wall/github.webp" style="background-image:url(assets/wall/github.webp)" aria-label="GitHub: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">GitHub<em>:40006</em></span></button><button class="tile" data-slug="ups" data-strip="assets/wall/ups.webp" style="background-image:url(assets/wall/ups.webp)" aria-label="UPS: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">UPS<em>:40123</em></span></button><button class="tile" data-slug="petfinder" data-strip="assets/wall/petfinder.webp"  aria-label="Petfinder: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Petfinder<em>:40054</em></span></button><button class="tile" data-slug="student_com" data-strip="assets/wall/student_com.webp"  aria-label="Student.com: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Student.com<em>:40107</em></span></button><button class="tile" data-slug="eventbrite" data-strip="assets/wall/eventbrite.webp"  aria-label="Eventbrite: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Eventbrite<em>:40116</em></span></button><button class="tile" data-slug="yahoo_finance" data-strip="assets/wall/yahoo_finance.webp"  aria-label="Yahoo Finance: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Yahoo Finance<em>:40149</em></span></button><button class="tile" data-slug="uscis" data-strip="assets/wall/uscis.webp"  aria-label="USCIS: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">USCIS<em>:40126</em></span></button><button class="tile" data-slug="coursera" data-strip="assets/wall/coursera.webp"  aria-label="Coursera: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Coursera<em>:40013</em></span></button><button class="tile" data-slug="webmd_doctor" data-strip="assets/wall/webmd_doctor.webp"  aria-label="WebMD Doctor: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">WebMD Doctor<em>:40025</em></span></button><button class="tile" data-slug="healthgrades" data-strip="assets/wall/healthgrades.webp"  aria-label="Healthgrades: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Healthgrades<em>:40079</em></span></button><button class="tile" data-slug="cvs" data-strip="assets/wall/cvs.webp"  aria-label="CVS: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">CVS<em>:40121</em></span></button><button class="tile" data-slug="instructure" data-strip="assets/wall/instructure.webp"  aria-label="Instructure: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Instructure<em>:40077</em></span></button><button class="tile" data-slug="imdb" data-strip="assets/wall/imdb.webp"  aria-label="IMDb: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">IMDb<em>:40033</em></span></button><button class="tile" data-slug="public_storage" data-strip="assets/wall/public_storage.webp"  aria-label="Public Storage: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Public Storage<em>:40094</em></span></button><button class="tile" data-slug="ziprecruiter" data-strip="assets/wall/ziprecruiter.webp"  aria-label="ZipRecruiter: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">ZipRecruiter<em>:40133</em></span></button><button class="tile" data-slug="9gag" data-strip="assets/wall/9gag.webp"  aria-label="9GAG: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">9GAG<em>:40057</em></span></button></div></div>
+    <div class="row" style="--dur:137s"><div class="track"><button class="tile" data-slug="google_map" data-strip="assets/wall/google_map.webp" style="background-image:url(assets/wall/google_map.webp)" aria-label="Google Maps: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Google Maps<em>:40008</em></span></button><button class="tile" data-slug="trader_joes" data-strip="assets/wall/trader_joes.webp" style="background-image:url(assets/wall/trader_joes.webp)" aria-label="Trader Joe&#x27;s: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Trader Joe&#x27;s<em>:40151</em></span></button><button class="tile" data-slug="mega" data-strip="assets/wall/mega.webp" style="background-image:url(assets/wall/mega.webp)" aria-label="MEGA: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">MEGA<em>:40055</em></span></button><button class="tile" data-slug="medicare_gov" data-strip="assets/wall/medicare_gov.webp" style="background-image:url(assets/wall/medicare_gov.webp)" aria-label="Medicare.gov: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Medicare.gov<em>:40085</em></span></button><button class="tile" data-slug="babycenter" data-strip="assets/wall/babycenter.webp" style="background-image:url(assets/wall/babycenter.webp)" aria-label="BabyCenter: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">BabyCenter<em>:40038</em></span></button><button class="tile" data-slug="chronicle_jobs" data-strip="assets/wall/chronicle_jobs.webp" style="background-image:url(assets/wall/chronicle_jobs.webp)" aria-label="Chronicle Jobs: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Chronicle Jobs<em>:40073</em></span></button><button class="tile" data-slug="nfl" data-strip="assets/wall/nfl.webp" style="background-image:url(assets/wall/nfl.webp)" aria-label="NFL: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">NFL<em>:40092</em></span></button><button class="tile" data-slug="better_business_bureau" data-strip="assets/wall/better_business_bureau.webp" style="background-image:url(assets/wall/better_business_bureau.webp)" aria-label="Better Business Bureau: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Better Business Bureau<em>:40064</em></span></button><button class="tile" data-slug="cambridge_dictionary" data-strip="assets/wall/cambridge_dictionary.webp"  aria-label="Cambridge Dictionary: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Cambridge Dictionary<em>:40012</em></span></button><button class="tile" data-slug="mta" data-strip="assets/wall/mta.webp"  aria-label="MTA: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">MTA<em>:40093</em></span></button><button class="tile" data-slug="google_shopping" data-strip="assets/wall/google_shopping.webp"  aria-label="Google Shopping: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Google Shopping<em>:40075</em></span></button><button class="tile" data-slug="phys_org" data-strip="assets/wall/phys_org.webp"  aria-label="Phys.org: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Phys.org<em>:40017</em></span></button><button class="tile" data-slug="smartasset" data-strip="assets/wall/smartasset.webp"  aria-label="SmartAsset: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">SmartAsset<em>:40119</em></span></button><button class="tile" data-slug="us_doj" data-strip="assets/wall/us_doj.webp"  aria-label="U.S. DOJ: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">U.S. DOJ<em>:40120</em></span></button><button class="tile" data-slug="berkeley" data-strip="assets/wall/berkeley.webp"  aria-label="UC Berkeley: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">UC Berkeley<em>:40029</em></span></button><button class="tile" data-slug="merriam_webster" data-strip="assets/wall/merriam_webster.webp"  aria-label="Merriam-Webster: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Merriam-Webster<em>:40015</em></span></button><button class="tile" data-slug="phet_simulations" data-strip="assets/wall/phet_simulations.webp"  aria-label="PhET Interactive Simulations: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">PhET Interactive Simulations<em>:40045</em></span></button><button class="tile" data-slug="fox_sports" data-strip="assets/wall/fox_sports.webp"  aria-label="FOX Sports: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">FOX Sports<em>:40144</em></span></button><button class="tile" data-slug="samsung" data-strip="assets/wall/samsung.webp"  aria-label="Samsung: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Samsung<em>:40145</em></span></button><button class="tile" data-slug="airbnb" data-strip="assets/wall/airbnb.webp"  aria-label="Airbnb: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Airbnb<em>:40137</em></span></button><button class="tile" data-slug="red_bull" data-strip="assets/wall/red_bull.webp"  aria-label="Red Bull: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Red Bull<em>:40141</em></span></button><button class="tile" data-slug="target" data-strip="assets/wall/target.webp"  aria-label="Target: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Target<em>:40018</em></span></button></div></div>
+    <div class="row" style="--dur:107s"><div class="track"><button class="tile" data-slug="mayo_clinic" data-strip="assets/wall/mayo_clinic.webp" style="background-image:url(assets/wall/mayo_clinic.webp)" aria-label="Mayo Clinic: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Mayo Clinic<em>:40118</em></span></button><button class="tile" data-slug="thumbtack" data-strip="assets/wall/thumbtack.webp" style="background-image:url(assets/wall/thumbtack.webp)" aria-label="Thumbtack: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Thumbtack<em>:40109</em></span></button><button class="tile" data-slug="ign" data-strip="assets/wall/ign.webp" style="background-image:url(assets/wall/ign.webp)" aria-label="IGN: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">IGN<em>:40050</em></span></button><button class="tile" data-slug="y_combinator" data-strip="assets/wall/y_combinator.webp" style="background-image:url(assets/wall/y_combinator.webp)" aria-label="Y Combinator: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Y Combinator<em>:40044</em></span></button><button class="tile" data-slug="coolmath4kids" data-strip="assets/wall/coolmath4kids.webp" style="background-image:url(assets/wall/coolmath4kids.webp)" aria-label="Coolmath4Kids: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Coolmath4Kids<em>:40070</em></span></button><button class="tile" data-slug="wanderlog" data-strip="assets/wall/wanderlog.webp" style="background-image:url(assets/wall/wanderlog.webp)" aria-label="Wanderlog: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Wanderlog<em>:40130</em></span></button><button class="tile" data-slug="ikea" data-strip="assets/wall/ikea.webp" style="background-image:url(assets/wall/ikea.webp)" aria-label="IKEA: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">IKEA<em>:40016</em></span></button><button class="tile" data-slug="sourceforge" data-strip="assets/wall/sourceforge.webp" style="background-image:url(assets/wall/sourceforge.webp)" aria-label="SourceForge: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">SourceForge<em>:40104</em></span></button><button class="tile" data-slug="sec" data-strip="assets/wall/sec.webp"  aria-label="SEC.gov: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">SEC.gov<em>:40152</em></span></button><button class="tile" data-slug="akc" data-strip="assets/wall/akc.webp"  aria-label="American Kennel Club: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">American Kennel Club<em>:40058</em></span></button><button class="tile" data-slug="super_lawyers" data-strip="assets/wall/super_lawyers.webp"  aria-label="Super Lawyers: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Super Lawyers<em>:40113</em></span></button><button class="tile" data-slug="michaels" data-strip="assets/wall/michaels.webp"  aria-label="Michaels: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Michaels<em>:40088</em></span></button><button class="tile" data-slug="tumblr" data-strip="assets/wall/tumblr.webp"  aria-label="Tumblr: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Tumblr<em>:40127</em></span></button><button class="tile" data-slug="chase" data-strip="assets/wall/chase.webp"  aria-label="Chase: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Chase<em>:40071</em></span></button><button class="tile" data-slug="u_s_customs" data-strip="assets/wall/u_s_customs.webp"  aria-label="CBP.gov: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">CBP.gov<em>:40122</em></span></button><button class="tile" data-slug="irs_refund" data-strip="assets/wall/irs_refund.webp"  aria-label="IRS Refund Tracker: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">IRS Refund Tracker<em>:40051</em></span></button><button class="tile" data-slug="imgur" data-strip="assets/wall/imgur.webp"  aria-label="Imgur: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Imgur<em>:40076</em></span></button><button class="tile" data-slug="micro_center" data-strip="assets/wall/micro_center.webp"  aria-label="Micro Center: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Micro Center<em>:40089</em></span></button><button class="tile" data-slug="walmart_careers" data-strip="assets/wall/walmart_careers.webp"  aria-label="Walmart Careers: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Walmart Careers<em>:40023</em></span></button><button class="tile" data-slug="nba" data-strip="assets/wall/nba.webp"  aria-label="NBA: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">NBA<em>:40034</em></span></button><button class="tile" data-slug="raising_canes" data-strip="assets/wall/raising_canes.webp"  aria-label="Raising Cane’s: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Raising Cane’s<em>:40095</em></span></button><button class="tile" data-slug="bbc_news" data-strip="assets/wall/bbc_news.webp"  aria-label="BBC News: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">BBC News<em>:40004</em></span></button></div></div>
+    <div class="row" style="--dur:152s"><div class="track"><button class="tile" data-slug="dblp" data-strip="assets/wall/dblp.webp" style="background-image:url(assets/wall/dblp.webp)" aria-label="dblp: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">dblp<em>:40142</em></span></button><button class="tile" data-slug="booking" data-strip="assets/wall/booking.webp" style="background-image:url(assets/wall/booking.webp)" aria-label="Booking: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Booking<em>:40005</em></span></button><button class="tile" data-slug="macys_wine_shop" data-strip="assets/wall/macys_wine_shop.webp" style="background-image:url(assets/wall/macys_wine_shop.webp)" aria-label="Macy&#x27;s Wine Shop: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Macy&#x27;s Wine Shop<em>:40082</em></span></button><button class="tile" data-slug="4shared" data-strip="assets/wall/4shared.webp" style="background-image:url(assets/wall/4shared.webp)" aria-label="4shared: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">4shared<em>:40056</em></span></button><button class="tile" data-slug="virginia_dmv" data-strip="assets/wall/virginia_dmv.webp" style="background-image:url(assets/wall/virginia_dmv.webp)" aria-label="Virginia DMV: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Virginia DMV<em>:40131</em></span></button><button class="tile" data-slug="weather" data-strip="assets/wall/weather.webp" style="background-image:url(assets/wall/weather.webp)" aria-label="Weather: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Weather<em>:40061</em></span></button><button class="tile" data-slug="craigslist" data-strip="assets/wall/craigslist.webp" style="background-image:url(assets/wall/craigslist.webp)" aria-label="Craigslist: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Craigslist<em>:40041</em></span></button><button class="tile" data-slug="chess_com" data-strip="assets/wall/chess_com.webp" style="background-image:url(assets/wall/chess_com.webp)" aria-label="Chess.com: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Chess.com<em>:40099</em></span></button><button class="tile" data-slug="coinmarketcap" data-strip="assets/wall/coinmarketcap.webp"  aria-label="CoinMarketCap: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">CoinMarketCap<em>:40135</em></span></button><button class="tile" data-slug="osu" data-strip="assets/wall/osu.webp"  aria-label="Ohio State University: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Ohio State University<em>:40020</em></span></button><button class="tile" data-slug="spothero" data-strip="assets/wall/spothero.webp"  aria-label="SpotHero: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">SpotHero<em>:40106</em></span></button><button class="tile" data-slug="re_max" data-strip="assets/wall/re_max.webp"  aria-label="RE/MAX: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">RE/MAX<em>:40096</em></span></button><button class="tile" data-slug="backcountry" data-strip="assets/wall/backcountry.webp"  aria-label="Backcountry: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Backcountry<em>:40138</em></span></button><button class="tile" data-slug="stubhub" data-strip="assets/wall/stubhub.webp"  aria-label="StubHub: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">StubHub<em>:40105</em></span></button><button class="tile" data-slug="bandcamp" data-strip="assets/wall/bandcamp.webp"  aria-label="Bandcamp: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Bandcamp<em>:40048</em></span></button><button class="tile" data-slug="fandom" data-strip="assets/wall/fandom.webp"  aria-label="Fandom: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Fandom<em>:40117</em></span></button><button class="tile" data-slug="versus" data-strip="assets/wall/versus.webp"  aria-label="Versus: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Versus<em>:40043</em></span></button><button class="tile" data-slug="ohiomeansjobs" data-strip="assets/wall/ohiomeansjobs.webp"  aria-label="OhioMeansJobs: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">OhioMeansJobs<em>:40090</em></span></button><button class="tile" data-slug="trip_com" data-strip="assets/wall/trip_com.webp"  aria-label="Trip.com: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Trip.com<em>:40111</em></span></button><button class="tile" data-slug="apple" data-strip="assets/wall/apple.webp"  aria-label="Apple: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Apple<em>:40002</em></span></button><button class="tile" data-slug="youtube" data-strip="assets/wall/youtube.webp"  aria-label="YouTube: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">YouTube<em>:40060</em></span></button><button class="tile" data-slug="soundcloud" data-strip="assets/wall/soundcloud.webp"  aria-label="SoundCloud: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">SoundCloud<em>:40102</em></span></button></div></div>
+    <div class="row" style="--dur:110s"><div class="track"><button class="tile" data-slug="california_gov" data-strip="assets/wall/california_gov.webp" style="background-image:url(assets/wall/california_gov.webp)" aria-label="CA.gov: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">CA.gov<em>:40069</em></span></button><button class="tile" data-slug="healthline" data-strip="assets/wall/healthline.webp" style="background-image:url(assets/wall/healthline.webp)" aria-label="Healthline: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Healthline<em>:40026</em></span></button><button class="tile" data-slug="carmax" data-strip="assets/wall/carmax.webp" style="background-image:url(assets/wall/carmax.webp)" aria-label="CarMax: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">CarMax<em>:40037</em></span></button><button class="tile" data-slug="disney" data-strip="assets/wall/disney.webp" style="background-image:url(assets/wall/disney.webp)" aria-label="Disney: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Disney<em>:40139</em></span></button><button class="tile" data-slug="statista" data-strip="assets/wall/statista.webp" style="background-image:url(assets/wall/statista.webp)" aria-label="Statista: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Statista<em>:40108</em></span></button><button class="tile" data-slug="arxiv" data-strip="assets/wall/arxiv.webp" style="background-image:url(assets/wall/arxiv.webp)" aria-label="ArXiv: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">ArXiv<em>:40003</em></span></button><button class="tile" data-slug="ryanair" data-strip="assets/wall/ryanair.webp" style="background-image:url(assets/wall/ryanair.webp)" aria-label="Ryanair: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Ryanair<em>:40098</em></span></button><button class="tile" data-slug="bestbuy" data-strip="assets/wall/bestbuy.webp" style="background-image:url(assets/wall/bestbuy.webp)" aria-label="Best Buy: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Best Buy<em>:40059</em></span></button><button class="tile" data-slug="verizon" data-strip="assets/wall/verizon.webp"  aria-label="Verizon: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Verizon<em>:40132</em></span></button><button class="tile" data-slug="ohio_gov" data-strip="assets/wall/ohio_gov.webp"  aria-label="Ohio.gov: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Ohio.gov<em>:40091</em></span></button><button class="tile" data-slug="webmd" data-strip="assets/wall/webmd.webp"  aria-label="WebMD: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">WebMD<em>:40053</em></span></button><button class="tile" data-slug="google_flights" data-strip="assets/wall/google_flights.webp"  aria-label="Google Flights: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Google Flights<em>:40007</em></span></button><button class="tile" data-slug="porsche" data-strip="assets/wall/porsche.webp"  aria-label="Porsche: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Porsche<em>:40100</em></span></button><button class="tile" data-slug="uniqlo" data-strip="assets/wall/uniqlo.webp"  aria-label="UNIQLO: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">UNIQLO<em>:40081</em></span></button><button class="tile" data-slug="bh_photo" data-strip="assets/wall/bh_photo.webp"  aria-label="B&amp;H Photo: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">B&amp;H Photo<em>:40030</em></span></button><button class="tile" data-slug="amazon" data-strip="assets/wall/amazon.webp"  aria-label="Amazon: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Amazon<em>:40001</em></span></button><button class="tile" data-slug="amazon_jobs" data-strip="assets/wall/amazon_jobs.webp"  aria-label="Amazon Jobs: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Amazon Jobs<em>:40062</em></span></button><button class="tile" data-slug="carnival_cruise" data-strip="assets/wall/carnival_cruise.webp"  aria-label="Carnival Cruise: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Carnival Cruise<em>:40068</em></span></button><button class="tile" data-slug="adopt_a_pet" data-strip="assets/wall/adopt_a_pet.webp"  aria-label="Adopt-a-Pet: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Adopt-a-Pet<em>:40049</em></span></button><button class="tile" data-slug="kelley_blue_book" data-strip="assets/wall/kelley_blue_book.webp"  aria-label="Kelley Blue Book: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Kelley Blue Book<em>:40080</em></span></button><button class="tile" data-slug="zara" data-strip="assets/wall/zara.webp"  aria-label="Zara: explore website"><span class="tile-play" aria-hidden="true"></span><span class="tile-label">Zara<em>:40128</em></span></button></div></div>
+  </div>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <div class="hero-content">
+    <span class="eyebrow"><span class="dot"></span>153 real websites, docked offline</span>
+    <h1 class="hero-title"><span class="line">WebHarbor: Docking Real Websites for</span><br> <span class="line accent">Evolving GUI Agent Environments</span></h1>
+    <p class="lede">Executable, Dockerized reconstructions of real web services with their images, logins, carts and bookings, plus 3,518 tasks for reproducible evaluation and reinforcement learning of GUI web agents. Training exclusively on these synthetic environments, we obtain <a href="https://huggingface.co/ChilleD/WebHarbor-4B" target="_blank" rel="noopener">WebHarbor-4B</a>, a state-of-the-art web agent at the 4B scale.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#explore"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6.3 3.6A1 1 0 0 0 4.8 4.5v11a1 1 0 0 0 1.5.9l9-5.5a1 1 0 0 0 0-1.8l-9-5.5Z"/></svg>Browse 153 envs</a>
+      <a class="btn btn-ghost" href="https://github.com/aiming-lab/WebHarbor" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Code</a>
+      <a class="btn btn-ghost" href="https://huggingface.co/datasets/ChilleD/WebHarbor" target="_blank" rel="noopener"><span aria-hidden="true">🤗</span>Dataset</a>
+      <a class="btn btn-ghost" href="https://huggingface.co/ChilleD/WebHarbor-4B" target="_blank" rel="noopener"><span aria-hidden="true">🤗</span>WebHarbor-4B</a>
+      <span class="btn btn-ghost" aria-disabled="true" title="The arXiv version will be linked here once it is public"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 2.5h7l3.5 3.5v11.5H5z"/><path d="M12 2.5V6h3.5M7.5 10h5M7.5 13h5"/></svg>Paper <span class="soon">arXiv soon</span></span>
+    </div>
+    <div class="hero-stats">
+      <div><b data-count="153">153</b><span>websites</span></div>
+      <div><b data-count="3518">3,518</b><span>tasks</span></div>
+      <div><b data-count="1117">1,117</b><span>require login</span></div>
+      <div><b data-count="57">57</b><span>contributors</span></div>
+    </div>
+  </div>
+  <p class="hero-hint"><span class="desk">Hover a website to hold it</span><span class="desk" aria-hidden="true">·</span><span>Click to explore a website</span></p>
+  <button class="wall-toggle" aria-label="Pause the website wall" aria-pressed="false">
+    <svg class="i-pause" viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="2" width="3.5" height="12" rx="1"/><rect x="9.5" y="2" width="3.5" height="12" rx="1"/></svg>
+    <svg class="i-play" viewBox="0 0 16 16" fill="currentColor"><path d="M4 2.5v11l9.5-5.5z"/></svg>
+  </button>
 </header>
 
-<main id="top">
+<main>
 
-<!-- =================== HERO =================== -->
-<section class="hero">
-  <div class="container hero-inner">
-    <div class="eyebrow">
-      <span class="dot"></span>
-      Evolving GUI Web Agent Environments
-    </div>
-    <h1 class="hero-title">
-      WebHarbor: Docking Real Websites for<br />
-      <span class="accent">Evolving GUI Agent Environments</span>
-    </h1>
-    <p class="hero-sub">
-      Live websites are often noisy, blocked by reCAPTCHA, and hide their most useful
-      features behind login walls. WebHarbor <strong>docks</strong> them into
-      local Docker mirrors: stable, reproducible, resettable in
-      milliseconds, and <strong>evolves</strong> environments with more functionalities and data as agents grow stronger.
-    </p>
-    <ul class="hero-highlights">
-      <li><strong>Stable &amp; reproducible</strong> no network noise, no content drift, no geo-blocks</li>
-      <li><strong>Deep features unlocked</strong> carts, checkouts, and accounts, all testable</li>
-      <li><strong>Evolving</strong> harder tasks drive richer mirrors, environment evolves</li>
-      <li><strong>RL-ready</strong> sub-second database resets for lightweight environments</li>
-      <li><strong>Community-driven</strong> 15 sites today, let's scale to 100 and beyond, together</li>
-    </ul>
-
-    <div class="hero-quickstart">
-      <p class="hero-qs-label">Start deploying 15 <a href="https://github.com/MinorJerry/WebVoyager/blob/main/data/WebVoyager_data.jsonl" target="_blank" rel="noopener">WebVoyager</a> sites locally with one command:</p>
-      <div class="hero-qs-cmd">
-        <code>docker run -p 40000-40014:40000-40014 battalion7244/webharbor:latest</code>
-        <button class="copy-btn" data-copy="docker run -p 40000-40014:40000-40014 battalion7244/webharbor:latest">Copy</button>
-      </div>
-      <div class="hero-qs-badge-row">
-        <a href="#validation" class="hero-qs-badge">
-          <span class="hero-qs-badge-mark">&#10003;</span>
-          Validated &mdash; model rankings on the docked WebVoyager sites match live-web benchmarks
-          <span class="hero-qs-badge-arrow">&rarr;</span>
-        </a>
+<!-- ============ EXPLORE ============ -->
+<section class="section" id="explore">
+  <div class="wrap">
+    <div class="explorer-head reveal">
+      <div>
+        <span class="kicker">01 · 153 live websites</span>
+        <h2>153 websites, each served locally and <em>driven by an agent</em>.</h2>
+        <p class="lead">Each environment is a self-contained, locally served copy of a real website, with its own seeded database, task set and deterministic verifiers. It resets to the same state at the start of every episode. Pick a website to step through one of its tasks.</p>
       </div>
     </div>
-
-    <div class="hero-ctas">
-      <a class="btn btn-primary" href="https://github.com/aiming-lab/WebHarbor" target="_blank" rel="noopener">
-        <span>💻 Code on GitHub</span><span class="arr">&nearr;</span>
-      </a>
-      <a class="btn btn-ghost" href="https://huggingface.co/datasets/ChilleD/WebHarbor" target="_blank" rel="noopener">🤗 Dataset</a>
-      <a class="btn btn-ghost" href="https://docs.google.com/spreadsheets/d/1vZsrQjy9nJKze58fx4kbQtFi85NjVXIWCFyu3ShD7gk/edit?gid=0#gid=0" target="_blank" rel="noopener">📊 Track Sheet</a>
-      <a class="btn btn-ghost" href="https://forms.gle/ngcD1rzAfUEphNmRA" target="_blank" rel="noopener">📝 Request Form</a>
+    <div class="explorer-tools reveal">
+      <label class="search">
+        <span class="sr-only">Search websites</span>
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="m14 14 4 4"/></svg>
+        <input id="site-search" type="search" placeholder="Search: airline, bank, recipes…" autocomplete="off">
+      </label>
+      <div class="chips" role="group" aria-label="Filter by category">
+        <button class="chip" data-cat="all" aria-pressed="true">All<span class="c">153</span></button>
+        <button class="chip" data-cat="media" aria-pressed="false">Media &amp; Entertainment<span class="c">26</span></button>
+        <button class="chip" data-cat="shopping" aria-pressed="false">Shopping<span class="c">24</span></button>
+        <button class="chip" data-cat="jobs" aria-pressed="false">Jobs, Homes &amp; Services<span class="c">20</span></button>
+        <button class="chip" data-cat="travel" aria-pressed="false">Travel &amp; Transit<span class="c">18</span></button>
+        <button class="chip" data-cat="health" aria-pressed="false">Health &amp; Life<span class="c">17</span></button>
+        <button class="chip" data-cat="learn" aria-pressed="false">Learning &amp; Research<span class="c">16</span></button>
+        <button class="chip" data-cat="gov" aria-pressed="false">Government &amp; Civic<span class="c">13</span></button>
+        <button class="chip" data-cat="finance" aria-pressed="false">Finance &amp; Business<span class="c">11</span></button>
+        <button class="chip" data-cat="tech" aria-pressed="false">Tech &amp; Tools<span class="c">8</span></button>
+      </div>
     </div>
-    <div class="hero-strip" id="hero-strip">
-      <div class="strip-track"></div>
+    <p class="note grid-count"><span id="grid-count">Showing 12 of 153 websites</span> · port = 40000 + registration index</p>
+    <div class="grid is-collapsed">
+      <button class="card" data-slug="allrecipes" data-cat="health" data-q="allrecipes allrecipes.com allrecipes health &amp; life" data-strip="assets/wall/allrecipes.webp" aria-label="Allrecipes: explore website"><span class="card-shot"><img src="assets/wall/allrecipes-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Allrecipes<span class="wv">WebVoyager</span></span><span class="card-meta">allrecipes.com</span><span class="card-foot"><span class="port">:40000</span><span>45 tasks</span></span></span></button>
+      <button class="card" data-slug="amazon" data-cat="shopping" data-q="amazon amazon.com amazon shopping" data-strip="assets/wall/amazon.webp" aria-label="Amazon: explore website"><span class="card-shot"><img src="assets/wall/amazon-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Amazon<span class="wv">WebVoyager</span></span><span class="card-meta">amazon.com</span><span class="card-foot"><span class="port">:40001</span><span>41 tasks</span></span></span></button>
+      <button class="card" data-slug="apple" data-cat="shopping" data-q="apple apple.com apple shopping" data-strip="assets/wall/apple.webp" aria-label="Apple: explore website"><span class="card-shot"><img src="assets/wall/apple-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Apple<span class="wv">WebVoyager</span></span><span class="card-meta">apple.com</span><span class="card-foot"><span class="port">:40002</span><span>43 tasks</span></span></span></button>
+      <button class="card" data-slug="arxiv" data-cat="learn" data-q="arxiv arxiv.org arxiv learning &amp; research" data-strip="assets/wall/arxiv.webp" aria-label="ArXiv: explore website"><span class="card-shot"><img src="assets/wall/arxiv-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">ArXiv<span class="wv">WebVoyager</span></span><span class="card-meta">arxiv.org</span><span class="card-foot"><span class="port">:40003</span><span>43 tasks</span></span></span></button>
+      <button class="card" data-slug="bbc_news" data-cat="media" data-q="bbc news bbc.com bbc news media &amp; entertainment" data-strip="assets/wall/bbc_news.webp" aria-label="BBC News: explore website"><span class="card-shot"><img src="assets/wall/bbc_news-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">BBC News<span class="wv">WebVoyager</span></span><span class="card-meta">bbc.com</span><span class="card-foot"><span class="port">:40004</span><span>42 tasks</span></span></span></button>
+      <button class="card" data-slug="booking" data-cat="travel" data-q="booking booking.com booking travel &amp; transit" data-strip="assets/wall/booking.webp" aria-label="Booking: explore website"><span class="card-shot"><img src="assets/wall/booking-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Booking<span class="wv">WebVoyager</span></span><span class="card-meta">booking.com</span><span class="card-foot"><span class="port">:40005</span><span>44 tasks</span></span></span></button>
+      <button class="card" data-slug="github" data-cat="tech" data-q="github github.com github tech &amp; tools" data-strip="assets/wall/github.webp" aria-label="GitHub: explore website"><span class="card-shot"><img src="assets/wall/github-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">GitHub<span class="wv">WebVoyager</span></span><span class="card-meta">github.com</span><span class="card-foot"><span class="port">:40006</span><span>41 tasks</span></span></span></button>
+      <button class="card" data-slug="google_flights" data-cat="travel" data-q="google flights google.com google flights travel &amp; transit" data-strip="assets/wall/google_flights.webp" aria-label="Google Flights: explore website"><span class="card-shot"><img src="assets/wall/google_flights-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Google Flights<span class="wv">WebVoyager</span></span><span class="card-meta">google.com</span><span class="card-foot"><span class="port">:40007</span><span>42 tasks</span></span></span></button>
+      <button class="card" data-slug="google_map" data-cat="travel" data-q="google maps google.com google map travel &amp; transit" data-strip="assets/wall/google_map.webp" aria-label="Google Maps: explore website"><span class="card-shot"><img src="assets/wall/google_map-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Google Maps<span class="wv">WebVoyager</span></span><span class="card-meta">google.com</span><span class="card-foot"><span class="port">:40008</span><span>41 tasks</span></span></span></button>
+      <button class="card" data-slug="google_search" data-cat="tech" data-q="google search google.com google search tech &amp; tools" data-strip="assets/wall/google_search.webp" aria-label="Google Search: explore website"><span class="card-shot"><img src="assets/wall/google_search-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Google Search<span class="wv">WebVoyager</span></span><span class="card-meta">google.com</span><span class="card-foot"><span class="port">:40009</span><span>43 tasks</span></span></span></button>
+      <button class="card" data-slug="huggingface" data-cat="learn" data-q="hugging face huggingface.co huggingface learning &amp; research" data-strip="assets/wall/huggingface.webp" aria-label="Hugging Face: explore website"><span class="card-shot"><img src="assets/wall/huggingface-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Hugging Face<span class="wv">WebVoyager</span></span><span class="card-meta">huggingface.co</span><span class="card-foot"><span class="port">:40010</span><span>43 tasks</span></span></span></button>
+      <button class="card" data-slug="wolfram_alpha" data-cat="learn" data-q="wolfram alpha wolframalpha.com wolfram alpha learning &amp; research" data-strip="assets/wall/wolfram_alpha.webp" aria-label="Wolfram Alpha: explore website"><span class="card-shot"><img src="assets/wall/wolfram_alpha-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Wolfram Alpha<span class="wv">WebVoyager</span></span><span class="card-meta">wolframalpha.com</span><span class="card-foot"><span class="port">:40011</span><span>46 tasks</span></span></span></button>
+      <button class="card" data-slug="cambridge_dictionary" data-cat="learn" data-q="cambridge dictionary dictionary.cambridge.org cambridge dictionary learning &amp; research" data-strip="assets/wall/cambridge_dictionary.webp" aria-label="Cambridge Dictionary: explore website"><span class="card-shot"><img src="assets/wall/cambridge_dictionary-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Cambridge Dictionary<span class="wv">WebVoyager</span></span><span class="card-meta">dictionary.cambridge.org</span><span class="card-foot"><span class="port">:40012</span><span>43 tasks</span></span></span></button>
+      <button class="card" data-slug="coursera" data-cat="learn" data-q="coursera coursera.org coursera learning &amp; research" data-strip="assets/wall/coursera.webp" aria-label="Coursera: explore website"><span class="card-shot"><img src="assets/wall/coursera-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Coursera<span class="wv">WebVoyager</span></span><span class="card-meta">coursera.org</span><span class="card-foot"><span class="port">:40013</span><span>42 tasks</span></span></span></button>
+      <button class="card" data-slug="espn" data-cat="media" data-q="espn espn.com espn media &amp; entertainment" data-strip="assets/wall/espn.webp" aria-label="ESPN: explore website"><span class="card-shot"><img src="assets/wall/espn-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">ESPN<span class="wv">WebVoyager</span></span><span class="card-meta">espn.com</span><span class="card-foot"><span class="port">:40014</span><span>44 tasks</span></span></span></button>
+      <button class="card" data-slug="merriam_webster" data-cat="learn" data-q="merriam-webster merriam-webster.com merriam webster learning &amp; research" data-strip="assets/wall/merriam_webster.webp" aria-label="Merriam-Webster: explore website"><span class="card-shot"><img src="assets/wall/merriam_webster-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Merriam-Webster</span><span class="card-meta">merriam-webster.com</span><span class="card-foot"><span class="port">:40015</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="ikea" data-cat="shopping" data-q="ikea ikea.com ikea shopping" data-strip="assets/wall/ikea.webp" aria-label="IKEA: explore website"><span class="card-shot"><img src="assets/wall/ikea-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">IKEA</span><span class="card-meta">ikea.com</span><span class="card-foot"><span class="port">:40016</span><span>18 tasks</span></span></span></button>
+      <button class="card" data-slug="phys_org" data-cat="media" data-q="phys.org phys.org phys org media &amp; entertainment" data-strip="assets/wall/phys_org.webp" aria-label="Phys.org: explore website"><span class="card-shot"><img src="assets/wall/phys_org-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Phys.org</span><span class="card-meta">phys.org</span><span class="card-foot"><span class="port">:40017</span><span>18 tasks</span></span></span></button>
+      <button class="card" data-slug="target" data-cat="shopping" data-q="target target.com target shopping" data-strip="assets/wall/target.webp" aria-label="Target: explore website"><span class="card-shot"><img src="assets/wall/target-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Target</span><span class="card-meta">target.com</span><span class="card-foot"><span class="port">:40018</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="ted" data-cat="media" data-q="ted ted.com ted media &amp; entertainment" data-strip="assets/wall/ted.webp" aria-label="TED: explore website"><span class="card-shot"><img src="assets/wall/ted-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">TED</span><span class="card-meta">ted.com</span><span class="card-foot"><span class="port">:40019</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="osu" data-cat="learn" data-q="ohio state university osu.edu osu learning &amp; research" data-strip="assets/wall/osu.webp" aria-label="Ohio State University: explore website"><span class="card-shot"><img src="assets/wall/osu-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Ohio State University</span><span class="card-meta">osu.edu</span><span class="card-foot"><span class="port">:40020</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="rotten_tomatoes" data-cat="media" data-q="rotten tomatoes rottentomatoes.com rotten tomatoes media &amp; entertainment" data-strip="assets/wall/rotten_tomatoes.webp" aria-label="Rotten Tomatoes: explore website"><span class="card-shot"><img src="assets/wall/rotten_tomatoes-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Rotten Tomatoes</span><span class="card-meta">rottentomatoes.com</span><span class="card-foot"><span class="port">:40021</span><span>7 tasks</span></span></span></button>
+      <button class="card" data-slug="compass" data-cat="jobs" data-q="compass compass.com compass jobs, homes &amp; services" data-strip="assets/wall/compass.webp" aria-label="Compass: explore website"><span class="card-shot"><img src="assets/wall/compass-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Compass</span><span class="card-meta">compass.com</span><span class="card-foot"><span class="port">:40022</span><span>19 tasks</span></span></span></button>
+      <button class="card" data-slug="walmart_careers" data-cat="jobs" data-q="walmart careers careers.walmart.com walmart careers jobs, homes &amp; services" data-strip="assets/wall/walmart_careers.webp" aria-label="Walmart Careers: explore website"><span class="card-shot"><img src="assets/wall/walmart_careers-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Walmart Careers</span><span class="card-meta">careers.walmart.com</span><span class="card-foot"><span class="port">:40023</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="fedex" data-cat="gov" data-q="fedex fedex.com fedex government &amp; civic" data-strip="assets/wall/fedex.webp" aria-label="FedEx: explore website"><span class="card-shot"><img src="assets/wall/fedex-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">FedEx</span><span class="card-meta">fedex.com</span><span class="card-foot"><span class="port">:40024</span><span>18 tasks</span></span></span></button>
+      <button class="card" data-slug="webmd_doctor" data-cat="health" data-q="webmd doctor doctor.webmd.com webmd doctor health &amp; life" data-strip="assets/wall/webmd_doctor.webp" aria-label="WebMD Doctor: explore website"><span class="card-shot"><img src="assets/wall/webmd_doctor-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">WebMD Doctor</span><span class="card-meta">doctor.webmd.com</span><span class="card-foot"><span class="port">:40025</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="healthline" data-cat="health" data-q="healthline healthline.com healthline health &amp; life" data-strip="assets/wall/healthline.webp" aria-label="Healthline: explore website"><span class="card-shot"><img src="assets/wall/healthline-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Healthline</span><span class="card-meta">healthline.com</span><span class="card-foot"><span class="port">:40026</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="kaggle" data-cat="learn" data-q="kaggle kaggle.com kaggle learning &amp; research" data-strip="assets/wall/kaggle.webp" aria-label="Kaggle: explore website"><span class="card-shot"><img src="assets/wall/kaggle-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Kaggle</span><span class="card-meta">kaggle.com</span><span class="card-foot"><span class="port">:40027</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="nvidia" data-cat="tech" data-q="nvidia nvidia.com nvidia tech &amp; tools" data-strip="assets/wall/nvidia.webp" aria-label="NVIDIA: explore website"><span class="card-shot"><img src="assets/wall/nvidia-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">NVIDIA</span><span class="card-meta">nvidia.com</span><span class="card-foot"><span class="port">:40028</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="berkeley" data-cat="learn" data-q="uc berkeley berkeley.edu berkeley learning &amp; research" data-strip="assets/wall/berkeley.webp" aria-label="UC Berkeley: explore website"><span class="card-shot"><img src="assets/wall/berkeley-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">UC Berkeley</span><span class="card-meta">berkeley.edu</span><span class="card-foot"><span class="port">:40029</span><span>22 tasks</span></span></span></button>
+      <button class="card" data-slug="bh_photo" data-cat="shopping" data-q="b&amp;h photo bhphotovideo.com bh photo shopping" data-strip="assets/wall/bh_photo.webp" aria-label="B&amp;H Photo: explore website"><span class="card-shot"><img src="assets/wall/bh_photo-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">B&amp;H Photo</span><span class="card-meta">bhphotovideo.com</span><span class="card-foot"><span class="port">:40030</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="accuweather" data-cat="health" data-q="accuweather accuweather.com accuweather health &amp; life" data-strip="assets/wall/accuweather.webp" aria-label="AccuWeather: explore website"><span class="card-shot"><img src="assets/wall/accuweather-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">AccuWeather</span><span class="card-meta">accuweather.com</span><span class="card-foot"><span class="port">:40031</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="gov_uk" data-cat="gov" data-q="gov.uk gov.uk gov uk government &amp; civic" data-strip="assets/wall/gov_uk.webp" aria-label="GOV.UK: explore website"><span class="card-shot"><img src="assets/wall/gov_uk-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">GOV.UK</span><span class="card-meta">gov.uk</span><span class="card-foot"><span class="port">:40032</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="imdb" data-cat="media" data-q="imdb imdb.com imdb media &amp; entertainment" data-strip="assets/wall/imdb.webp" aria-label="IMDb: explore website"><span class="card-shot"><img src="assets/wall/imdb-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">IMDb</span><span class="card-meta">imdb.com</span><span class="card-foot"><span class="port">:40033</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="nba" data-cat="media" data-q="nba nba.com nba media &amp; entertainment" data-strip="assets/wall/nba.webp" aria-label="NBA: explore website"><span class="card-shot"><img src="assets/wall/nba-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">NBA</span><span class="card-meta">nba.com</span><span class="card-foot"><span class="port">:40034</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="recreation_gov" data-cat="travel" data-q="recreation.gov recreation.gov recreation gov travel &amp; transit" data-strip="assets/wall/recreation_gov.webp" aria-label="Recreation.gov: explore website"><span class="card-shot"><img src="assets/wall/recreation_gov-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Recreation.gov</span><span class="card-meta">recreation.gov</span><span class="card-foot"><span class="port">:40035</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="boardgamegeek" data-cat="media" data-q="boardgamegeek boardgamegeek.com boardgamegeek media &amp; entertainment" data-strip="assets/wall/boardgamegeek.webp" aria-label="BoardGameGeek: explore website"><span class="card-shot"><img src="assets/wall/boardgamegeek-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">BoardGameGeek</span><span class="card-meta">boardgamegeek.com</span><span class="card-foot"><span class="port">:40036</span><span>21 tasks</span></span></span></button>
+      <button class="card" data-slug="carmax" data-cat="jobs" data-q="carmax carmax.com carmax jobs, homes &amp; services" data-strip="assets/wall/carmax.webp" aria-label="CarMax: explore website"><span class="card-shot"><img src="assets/wall/carmax-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">CarMax</span><span class="card-meta">carmax.com</span><span class="card-foot"><span class="port">:40037</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="babycenter" data-cat="health" data-q="babycenter babycenter.com babycenter health &amp; life" data-strip="assets/wall/babycenter.webp" aria-label="BabyCenter: explore website"><span class="card-shot"><img src="assets/wall/babycenter-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">BabyCenter</span><span class="card-meta">babycenter.com</span><span class="card-foot"><span class="port">:40038</span><span>15 tasks</span></span></span></button>
+      <button class="card" data-slug="amtrak" data-cat="travel" data-q="amtrak amtrak.com amtrak travel &amp; transit" data-strip="assets/wall/amtrak.webp" aria-label="Amtrak: explore website"><span class="card-shot"><img src="assets/wall/amtrak-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Amtrak</span><span class="card-meta">amtrak.com</span><span class="card-foot"><span class="port">:40039</span><span>18 tasks</span></span></span></button>
+      <button class="card" data-slug="cookpad" data-cat="health" data-q="cookpad cookpad.com cookpad health &amp; life" data-strip="assets/wall/cookpad.webp" aria-label="Cookpad: explore website"><span class="card-shot"><img src="assets/wall/cookpad-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Cookpad</span><span class="card-meta">cookpad.com</span><span class="card-foot"><span class="port">:40040</span><span>19 tasks</span></span></span></button>
+      <button class="card" data-slug="craigslist" data-cat="jobs" data-q="craigslist sfbay.craigslist.org craigslist jobs, homes &amp; services" data-strip="assets/wall/craigslist.webp" aria-label="Craigslist: explore website"><span class="card-shot"><img src="assets/wall/craigslist-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Craigslist</span><span class="card-meta">sfbay.craigslist.org</span><span class="card-foot"><span class="port">:40041</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="drugs_com" data-cat="health" data-q="drugs.com drugs.com drugs com health &amp; life" data-strip="assets/wall/drugs_com.webp" aria-label="Drugs.com: explore website"><span class="card-shot"><img src="assets/wall/drugs_com-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Drugs.com</span><span class="card-meta">drugs.com</span><span class="card-foot"><span class="port">:40042</span><span>21 tasks</span></span></span></button>
+      <button class="card" data-slug="versus" data-cat="shopping" data-q="versus versus.com versus shopping" data-strip="assets/wall/versus.webp" aria-label="Versus: explore website"><span class="card-shot"><img src="assets/wall/versus-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Versus</span><span class="card-meta">versus.com</span><span class="card-foot"><span class="port">:40043</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="y_combinator" data-cat="finance" data-q="y combinator ycombinator.com y combinator finance &amp; business" data-strip="assets/wall/y_combinator.webp" aria-label="Y Combinator: explore website"><span class="card-shot"><img src="assets/wall/y_combinator-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Y Combinator</span><span class="card-meta">ycombinator.com</span><span class="card-foot"><span class="port">:40044</span><span>18 tasks</span></span></span></button>
+      <button class="card" data-slug="phet_simulations" data-cat="learn" data-q="phet interactive simulations phet.colorado.edu phet simulations learning &amp; research" data-strip="assets/wall/phet_simulations.webp" aria-label="PhET Interactive Simulations: explore website"><span class="card-shot"><img src="assets/wall/phet_simulations-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">PhET Interactive Simulations</span><span class="card-meta">phet.colorado.edu</span><span class="card-foot"><span class="port">:40045</span><span>18 tasks</span></span></span></button>
+      <button class="card" data-slug="discogs" data-cat="shopping" data-q="discogs discogs.com discogs shopping" data-strip="assets/wall/discogs.webp" aria-label="Discogs: explore website"><span class="card-shot"><img src="assets/wall/discogs-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Discogs</span><span class="card-meta">discogs.com</span><span class="card-foot"><span class="port">:40046</span><span>15 tasks</span></span></span></button>
+      <button class="card" data-slug="google_finance" data-cat="finance" data-q="google finance google.com google finance finance &amp; business" data-strip="assets/wall/google_finance.webp" aria-label="Google Finance: explore website"><span class="card-shot"><img src="assets/wall/google_finance-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Google Finance</span><span class="card-meta">google.com</span><span class="card-foot"><span class="port">:40047</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="bandcamp" data-cat="media" data-q="bandcamp bandcamp.com bandcamp media &amp; entertainment" data-strip="assets/wall/bandcamp.webp" aria-label="Bandcamp: explore website"><span class="card-shot"><img src="assets/wall/bandcamp-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Bandcamp</span><span class="card-meta">bandcamp.com</span><span class="card-foot"><span class="port">:40048</span><span>18 tasks</span></span></span></button>
+      <button class="card" data-slug="adopt_a_pet" data-cat="health" data-q="adopt-a-pet adoptapet.com adopt a pet health &amp; life" data-strip="assets/wall/adopt_a_pet.webp" aria-label="Adopt-a-Pet: explore website"><span class="card-shot"><img src="assets/wall/adopt_a_pet-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Adopt-a-Pet</span><span class="card-meta">adoptapet.com</span><span class="card-foot"><span class="port">:40049</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="ign" data-cat="media" data-q="ign ign.com ign media &amp; entertainment" data-strip="assets/wall/ign.webp" aria-label="IGN: explore website"><span class="card-shot"><img src="assets/wall/ign-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">IGN</span><span class="card-meta">ign.com</span><span class="card-foot"><span class="port">:40050</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="irs_refund" data-cat="gov" data-q="irs refund tracker sa.www4.irs.gov irs refund government &amp; civic" data-strip="assets/wall/irs_refund.webp" aria-label="IRS Refund Tracker: explore website"><span class="card-shot"><img src="assets/wall/irs_refund-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">IRS Refund Tracker</span><span class="card-meta">sa.www4.irs.gov</span><span class="card-foot"><span class="port">:40051</span><span>18 tasks</span></span></span></button>
+      <button class="card" data-slug="wineaccess" data-cat="shopping" data-q="wineaccess wineaccess.com wineaccess shopping" data-strip="assets/wall/wineaccess.webp" aria-label="WineAccess: explore website"><span class="card-shot"><img src="assets/wall/wineaccess-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">WineAccess</span><span class="card-meta">wineaccess.com</span><span class="card-foot"><span class="port">:40052</span><span>18 tasks</span></span></span></button>
+      <button class="card" data-slug="webmd" data-cat="health" data-q="webmd webmd.com webmd health &amp; life" data-strip="assets/wall/webmd.webp" aria-label="WebMD: explore website"><span class="card-shot"><img src="assets/wall/webmd-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">WebMD</span><span class="card-meta">webmd.com</span><span class="card-foot"><span class="port">:40053</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="petfinder" data-cat="health" data-q="petfinder petfinder.com petfinder health &amp; life" data-strip="assets/wall/petfinder.webp" aria-label="Petfinder: explore website"><span class="card-shot"><img src="assets/wall/petfinder-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Petfinder</span><span class="card-meta">petfinder.com</span><span class="card-foot"><span class="port">:40054</span><span>15 tasks</span></span></span></button>
+      <button class="card" data-slug="mega" data-cat="tech" data-q="mega mega.io mega tech &amp; tools" data-strip="assets/wall/mega.webp" aria-label="MEGA: explore website"><span class="card-shot"><img src="assets/wall/mega-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">MEGA</span><span class="card-meta">mega.io</span><span class="card-foot"><span class="port">:40055</span><span>18 tasks</span></span></span></button>
+      <button class="card" data-slug="4shared" data-cat="tech" data-q="4shared 4shared.com 4shared tech &amp; tools" data-strip="assets/wall/4shared.webp" aria-label="4shared: explore website"><span class="card-shot"><img src="assets/wall/4shared-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">4shared</span><span class="card-meta">4shared.com</span><span class="card-foot"><span class="port">:40056</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="9gag" data-cat="media" data-q="9gag 9gag.com 9gag media &amp; entertainment" data-strip="assets/wall/9gag.webp" aria-label="9GAG: explore website"><span class="card-shot"><img src="assets/wall/9gag-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">9GAG</span><span class="card-meta">9gag.com</span><span class="card-foot"><span class="port">:40057</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="akc" data-cat="health" data-q="american kennel club akc.org akc health &amp; life" data-strip="assets/wall/akc.webp" aria-label="American Kennel Club: explore website"><span class="card-shot"><img src="assets/wall/akc-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">American Kennel Club</span><span class="card-meta">akc.org</span><span class="card-foot"><span class="port">:40058</span><span>13 tasks</span></span></span></button>
+      <button class="card" data-slug="bestbuy" data-cat="shopping" data-q="best buy bestbuy.com bestbuy shopping" data-strip="assets/wall/bestbuy.webp" aria-label="Best Buy: explore website"><span class="card-shot"><img src="assets/wall/bestbuy-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Best Buy</span><span class="card-meta">bestbuy.com</span><span class="card-foot"><span class="port">:40059</span><span>12 tasks</span></span></span></button>
+      <button class="card" data-slug="youtube" data-cat="media" data-q="youtube youtube.com youtube media &amp; entertainment" data-strip="assets/wall/youtube.webp" aria-label="YouTube: explore website"><span class="card-shot"><img src="assets/wall/youtube-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">YouTube</span><span class="card-meta">youtube.com</span><span class="card-foot"><span class="port">:40060</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="weather" data-cat="health" data-q="weather weather.com weather health &amp; life" data-strip="assets/wall/weather.webp" aria-label="Weather: explore website"><span class="card-shot"><img src="assets/wall/weather-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Weather</span><span class="card-meta">weather.com</span><span class="card-foot"><span class="port">:40061</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="amazon_jobs" data-cat="jobs" data-q="amazon jobs amazon.jobs amazon jobs jobs, homes &amp; services" data-strip="assets/wall/amazon_jobs.webp" aria-label="Amazon Jobs: explore website"><span class="card-shot"><img src="assets/wall/amazon_jobs-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Amazon Jobs</span><span class="card-meta">amazon.jobs</span><span class="card-foot"><span class="port">:40062</span><span>30 tasks</span></span></span></button>
+      <button class="card" data-slug="cboe" data-cat="finance" data-q="cboe cboe.com cboe finance &amp; business" data-strip="assets/wall/cboe.webp" aria-label="Cboe: explore website"><span class="card-shot"><img src="assets/wall/cboe-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Cboe</span><span class="card-meta">cboe.com</span><span class="card-foot"><span class="port">:40063</span><span>31 tasks</span></span></span></button>
+      <button class="card" data-slug="better_business_bureau" data-cat="finance" data-q="better business bureau bbb.org better business bureau finance &amp; business" data-strip="assets/wall/better_business_bureau.webp" aria-label="Better Business Bureau: explore website"><span class="card-shot"><img src="assets/wall/better_business_bureau-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Better Business Bureau</span><span class="card-meta">bbb.org</span><span class="card-foot"><span class="port">:40064</span><span>30 tasks</span></span></span></button>
+      <button class="card" data-slug="birkenstock" data-cat="shopping" data-q="birkenstock birkenstock.com birkenstock shopping" data-strip="assets/wall/birkenstock.webp" aria-label="Birkenstock: explore website"><span class="card-shot"><img src="assets/wall/birkenstock-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Birkenstock</span><span class="card-meta">birkenstock.com</span><span class="card-foot"><span class="port">:40065</span><span>30 tasks</span></span></span></button>
+      <button class="card" data-slug="americas_health_rankings" data-cat="health" data-q="america’s health rankings americashealthrankings.org americas health rankings health &amp; life" data-strip="assets/wall/americas_health_rankings.webp" aria-label="America’s Health Rankings: explore website"><span class="card-shot"><img src="assets/wall/americas_health_rankings-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">America’s Health Rankings</span><span class="card-meta">americashealthrankings.org</span><span class="card-foot"><span class="port">:40066</span><span>35 tasks</span></span></span></button>
+      <button class="card" data-slug="american_express" data-cat="finance" data-q="american express americanexpress.com american express finance &amp; business" data-strip="assets/wall/american_express.webp" aria-label="American Express: explore website"><span class="card-shot"><img src="assets/wall/american_express-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">American Express</span><span class="card-meta">americanexpress.com</span><span class="card-foot"><span class="port">:40067</span><span>30 tasks</span></span></span></button>
+      <button class="card" data-slug="carnival_cruise" data-cat="travel" data-q="carnival cruise carnival.com carnival cruise travel &amp; transit" data-strip="assets/wall/carnival_cruise.webp" aria-label="Carnival Cruise: explore website"><span class="card-shot"><img src="assets/wall/carnival_cruise-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Carnival Cruise</span><span class="card-meta">carnival.com</span><span class="card-foot"><span class="port">:40068</span><span>30 tasks</span></span></span></button>
+      <button class="card" data-slug="california_gov" data-cat="gov" data-q="ca.gov ca.gov california gov government &amp; civic" data-strip="assets/wall/california_gov.webp" aria-label="CA.gov: explore website"><span class="card-shot"><img src="assets/wall/california_gov-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">CA.gov</span><span class="card-meta">ca.gov</span><span class="card-foot"><span class="port">:40069</span><span>30 tasks</span></span></span></button>
+      <button class="card" data-slug="coolmath4kids" data-cat="learn" data-q="coolmath4kids coolmath4kids.com coolmath4kids learning &amp; research" data-strip="assets/wall/coolmath4kids.webp" aria-label="Coolmath4Kids: explore website"><span class="card-shot"><img src="assets/wall/coolmath4kids-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Coolmath4Kids</span><span class="card-meta">coolmath4kids.com</span><span class="card-foot"><span class="port">:40070</span><span>32 tasks</span></span></span></button>
+      <button class="card" data-slug="chase" data-cat="finance" data-q="chase chase.com chase finance &amp; business" data-strip="assets/wall/chase.webp" aria-label="Chase: explore website"><span class="card-shot"><img src="assets/wall/chase-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Chase</span><span class="card-meta">chase.com</span><span class="card-foot"><span class="port">:40071</span><span>30 tasks</span></span></span></button>
+      <button class="card" data-slug="flightaware" data-cat="travel" data-q="flightaware flightaware.com flightaware travel &amp; transit" data-strip="assets/wall/flightaware.webp" aria-label="FlightAware: explore website"><span class="card-shot"><img src="assets/wall/flightaware-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">FlightAware</span><span class="card-meta">flightaware.com</span><span class="card-foot"><span class="port">:40072</span><span>30 tasks</span></span></span></button>
+      <button class="card" data-slug="chronicle_jobs" data-cat="jobs" data-q="chronicle jobs jobs.chronicle.com chronicle jobs jobs, homes &amp; services" data-strip="assets/wall/chronicle_jobs.webp" aria-label="Chronicle Jobs: explore website"><span class="card-shot"><img src="assets/wall/chronicle_jobs-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Chronicle Jobs</span><span class="card-meta">jobs.chronicle.com</span><span class="card-foot"><span class="port">:40073</span><span>30 tasks</span></span></span></button>
+      <button class="card" data-slug="dillards" data-cat="shopping" data-q="dillard&#x27;s dillards.com dillards shopping" data-strip="assets/wall/dillards.webp" aria-label="Dillard&#x27;s: explore website"><span class="card-shot"><img src="assets/wall/dillards-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Dillard&#x27;s</span><span class="card-meta">dillards.com</span><span class="card-foot"><span class="port">:40074</span><span>31 tasks</span></span></span></button>
+      <button class="card" data-slug="google_shopping" data-cat="shopping" data-q="google shopping shopping.google.com google shopping shopping" data-strip="assets/wall/google_shopping.webp" aria-label="Google Shopping: explore website"><span class="card-shot"><img src="assets/wall/google_shopping-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Google Shopping</span><span class="card-meta">shopping.google.com</span><span class="card-foot"><span class="port">:40075</span><span>30 tasks</span></span></span></button>
+      <button class="card" data-slug="imgur" data-cat="media" data-q="imgur imgur.com imgur media &amp; entertainment" data-strip="assets/wall/imgur.webp" aria-label="Imgur: explore website"><span class="card-shot"><img src="assets/wall/imgur-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Imgur</span><span class="card-meta">imgur.com</span><span class="card-foot"><span class="port">:40076</span><span>30 tasks</span></span></span></button>
+      <button class="card" data-slug="instructure" data-cat="learn" data-q="instructure instructure.com instructure learning &amp; research" data-strip="assets/wall/instructure.webp" aria-label="Instructure: explore website"><span class="card-shot"><img src="assets/wall/instructure-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Instructure</span><span class="card-meta">instructure.com</span><span class="card-foot"><span class="port">:40077</span><span>30 tasks</span></span></span></button>
+      <button class="card" data-slug="league_of_legends" data-cat="media" data-q="league of legends leagueoflegends.com league of legends media &amp; entertainment" data-strip="assets/wall/league_of_legends.webp" aria-label="League of Legends: explore website"><span class="card-shot"><img src="assets/wall/league_of_legends-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">League of Legends</span><span class="card-meta">leagueoflegends.com</span><span class="card-foot"><span class="port">:40078</span><span>30 tasks</span></span></span></button>
+      <button class="card" data-slug="healthgrades" data-cat="health" data-q="healthgrades healthgrades.com healthgrades health &amp; life" data-strip="assets/wall/healthgrades.webp" aria-label="Healthgrades: explore website"><span class="card-shot"><img src="assets/wall/healthgrades-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Healthgrades</span><span class="card-meta">healthgrades.com</span><span class="card-foot"><span class="port">:40079</span><span>18 tasks</span></span></span></button>
+      <button class="card" data-slug="kelley_blue_book" data-cat="jobs" data-q="kelley blue book kbb.com kelley blue book jobs, homes &amp; services" data-strip="assets/wall/kelley_blue_book.webp" aria-label="Kelley Blue Book: explore website"><span class="card-shot"><img src="assets/wall/kelley_blue_book-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Kelley Blue Book</span><span class="card-meta">kbb.com</span><span class="card-foot"><span class="port">:40080</span><span>18 tasks</span></span></span></button>
+      <button class="card" data-slug="uniqlo" data-cat="shopping" data-q="uniqlo uniqlo.com uniqlo shopping" data-strip="assets/wall/uniqlo.webp" aria-label="UNIQLO: explore website"><span class="card-shot"><img src="assets/wall/uniqlo-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">UNIQLO</span><span class="card-meta">uniqlo.com</span><span class="card-foot"><span class="port">:40081</span><span>18 tasks</span></span></span></button>
+      <button class="card" data-slug="macys_wine_shop" data-cat="shopping" data-q="macy&#x27;s wine shop macyswineshop.com macys wine shop shopping" data-strip="assets/wall/macys_wine_shop.webp" aria-label="Macy&#x27;s Wine Shop: explore website"><span class="card-shot"><img src="assets/wall/macys_wine_shop-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Macy&#x27;s Wine Shop</span><span class="card-meta">macyswineshop.com</span><span class="card-foot"><span class="port">:40082</span><span>16 tasks</span></span></span></button>
+      <button class="card" data-slug="jcpenney" data-cat="shopping" data-q="jcpenney jcpenney.com jcpenney shopping" data-strip="assets/wall/jcpenney.webp" aria-label="JCPenney: explore website"><span class="card-shot"><img src="assets/wall/jcpenney-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">JCPenney</span><span class="card-meta">jcpenney.com</span><span class="card-foot"><span class="port">:40083</span><span>15 tasks</span></span></span></button>
+      <button class="card" data-slug="landwatch" data-cat="jobs" data-q="landwatch landwatch.com landwatch jobs, homes &amp; services" data-strip="assets/wall/landwatch.webp" aria-label="LandWatch: explore website"><span class="card-shot"><img src="assets/wall/landwatch-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">LandWatch</span><span class="card-meta">landwatch.com</span><span class="card-foot"><span class="port">:40084</span><span>15 tasks</span></span></span></button>
+      <button class="card" data-slug="medicare_gov" data-cat="gov" data-q="medicare.gov medicare.gov medicare gov government &amp; civic" data-strip="assets/wall/medicare_gov.webp" aria-label="Medicare.gov: explore website"><span class="card-shot"><img src="assets/wall/medicare_gov-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Medicare.gov</span><span class="card-meta">medicare.gov</span><span class="card-foot"><span class="port">:40085</span><span>15 tasks</span></span></span></button>
+      <button class="card" data-slug="marriott" data-cat="travel" data-q="marriott marriott.com marriott travel &amp; transit" data-strip="assets/wall/marriott.webp" aria-label="Marriott: explore website"><span class="card-shot"><img src="assets/wall/marriott-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Marriott</span><span class="card-meta">marriott.com</span><span class="card-foot"><span class="port">:40086</span><span>21 tasks</span></span></span></button>
+      <button class="card" data-slug="megabus" data-cat="travel" data-q="megabus us.megabus.com megabus travel &amp; transit" data-strip="assets/wall/megabus.webp" aria-label="Megabus: explore website"><span class="card-shot"><img src="assets/wall/megabus-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Megabus</span><span class="card-meta">us.megabus.com</span><span class="card-foot"><span class="port">:40087</span><span>21 tasks</span></span></span></button>
+      <button class="card" data-slug="michaels" data-cat="shopping" data-q="michaels michaels.com michaels shopping" data-strip="assets/wall/michaels.webp" aria-label="Michaels: explore website"><span class="card-shot"><img src="assets/wall/michaels-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Michaels</span><span class="card-meta">michaels.com</span><span class="card-foot"><span class="port">:40088</span><span>19 tasks</span></span></span></button>
+      <button class="card" data-slug="micro_center" data-cat="shopping" data-q="micro center microcenter.com micro center shopping" data-strip="assets/wall/micro_center.webp" aria-label="Micro Center: explore website"><span class="card-shot"><img src="assets/wall/micro_center-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Micro Center</span><span class="card-meta">microcenter.com</span><span class="card-foot"><span class="port">:40089</span><span>18 tasks</span></span></span></button>
+      <button class="card" data-slug="ohiomeansjobs" data-cat="jobs" data-q="ohiomeansjobs ohiomeansjobs.ohio.gov ohiomeansjobs jobs, homes &amp; services" data-strip="assets/wall/ohiomeansjobs.webp" aria-label="OhioMeansJobs: explore website"><span class="card-shot"><img src="assets/wall/ohiomeansjobs-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">OhioMeansJobs</span><span class="card-meta">ohiomeansjobs.ohio.gov</span><span class="card-foot"><span class="port">:40090</span><span>18 tasks</span></span></span></button>
+      <button class="card" data-slug="ohio_gov" data-cat="gov" data-q="ohio.gov ohio.gov ohio gov government &amp; civic" data-strip="assets/wall/ohio_gov.webp" aria-label="Ohio.gov: explore website"><span class="card-shot"><img src="assets/wall/ohio_gov-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Ohio.gov</span><span class="card-meta">ohio.gov</span><span class="card-foot"><span class="port">:40091</span><span>21 tasks</span></span></span></button>
+      <button class="card" data-slug="nfl" data-cat="media" data-q="nfl nfl.com nfl media &amp; entertainment" data-strip="assets/wall/nfl.webp" aria-label="NFL: explore website"><span class="card-shot"><img src="assets/wall/nfl-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">NFL</span><span class="card-meta">nfl.com</span><span class="card-foot"><span class="port">:40092</span><span>21 tasks</span></span></span></button>
+      <button class="card" data-slug="mta" data-cat="travel" data-q="mta new.mta.info mta travel &amp; transit" data-strip="assets/wall/mta.webp" aria-label="MTA: explore website"><span class="card-shot"><img src="assets/wall/mta-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">MTA</span><span class="card-meta">new.mta.info</span><span class="card-foot"><span class="port">:40093</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="public_storage" data-cat="jobs" data-q="public storage publicstorage.com public storage jobs, homes &amp; services" data-strip="assets/wall/public_storage.webp" aria-label="Public Storage: explore website"><span class="card-shot"><img src="assets/wall/public_storage-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Public Storage</span><span class="card-meta">publicstorage.com</span><span class="card-foot"><span class="port">:40094</span><span>21 tasks</span></span></span></button>
+      <button class="card" data-slug="raising_canes" data-cat="shopping" data-q="raising cane’s raisingcanes.com raising canes shopping" data-strip="assets/wall/raising_canes.webp" aria-label="Raising Cane’s: explore website"><span class="card-shot"><img src="assets/wall/raising_canes-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Raising Cane’s</span><span class="card-meta">raisingcanes.com</span><span class="card-foot"><span class="port">:40095</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="re_max" data-cat="jobs" data-q="re/max remax.com re max jobs, homes &amp; services" data-strip="assets/wall/re_max.webp" aria-label="RE/MAX: explore website"><span class="card-shot"><img src="assets/wall/re_max-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">RE/MAX</span><span class="card-meta">remax.com</span><span class="card-foot"><span class="port">:40096</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="parkers" data-cat="jobs" data-q="parkers parkers.co.uk parkers jobs, homes &amp; services" data-strip="assets/wall/parkers.webp" aria-label="Parkers: explore website"><span class="card-shot"><img src="assets/wall/parkers-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Parkers</span><span class="card-meta">parkers.co.uk</span><span class="card-foot"><span class="port">:40097</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="ryanair" data-cat="travel" data-q="ryanair ryanair.com ryanair travel &amp; transit" data-strip="assets/wall/ryanair.webp" aria-label="Ryanair: explore website"><span class="card-shot"><img src="assets/wall/ryanair-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Ryanair</span><span class="card-meta">ryanair.com</span><span class="card-foot"><span class="port">:40098</span><span>21 tasks</span></span></span></button>
+      <button class="card" data-slug="chess_com" data-cat="media" data-q="chess.com chess.com chess com media &amp; entertainment" data-strip="assets/wall/chess_com.webp" aria-label="Chess.com: explore website"><span class="card-shot"><img src="assets/wall/chess_com-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Chess.com</span><span class="card-meta">chess.com</span><span class="card-foot"><span class="port">:40099</span><span>30 tasks</span></span></span></button>
+      <button class="card" data-slug="porsche" data-cat="jobs" data-q="porsche porsche.com porsche jobs, homes &amp; services" data-strip="assets/wall/porsche.webp" aria-label="Porsche: explore website"><span class="card-shot"><img src="assets/wall/porsche-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Porsche</span><span class="card-meta">porsche.com</span><span class="card-foot"><span class="port">:40100</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="qatar_airways" data-cat="travel" data-q="qatar airways qatarairways.com qatar airways travel &amp; transit" data-strip="assets/wall/qatar_airways.webp" aria-label="Qatar Airways: explore website"><span class="card-shot"><img src="assets/wall/qatar_airways-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Qatar Airways</span><span class="card-meta">qatarairways.com</span><span class="card-foot"><span class="port">:40101</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="soundcloud" data-cat="media" data-q="soundcloud soundcloud.com soundcloud media &amp; entertainment" data-strip="assets/wall/soundcloud.webp" aria-label="SoundCloud: explore website"><span class="card-shot"><img src="assets/wall/soundcloud-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">SoundCloud</span><span class="card-meta">soundcloud.com</span><span class="card-foot"><span class="port">:40102</span><span>21 tasks</span></span></span></button>
+      <button class="card" data-slug="speedo" data-cat="shopping" data-q="speedo speedo.com speedo shopping" data-strip="assets/wall/speedo.webp" aria-label="Speedo: explore website"><span class="card-shot"><img src="assets/wall/speedo-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Speedo</span><span class="card-meta">speedo.com</span><span class="card-foot"><span class="port">:40103</span><span>21 tasks</span></span></span></button>
+      <button class="card" data-slug="sourceforge" data-cat="tech" data-q="sourceforge sourceforge.net sourceforge tech &amp; tools" data-strip="assets/wall/sourceforge.webp" aria-label="SourceForge: explore website"><span class="card-shot"><img src="assets/wall/sourceforge-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">SourceForge</span><span class="card-meta">sourceforge.net</span><span class="card-foot"><span class="port">:40104</span><span>21 tasks</span></span></span></button>
+      <button class="card" data-slug="stubhub" data-cat="media" data-q="stubhub stubhub.com stubhub media &amp; entertainment" data-strip="assets/wall/stubhub.webp" aria-label="StubHub: explore website"><span class="card-shot"><img src="assets/wall/stubhub-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">StubHub</span><span class="card-meta">stubhub.com</span><span class="card-foot"><span class="port">:40105</span><span>21 tasks</span></span></span></button>
+      <button class="card" data-slug="spothero" data-cat="travel" data-q="spothero spothero.com spothero travel &amp; transit" data-strip="assets/wall/spothero.webp" aria-label="SpotHero: explore website"><span class="card-shot"><img src="assets/wall/spothero-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">SpotHero</span><span class="card-meta">spothero.com</span><span class="card-foot"><span class="port">:40106</span><span>21 tasks</span></span></span></button>
+      <button class="card" data-slug="student_com" data-cat="jobs" data-q="student.com student.com student com jobs, homes &amp; services" data-strip="assets/wall/student_com.webp" aria-label="Student.com: explore website"><span class="card-shot"><img src="assets/wall/student_com-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Student.com</span><span class="card-meta">student.com</span><span class="card-foot"><span class="port">:40107</span><span>21 tasks</span></span></span></button>
+      <button class="card" data-slug="statista" data-cat="finance" data-q="statista statista.com statista finance &amp; business" data-strip="assets/wall/statista.webp" aria-label="Statista: explore website"><span class="card-shot"><img src="assets/wall/statista-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Statista</span><span class="card-meta">statista.com</span><span class="card-foot"><span class="port">:40108</span><span>23 tasks</span></span></span></button>
+      <button class="card" data-slug="thumbtack" data-cat="jobs" data-q="thumbtack thumbtack.com thumbtack jobs, homes &amp; services" data-strip="assets/wall/thumbtack.webp" aria-label="Thumbtack: explore website"><span class="card-shot"><img src="assets/wall/thumbtack-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Thumbtack</span><span class="card-meta">thumbtack.com</span><span class="card-foot"><span class="port">:40109</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="ticketmaster" data-cat="media" data-q="ticketmaster ticketmaster.com ticketmaster media &amp; entertainment" data-strip="assets/wall/ticketmaster.webp" aria-label="Ticketmaster: explore website"><span class="card-shot"><img src="assets/wall/ticketmaster-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Ticketmaster</span><span class="card-meta">ticketmaster.com</span><span class="card-foot"><span class="port">:40110</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="trip_com" data-cat="travel" data-q="trip.com us.trip.com trip com travel &amp; transit" data-strip="assets/wall/trip_com.webp" aria-label="Trip.com: explore website"><span class="card-shot"><img src="assets/wall/trip_com-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Trip.com</span><span class="card-meta">us.trip.com</span><span class="card-foot"><span class="port">:40111</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="the_weather_network" data-cat="health" data-q="the weather network theweathernetwork.com the weather network health &amp; life" data-strip="assets/wall/the_weather_network.webp" aria-label="The Weather Network: explore website"><span class="card-shot"><img src="assets/wall/the_weather_network-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">The Weather Network</span><span class="card-meta">theweathernetwork.com</span><span class="card-foot"><span class="port">:40112</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="super_lawyers" data-cat="jobs" data-q="super lawyers superlawyers.com super lawyers jobs, homes &amp; services" data-strip="assets/wall/super_lawyers.webp" aria-label="Super Lawyers: explore website"><span class="card-shot"><img src="assets/wall/super_lawyers-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Super Lawyers</span><span class="card-meta">superlawyers.com</span><span class="card-foot"><span class="port">:40113</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="tourradar" data-cat="travel" data-q="tourradar tourradar.com tourradar travel &amp; transit" data-strip="assets/wall/tourradar.webp" aria-label="TourRadar: explore website"><span class="card-shot"><img src="assets/wall/tourradar-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">TourRadar</span><span class="card-meta">tourradar.com</span><span class="card-foot"><span class="port">:40114</span><span>22 tasks</span></span></span></button>
+      <button class="card" data-slug="apartments_com" data-cat="jobs" data-q="apartments.com apartments.com apartments com jobs, homes &amp; services" data-strip="assets/wall/apartments_com.webp" aria-label="Apartments.com: explore website"><span class="card-shot"><img src="assets/wall/apartments_com-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Apartments.com</span><span class="card-meta">apartments.com</span><span class="card-foot"><span class="port">:40115</span><span>16 tasks</span></span></span></button>
+      <button class="card" data-slug="eventbrite" data-cat="media" data-q="eventbrite eventbrite.com eventbrite media &amp; entertainment" data-strip="assets/wall/eventbrite.webp" aria-label="Eventbrite: explore website"><span class="card-shot"><img src="assets/wall/eventbrite-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Eventbrite</span><span class="card-meta">eventbrite.com</span><span class="card-foot"><span class="port">:40116</span><span>18 tasks</span></span></span></button>
+      <button class="card" data-slug="fandom" data-cat="media" data-q="fandom marvelcinematicuniverse.fandom.com fandom media &amp; entertainment" data-strip="assets/wall/fandom.webp" aria-label="Fandom: explore website"><span class="card-shot"><img src="assets/wall/fandom-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Fandom</span><span class="card-meta">marvelcinematicuniverse.fandom.com</span><span class="card-foot"><span class="port">:40117</span><span>18 tasks</span></span></span></button>
+      <button class="card" data-slug="mayo_clinic" data-cat="health" data-q="mayo clinic mayoclinic.org mayo clinic health &amp; life" data-strip="assets/wall/mayo_clinic.webp" aria-label="Mayo Clinic: explore website"><span class="card-shot"><img src="assets/wall/mayo_clinic-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Mayo Clinic</span><span class="card-meta">mayoclinic.org</span><span class="card-foot"><span class="port">:40118</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="smartasset" data-cat="finance" data-q="smartasset smartasset.com smartasset finance &amp; business" data-strip="assets/wall/smartasset.webp" aria-label="SmartAsset: explore website"><span class="card-shot"><img src="assets/wall/smartasset-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">SmartAsset</span><span class="card-meta">smartasset.com</span><span class="card-foot"><span class="port">:40119</span><span>18 tasks</span></span></span></button>
+      <button class="card" data-slug="us_doj" data-cat="gov" data-q="u.s. doj justice.gov us doj government &amp; civic" data-strip="assets/wall/us_doj.webp" aria-label="U.S. DOJ: explore website"><span class="card-shot"><img src="assets/wall/us_doj-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">U.S. DOJ</span><span class="card-meta">justice.gov</span><span class="card-foot"><span class="port">:40120</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="cvs" data-cat="health" data-q="cvs cvs.com cvs health &amp; life" data-strip="assets/wall/cvs.webp" aria-label="CVS: explore website"><span class="card-shot"><img src="assets/wall/cvs-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">CVS</span><span class="card-meta">cvs.com</span><span class="card-foot"><span class="port">:40121</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="u_s_customs" data-cat="gov" data-q="cbp.gov cbp.gov u s customs government &amp; civic" data-strip="assets/wall/u_s_customs.webp" aria-label="CBP.gov: explore website"><span class="card-shot"><img src="assets/wall/u_s_customs-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">CBP.gov</span><span class="card-meta">cbp.gov</span><span class="card-foot"><span class="port">:40122</span><span>21 tasks</span></span></span></button>
+      <button class="card" data-slug="ups" data-cat="gov" data-q="ups ups.com ups government &amp; civic" data-strip="assets/wall/ups.webp" aria-label="UPS: explore website"><span class="card-shot"><img src="assets/wall/ups-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">UPS</span><span class="card-meta">ups.com</span><span class="card-foot"><span class="port">:40123</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="united_airlines" data-cat="travel" data-q="united airlines united.com united airlines travel &amp; transit" data-strip="assets/wall/united_airlines.webp" aria-label="United Airlines: explore website"><span class="card-shot"><img src="assets/wall/united_airlines-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">United Airlines</span><span class="card-meta">united.com</span><span class="card-foot"><span class="port">:40124</span><span>21 tasks</span></span></span></button>
+      <button class="card" data-slug="us_appliance" data-cat="shopping" data-q="us appliance us-appliance.com us appliance shopping" data-strip="assets/wall/us_appliance.webp" aria-label="US Appliance: explore website"><span class="card-shot"><img src="assets/wall/us_appliance-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">US Appliance</span><span class="card-meta">us-appliance.com</span><span class="card-foot"><span class="port">:40125</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="uscis" data-cat="gov" data-q="uscis uscis.gov uscis government &amp; civic" data-strip="assets/wall/uscis.webp" aria-label="USCIS: explore website"><span class="card-shot"><img src="assets/wall/uscis-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">USCIS</span><span class="card-meta">uscis.gov</span><span class="card-foot"><span class="port">:40126</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="tumblr" data-cat="media" data-q="tumblr tumblr.com tumblr media &amp; entertainment" data-strip="assets/wall/tumblr.webp" aria-label="Tumblr: explore website"><span class="card-shot"><img src="assets/wall/tumblr-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Tumblr</span><span class="card-meta">tumblr.com</span><span class="card-foot"><span class="port">:40127</span><span>21 tasks</span></span></span></button>
+      <button class="card" data-slug="zara" data-cat="shopping" data-q="zara zara.com zara shopping" data-strip="assets/wall/zara.webp" aria-label="Zara: explore website"><span class="card-shot"><img src="assets/wall/zara-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Zara</span><span class="card-meta">zara.com</span><span class="card-foot"><span class="port">:40128</span><span>22 tasks</span></span></span></button>
+      <button class="card" data-slug="usps" data-cat="gov" data-q="usps usps.com usps government &amp; civic" data-strip="assets/wall/usps.webp" aria-label="USPS: explore website"><span class="card-shot"><img src="assets/wall/usps-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">USPS</span><span class="card-meta">usps.com</span><span class="card-foot"><span class="port">:40129</span><span>21 tasks</span></span></span></button>
+      <button class="card" data-slug="wanderlog" data-cat="travel" data-q="wanderlog wanderlog.com wanderlog travel &amp; transit" data-strip="assets/wall/wanderlog.webp" aria-label="Wanderlog: explore website"><span class="card-shot"><img src="assets/wall/wanderlog-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Wanderlog</span><span class="card-meta">wanderlog.com</span><span class="card-foot"><span class="port">:40130</span><span>21 tasks</span></span></span></button>
+      <button class="card" data-slug="virginia_dmv" data-cat="gov" data-q="virginia dmv dmv.virginia.gov virginia dmv government &amp; civic" data-strip="assets/wall/virginia_dmv.webp" aria-label="Virginia DMV: explore website"><span class="card-shot"><img src="assets/wall/virginia_dmv-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Virginia DMV</span><span class="card-meta">dmv.virginia.gov</span><span class="card-foot"><span class="port">:40131</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="verizon" data-cat="tech" data-q="verizon verizon.com verizon tech &amp; tools" data-strip="assets/wall/verizon.webp" aria-label="Verizon: explore website"><span class="card-shot"><img src="assets/wall/verizon-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Verizon</span><span class="card-meta">verizon.com</span><span class="card-foot"><span class="port">:40132</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="ziprecruiter" data-cat="jobs" data-q="ziprecruiter ziprecruiter.com ziprecruiter jobs, homes &amp; services" data-strip="assets/wall/ziprecruiter.webp" aria-label="ZipRecruiter: explore website"><span class="card-shot"><img src="assets/wall/ziprecruiter-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">ZipRecruiter</span><span class="card-meta">ziprecruiter.com</span><span class="card-foot"><span class="port">:40133</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="carvana" data-cat="jobs" data-q="carvana carvana.com carvana jobs, homes &amp; services" data-strip="assets/wall/carvana.webp" aria-label="Carvana: explore website"><span class="card-shot"><img src="assets/wall/carvana-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Carvana</span><span class="card-meta">carvana.com</span><span class="card-foot"><span class="port">:40134</span><span>21 tasks</span></span></span></button>
+      <button class="card" data-slug="coinmarketcap" data-cat="finance" data-q="coinmarketcap coinmarketcap.com coinmarketcap finance &amp; business" data-strip="assets/wall/coinmarketcap.webp" aria-label="CoinMarketCap: explore website"><span class="card-shot"><img src="assets/wall/coinmarketcap-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">CoinMarketCap</span><span class="card-meta">coinmarketcap.com</span><span class="card-foot"><span class="port">:40135</span><span>23 tasks</span></span></span></button>
+      <button class="card" data-slug="cars_com" data-cat="jobs" data-q="cars.com cars.com cars com jobs, homes &amp; services" data-strip="assets/wall/cars_com.webp" aria-label="Cars.com: explore website"><span class="card-shot"><img src="assets/wall/cars_com-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Cars.com</span><span class="card-meta">cars.com</span><span class="card-foot"><span class="port">:40136</span><span>19 tasks</span></span></span></button>
+      <button class="card" data-slug="airbnb" data-cat="travel" data-q="airbnb airbnb.com airbnb travel &amp; transit" data-strip="assets/wall/airbnb.webp" aria-label="Airbnb: explore website"><span class="card-shot"><img src="assets/wall/airbnb-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Airbnb</span><span class="card-meta">airbnb.com</span><span class="card-foot"><span class="port">:40137</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="backcountry" data-cat="shopping" data-q="backcountry backcountry.com backcountry shopping" data-strip="assets/wall/backcountry.webp" aria-label="Backcountry: explore website"><span class="card-shot"><img src="assets/wall/backcountry-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Backcountry</span><span class="card-meta">backcountry.com</span><span class="card-foot"><span class="port">:40138</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="disney" data-cat="media" data-q="disney disney.com disney media &amp; entertainment" data-strip="assets/wall/disney.webp" aria-label="Disney: explore website"><span class="card-shot"><img src="assets/wall/disney-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Disney</span><span class="card-meta">disney.com</span><span class="card-foot"><span class="port">:40139</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="iclr" data-cat="learn" data-q="iclr iclr.cc iclr learning &amp; research" data-strip="assets/wall/iclr.webp" aria-label="ICLR: explore website"><span class="card-shot"><img src="assets/wall/iclr-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">ICLR</span><span class="card-meta">iclr.cc</span><span class="card-foot"><span class="port">:40140</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="red_bull" data-cat="media" data-q="red bull redbull.com red bull media &amp; entertainment" data-strip="assets/wall/red_bull.webp" aria-label="Red Bull: explore website"><span class="card-shot"><img src="assets/wall/red_bull-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Red Bull</span><span class="card-meta">redbull.com</span><span class="card-foot"><span class="port">:40141</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="dblp" data-cat="learn" data-q="dblp dblp.org dblp learning &amp; research" data-strip="assets/wall/dblp.webp" aria-label="dblp: explore website"><span class="card-shot"><img src="assets/wall/dblp-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">dblp</span><span class="card-meta">dblp.org</span><span class="card-foot"><span class="port">:40142</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="microsoft_azure" data-cat="tech" data-q="microsoft azure azure.microsoft.com microsoft azure tech &amp; tools" data-strip="assets/wall/microsoft_azure.webp" aria-label="Microsoft Azure: explore website"><span class="card-shot"><img src="assets/wall/microsoft_azure-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Microsoft Azure</span><span class="card-meta">azure.microsoft.com</span><span class="card-foot"><span class="port">:40143</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="fox_sports" data-cat="media" data-q="fox sports foxsports.com fox sports media &amp; entertainment" data-strip="assets/wall/fox_sports.webp" aria-label="FOX Sports: explore website"><span class="card-shot"><img src="assets/wall/fox_sports-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">FOX Sports</span><span class="card-meta">foxsports.com</span><span class="card-foot"><span class="port">:40144</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="samsung" data-cat="shopping" data-q="samsung samsung.com samsung shopping" data-strip="assets/wall/samsung.webp" aria-label="Samsung: explore website"><span class="card-shot"><img src="assets/wall/samsung-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Samsung</span><span class="card-meta">samsung.com</span><span class="card-foot"><span class="port">:40145</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="nyse" data-cat="finance" data-q="nyse nyse.com nyse finance &amp; business" data-strip="assets/wall/nyse.webp" aria-label="NYSE: explore website"><span class="card-shot"><img src="assets/wall/nyse-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">NYSE</span><span class="card-meta">nyse.com</span><span class="card-foot"><span class="port">:40146</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="university_of_michigan" data-cat="learn" data-q="university of michigan umich.edu university of michigan learning &amp; research" data-strip="assets/wall/university_of_michigan.webp" aria-label="University of Michigan: explore website"><span class="card-shot"><img src="assets/wall/university_of_michigan-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">University of Michigan</span><span class="card-meta">umich.edu</span><span class="card-foot"><span class="port">:40147</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="stanford_university" data-cat="learn" data-q="stanford university stanford.edu stanford university learning &amp; research" data-strip="assets/wall/stanford_university.webp" aria-label="Stanford University: explore website"><span class="card-shot"><img src="assets/wall/stanford_university-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Stanford University</span><span class="card-meta">stanford.edu</span><span class="card-foot"><span class="port">:40148</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="yahoo_finance" data-cat="finance" data-q="yahoo finance finance.yahoo.com yahoo finance finance &amp; business" data-strip="assets/wall/yahoo_finance.webp" aria-label="Yahoo Finance: explore website"><span class="card-shot"><img src="assets/wall/yahoo_finance-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Yahoo Finance</span><span class="card-meta">finance.yahoo.com</span><span class="card-foot"><span class="port">:40149</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="steam" data-cat="media" data-q="steam store.steampowered.com steam media &amp; entertainment" data-strip="assets/wall/steam.webp" aria-label="Steam: explore website"><span class="card-shot"><img src="assets/wall/steam-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Steam</span><span class="card-meta">store.steampowered.com</span><span class="card-foot"><span class="port">:40150</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="trader_joes" data-cat="shopping" data-q="trader joe&#x27;s traderjoes.com trader joes shopping" data-strip="assets/wall/trader_joes.webp" aria-label="Trader Joe&#x27;s: explore website"><span class="card-shot"><img src="assets/wall/trader_joes-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">Trader Joe&#x27;s</span><span class="card-meta">traderjoes.com</span><span class="card-foot"><span class="port">:40151</span><span>20 tasks</span></span></span></button>
+      <button class="card" data-slug="sec" data-cat="gov" data-q="sec.gov sec.gov sec government &amp; civic" data-strip="assets/wall/sec.webp" aria-label="SEC.gov: explore website"><span class="card-shot"><img src="assets/wall/sec-poster.webp" width="432" height="270" loading="lazy" decoding="async" alt=""></span><span class="card-body"><span class="card-name">SEC.gov</span><span class="card-meta">sec.gov</span><span class="card-foot"><span class="port">:40152</span><span>20 tasks</span></span></span></button>
     </div>
+    <p class="grid-empty" hidden>No website matches that search.</p>
+    <div class="grid-more"><button class="btn btn-ghost" type="button">Show all 153 websites</button></div>
   </div>
 </section>
 
-<!-- =================== SECTION OUTLINE =================== -->
-<section id="outline" class="section outline">
-  <div class="container">
-    <div class="section-head">
-      <span class="tag">Contents</span>
-      <h2>Page outline</h2>
+<!-- ============ MOTIVATION ============ -->
+<section class="section" id="motivation">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="kicker">02 · Motivation</span>
+      <h2>Live sites keep changing. Generated ones lack <em>depth and fidelity</em>.</h2>
+      <p class="lead">GUI web agents need environments that look and behave like real websites, yet stay stable enough to evaluate and train on. Live websites change their content, block automation, and hide their most important workflows behind sign-in. Generated environments are controllable, but often lack functional depth, image-rich content, or login-based workflows.</p>
     </div>
-    <ol class="outline-list">
-      <li>
-        <a href="#gallery">
-          <span class="ol-num">01</span>
-          <span class="ol-body">
-            <span class="ol-title">15 live demos</span>
-            <span class="ol-desc">15 live websites running in Docker containers.</span>
-          </span>
-          <span class="ol-arrow">&darr;</span>
-        </a>
-      </li>
-      <li>
-        <a href="#motivation">
-          <span class="ol-num">02</span>
-          <span class="ol-body">
-            <span class="ol-title">Motivation</span>
-            <span class="ol-desc">Why current environments (live, offline, or toy) can't evaluate the real web.</span>
-          </span>
-          <span class="ol-arrow">&darr;</span>
-        </a>
-      </li>
-      <li>
-        <a href="#evolving">
-          <span class="ol-num">03</span>
-          <span class="ol-body">
-            <span class="ol-title">Evolving Environments</span>
-            <span class="ol-desc">Coding agents build, humans verify, tasks drive environment evolution.</span>
-          </span>
-          <span class="ol-arrow">&darr;</span>
-        </a>
-      </li>
-      <li>
-        <a href="#validation">
-          <span class="ol-num">04</span>
-          <span class="ol-body">
-            <span class="ol-title">Validation</span>
-            <span class="ol-desc">Our simulated benchmark preserves the model ranking observed on live-web benchmarks.</span>
-          </span>
-          <span class="ol-arrow">&darr;</span>
-        </a>
-      </li>
-      <li>
-        <a href="#quickstart">
-          <span class="ol-num">05</span>
-          <span class="ol-body">
-            <span class="ol-title">Quickstart</span>
-            <span class="ol-desc">One command to deploy live website environments, locally.</span>
-          </span>
-          <span class="ol-arrow">&darr;</span>
-        </a>
-      </li>
-      <li>
-        <a href="#contribute">
-          <span class="ol-num">06</span>
-          <span class="ol-body">
-            <span class="ol-title">Contribution</span>
-            <span class="ol-desc">Scale with community power. Contribute now!</span>
-          </span>
-          <span class="ol-arrow">&darr;</span>
-        </a>
-      </li>
-    </ol>
-  </div>
-</section>
-
-<!-- =================== GALLERY (15 LIVE DEMOS) =================== -->
-<section id="gallery" class="section bordered">
-  <div class="container">
-    <div class="section-head">
-      <span class="tag">01 &middot; 15 live demos</span>
-      <h2>Real websites, running locally, with every feature unlocked.</h2>
-      <p class="section-lede">
-        Each clip below is a <em>real interaction</em> captured against a
-        running WebHarbor mirror: shopping&nbsp;carts, flight&nbsp;search,
-        map&nbsp;directions, issue&nbsp;tracking, meal&nbsp;planning, and scoreboard&nbsp;stats.
-        These are the deep, login-gated features that live websites can never reach.
-      </p>
+    <div class="why-grid reveal">
+      <div class="why-card">
+        <div class="big">38<small>%</small></div>
+        <p>of Online-Mind2Web tasks were <b>blocked by bot detection</b> in our experiments.</p>
+      </div>
+      <div class="why-card">
+        <div class="big">22<small>%</small></div>
+        <p>of WebVoyager tasks were <b>outdated</b> because the websites had changed.</p>
+      </div>
+      <div class="why-card good">
+        <div class="big">31.8<small>%</small></div>
+        <p>of WebHarbor tasks <b>require signing in</b> through the interface, a class of everyday workflows that live-web benchmarks rarely cover.</p>
+      </div>
     </div>
-
-    <div class="gallery" id="gallery-grid">
-      <!-- populated from JS -->
-    </div>
-  </div>
-</section>
-
-<!-- =================== MOTIVATION =================== -->
-<section id="motivation" class="section bordered">
-  <div class="container">
-    <div class="section-head">
-      <span class="tag">02 &middot; Motivation</span>
-      <h2>The web is multimodal, deep, and gated. Current benchmarks and environments are none of these.</h2>
-      <p class="section-lede">
-        Real websites have rich visual layouts, product images, interactive
-        maps, and deeply nested functionality behind login walls. Existing
-        web agent benchmarks either fight the live web&rsquo;s instability or
-        retreat into toy environments that don&rsquo;t resemble it.
-      </p>
-    </div>
-
-    <div class="problem-grid">
-      <article class="problem-card">
-        <div class="problem-head">
-          <span class="prob-id">a</span>
-          <h3>Live-site eval</h3>
-          <span class="prob-sub">WebVoyager, Online-Mind2Web</span>
-        </div>
-        <p>
-          reCAPTCHA, geo-blocks, network flakiness, and content drift inflate
-          eval noise. Multiple WebVoyager sites are effectively inaccessible.
-          Tasks never require login, so coverage is limited to surface-level
-          fact lookups.
-        </p>
-      </article>
-
-      <article class="problem-card">
-        <div class="problem-head">
-          <span class="prob-id">b</span>
-          <h3>Offline traces</h3>
-          <span class="prob-sub">Mind2Web</span>
-        </div>
-        <p>
-          No interactive environment, no state, no consequence of a wrong
-          click. Useful for supervised pre-training but fundamentally
-          unsuited to evaluating agents that must act, not just predict.
-        </p>
-      </article>
-
-      <article class="problem-card">
-        <div class="problem-head">
-          <span class="prob-id">c</span>
-          <h3>Synthetic Environments</h3>
-          <span class="prob-sub">WebArena</span>
-        </div>
-        <p>
-          Some synthetic browser environments built from coloured rectangles instead of real images; a
-          handful of sites with no multimodal richness. WebArena is
-          content-rich but heavyweight, and slow resets make RL-scale
-          rollouts impractical.
-        </p>
-      </article>
-    </div>
-
-    <div class="thesis">
-      <span class="thesis-kicker">Core insight</span>
-      <p>
-        The bottleneck isn&rsquo;t the agent. It&rsquo;s
-        <strong>the environment</strong>. We need web environments that are
-        <em>stable</em> (no eval noise), <em>multimodal</em> (real images
-        and layouts), <em>deep</em> (auth-gated flows), and
-        <em>evolving</em> (growing with agent capability).
-      </p>
-    </div>
-    <!-- comparison table -->
-    <div class="compare-wrap">
-      <h3 class="compare-title">How WebHarbor compares</h3>
-      <div class="compare-table-scroll">
-        <table class="compare-table">
-          <thead>
-            <tr>
-              <th class="compare-dim"></th>
-              <th>WebArena</th>
-              <th>WebVoyager</th>
-              <th>Online-Mind2Web</th>
-              <th class="compare-ours">WebHarbor</th>
-            </tr>
-          </thead>
+    <div class="cmp reveal">
+      <div class="cmp-scroll">
+        <table>
+          <thead><tr><th>Environment</th><th>Curation</th><th># Envs.</th><th>Offline</th><th>Images</th><th>Login</th></tr></thead>
           <tbody>
-            <tr>
-              <td class="compare-dim">Environment</td>
-              <td>Self-hosted (synthetic)</td>
-              <td>Live web</td>
-              <td>Live web</td>
-              <td class="compare-ours">Self-hosted (synthetic)</td>
-            </tr>
-            <tr>
-              <td class="compare-dim"># of Sites</td>
-              <td>5</td>
-              <td>15</td>
-              <td>100+</td>
-              <td class="compare-ours">15 (100+ planned)</td>
-            </tr>
-            <tr>
-              <td class="compare-dim">Eval Stability</td>
-              <td><span class="cmp-ok">Stable</span></td>
-              <td><span class="cmp-bad">Noisy</span> (reCAPTCHA, geo-blocks, tasks outdated)</td>
-              <td><span class="cmp-bad">Noisy</span> (reCAPTCHA, geo-blocks)</td>
-              <td><span class="cmp-ok">Stable</span></td>
-            </tr>
-            <tr>
-              <td class="compare-dim">Login &amp; Deep Features</td>
-              <td class="compare-ours"><span class="cmp-good">Fully unlocked</span></td>
-              <td><span class="cmp-bad">Not supported</span></td>
-              <td><span class="cmp-bad">Not supported</span></td>
-              <td class="compare-ours"><span class="cmp-good">Fully unlocked</span></td>
-            </tr>
-            <tr>
-              <td class="compare-dim">Reset Speed</td>
-              <td><span class="cmp-bad">Slow</span> (Docker restart)</td>
-              <td>N/A (live)</td>
-              <td>N/A (live)</td>
-              <td class="compare-ours"><span class="cmp-good">Fast</span> (SQLite reset)</td>
-            </tr>
-            <tr>
-              <td class="compare-dim">Evolution</td>
-              <td>Static, frozen</td>
-              <td><span class="cmp-bad">Tasks outdated</span></td>
-              <td><span class="cmp-ok">Tasks updated</span></td>
-              <td class="compare-ours"><span class="cmp-good">Evolving</span>env grows with tasks</td>
-            </tr>
-            <tr>
-              <td class="compare-dim">RL Compatible</td>
-              <td><span class="cmp-bad">Impractical</span> (slow reset)</td>
-              <td><span class="cmp-bad">No</span> (noisy, live)</td>
-              <td><span class="cmp-bad">No</span> (noisy, live)</td>
-              <td class="compare-ours"><span class="cmp-good">Yes</span> (fast reset, deterministic)</td>
-            </tr>
+            <tr class="group"><td colspan="6">Evaluation</td></tr>
+            <tr><td>WebVoyager</td><td>Human + LLM</td><td>15</td><td class="no">✕</td><td class="yes">✓</td><td class="no">✕</td></tr>
+            <tr><td>WebArena</td><td>Human</td><td>6</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><td>Online-Mind2Web</td><td>Human</td><td>136</td><td class="no">✕</td><td class="yes">✓</td><td class="no">✕</td></tr>
+            <tr><td>DeepShop</td><td>Agent</td><td>1</td><td class="no">✕</td><td class="yes">✓</td><td class="no">✕</td></tr>
+            <tr class="group"><td colspan="6">Training</td></tr>
+            <tr><td>WebArena-Infinity</td><td>Agent</td><td>13</td><td class="yes">✓</td><td class="no">✕</td><td class="no">✕</td></tr>
+            <tr><td>AutoWebWorld</td><td>Agent</td><td>29</td><td class="yes">✓</td><td class="part">△</td><td class="part">△</td></tr>
+            <tr><td>CUA-Gym</td><td>Agent</td><td>98</td><td class="yes">✓</td><td class="part">△</td><td class="no">✕</td></tr>
+            <tr class="ours"><td>⚓ WebHarbor</td><td>Human + Agent</td><td>153</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
           </tbody>
         </table>
       </div>
     </div>
-
+    <p class="note" style="margin-top:12px">Released web-agent environments. Images = image-rich website content; △ = generated images or partial coverage; Login = the agent must authenticate through the interface. # Envs. follows the actual releases.</p>
   </div>
 </section>
 
-<!-- =================== EVOLVING ENVIRONMENTS (OUR APPROACH) =================== -->
-<section id="evolving" class="section bordered">
-  <div class="container">
-    <div class="section-head">
-      <span class="tag">03 &middot; Evolving Environments: Our Approach</span>
-      <h2>Coding agents build. Humans verify. Tasks drive evolution.</h2>
-      <p class="section-lede">
-        WebHarbor environments are built by coding agents (e.g. Claude Code with
-        specialized skills), then rigorously reviewed by human annotators to
-        ensure multimodal fidelity and functional depth. Tasks from existing
-        benchmarks (starting with
-        <a href="https://github.com/MinorJerry/WebVoyager" target="_blank" rel="noopener">WebVoyager</a>)
-        define what the environment support and look like.
-      </p>
+<!-- ============ APPROACH ============ -->
+<section class="section" id="approach">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="kicker">03 · Our approach</span>
+      <h2>Tasks set the scope. Coding agents build. <em>People audit.</em></h2>
+      <p class="lead">We call it <b>docking</b>: replacing a website's live dependencies with local assets, seeded state, and controlled resets, while keeping its recognizable look and behavior. Environments keep evolving: new tasks expose missing functionality, and the same loop extends the site.</p>
     </div>
-
-    <!-- build pipeline: 4 steps -->
-    <div class="evo-flow">
-      <div class="evo-step">
-        <div class="evo-num">1</div>
-        <h4>Coding agent builds</h4>
-        <p>A coding agent with specialized skills scrapes the real site's structure, assets, and catalog, then generates a full-stack mirror — SQLite database, REST backend, and frontend — with auth and CRUD flows.</p>
-      </div>
-      <div class="evo-arrow">&rarr;</div>
-      <div class="evo-step">
-        <div class="evo-num">2</div>
-        <h4>Human-in-the-loop review</h4>
-        <p>Human reviewers verify every mirror for visual fidelity, functional correctness, and data quality. This step is essential: we observe that agents frequently take shortcuts, produce superficially correct but broken pages, or skip edge cases.</p>
-      </div>
-      <div class="evo-arrow">&rarr;</div>
-      <div class="evo-step">
-        <div class="evo-num">3</div>
-        <h4>Task-driven scoping</h4>
-        <p>Cloning an entire live website is impractical. Instead, tasks define what features the mirror must support. Every task is verified to run against the environment with grounded truth checks.</p>
-      </div>
-      <div class="evo-arrow">&rarr;</div>
-      <div class="evo-step">
-        <div class="evo-num">4</div>
-        <h4>Environment evolves</h4>
-        <p>Once agents master existing tasks, we can have harder ones that require deeper site features. The coding agent extends the mirror on demand. The environment is never "done"; it grows alongside agent capability.</p>
-      </div>
-    </div>
-
-    <!-- why humans matter -->
-    <div class="thesis" style="margin-top:46px;">
-      <span class="thesis-kicker">Why humans are essential</span>
-      <p>
-        Building high-quality, multimodal web environments cannot be fully
-        automated, currently. We observe that coding agents frequently
-        <strong>hack</strong> their way through: using placeholder images,
-        skipping complex layouts, producing pages that pass automated checks
-        but fail under real interaction. Human review catches these issues
-        and ensures every mirror matches the look, feel, and depth of the
-        real site.
-      </p>
-    </div>
-
-    <!-- why evolving -->
-    <div class="thesis" style="margin-top:20px;">
-      <span class="thesis-kicker">Why evolving</span>
-      <p>
-        A live website like Amazon has millions of products, thousands of routes,
-        and decades of accumulated functionality. Cloning it entirely is neither
-        tractable nor necessary. But we can ensure every task has
-        full environment support. When agents master those tasks, we expand:
-        harder tasks &rarr; more features, richer data, deeper flows. The
-        environment <strong>evolves</strong> with the agent.
-      </p>
+    <figure class="method-figure reveal">
+      <img src="assets/img/method.webp" width="2400" height="859" loading="lazy" decoding="async" alt="WebHarbor pipeline: live sites face CAPTCHAs, site changes, and access limits; contributors propose target tasks, coding agents implement them, and reviewers run fidelity audits; the resulting environments serve GUI-agent RL with observation, action, state changes, fast reset, and an LLM judge.">
+      <figcaption>(a) Live sites are blocked by CAPTCHAs, drift, and login walls. (b) Contributors propose tasks, coding agents build, reviewers audit. (c) The docked environments evolve and serve RL training with fast resets.</figcaption>
+    </figure>
+    <div class="steps">
+      <article class="step reveal">
+        <span class="step-n">01</span>
+        <h3>Task-driven docking</h3>
+        <p>Cloning Amazon's catalog or YouTube's library is impractical, so each environment is scoped to its target tasks: their entry and terminal pages, the entities they inspect, the browser actions they need, and the state they change. We start from WebVoyager's 15 websites and 643 tasks, then cover every website in Online-Mind2Web with new authenticated, state-changing workflows.</p>
+        <p class="fact">Environments keep <b>near-miss alternatives</b> and natural navigation paths, so there are no trivial shortcuts to the answer.</p>
+      </article>
+      <article class="step reveal">
+        <span class="step-n">02</span>
+        <h3>Skill-driven synthesis &amp; evolution</h3>
+        <p>A coding agent explores the real site in a browser and records its page hierarchy, URL patterns, controls and appearance. Guided by reusable construction skills, it builds a self-contained web app backed by SQLite with bundled images. It then runs every target task, fixes the first unsupported page or state transition, resets, and runs the task again.</p>
+        <p class="fact">Missing pages become <b>new routes</b>; incomplete workflows get <b>form handlers and persistent state</b>; thin content gets <b>new records</b>.</p>
+      </article>
+      <article class="step reveal">
+        <span class="step-n">03</span>
+        <h3>Human-in-the-loop refinement</h3>
+        <p>Contributors propose websites and functional requirements and steer the coding agent. Reviewers compare each environment with the real site, execute every task end to end, turn defects into concrete requests for the coding agent, and write task-specific verifiers and judge rubrics.</p>
+        <p class="fact">In a pilot of <b>26 websites</b>, coding agents left <b>13</b> with visual or asset defects and <b>14</b> with broken or shallow interactions. Each environment gets <b>2–3 review rounds</b> of 1–2 hours.</p>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- =================== VISION =================== -->
-<div class="container hinge-inner">
-  <p class="hinge-q">Our vision</p>
-  <p class="hinge-a">
-    Leverage code to <span class="accent">mirror the world</span>.
-    Cultivate the agent.
-    Prepare it to interact with and learn from <span class="accent">the real world itself</span>.
-  </p>
-</div>
-
-<!-- =================== VALIDATION =================== -->
-<section id="validation" class="section bordered">
-  <div class="container">
-    <div class="section-head">
-      <span class="tag">04 &middot; Validation</span>
-      <h2>WebHarbor-WebVoyager preserves the model ranking observed on live-web benchmarks.</h2>
-      <p class="section-lede">
-        Our first release docks the 15
-        <a href="https://github.com/MinorJerry/WebVoyager" target="_blank" rel="noopener">WebVoyager</a>
-        sites. To verify the simulated environment behaves as a faithful proxy for the
-        real web, we evaluated three vision-language web agents on
-        <strong>WebHarbor-WebVoyager</strong> and on three independent live-web benchmarks.
-        The relative ordering
-        <a href="https://huggingface.co/Qwen/Qwen3-VL-4B-Thinking" target="_blank" rel="noopener">Qwen3-VL-4B-Thinking</a> &lt; <a href="https://huggingface.co/Qwen/Qwen3-VL-235B-A22B-Thinking" target="_blank" rel="noopener">Qwen3-VL-235B-A22B-Thinking</a> &lt; <a href="https://arxiv.org/pdf/2605.15040" target="_blank" rel="noopener">Orchard-GUI-4B</a>
-        is preserved on every benchmark &mdash; confirming <strong>WebHarbor ranks models
-        consistently with prior evaluations.</strong>
-      </p>
+<!-- ============ SUITE ============ -->
+<section class="section" id="suite">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="kicker">04 · The suite</span>
+      <h2>Image-rich, deep, and <em>stateful</em>.</h2>
+      <p class="lead">Five months of community collaboration produced 153 executable website environments with 3,518 tasks. More than half of the tasks need reasoning across pages, and over a third change persistent state.</p>
     </div>
-
-    <div class="validation-card">
-      <div id="validation-chart"></div>
-    </div>
-
-    <p class="validation-caption">
-      Higher score is better. The
-      <span class="validation-pill">WebHarbor-WebVoyager</span>
-      group is highlighted; the remaining three columns are independent live-web
-      benchmarks (<a href="https://github.com/MinorJerry/WebVoyager" target="_blank" rel="noopener">WebVoyager</a>,
-      <a href="https://huggingface.co/datasets/osunlp/Online-Mind2Web" target="_blank" rel="noopener">Online-Mind2Web</a>,
-      and <a href="https://huggingface.co/datasets/DeepShop/DeepShop" target="_blank" rel="noopener">DeepShop</a>). WebHarbor-WebVoyager is a stable, authentication-free subset
-      curated from the original WebVoyager suite.
-    </p>
-  </div>
-</section>
-
-<!-- =================== QUICKSTART =================== -->
-<section id="quickstart" class="section bordered quickstart">
-  <div class="container">
-    <div class="section-head">
-      <span class="tag">05 &middot; Quickstart</span>
-      <h2>One command, 15 sites.</h2>
-      <p class="section-lede">
-        All mirrors ship in a single Docker image. Each site binds to a
-        fixed port offset from 40000; point your agent at
-        <code>http://localhost:40000&ndash;40014</code>.
-      </p>
-    </div>
-
-    <div class="code-block">
-      <div class="code-head">
-        <span class="code-lbl">shell</span>
-        <button class="copy-btn" data-copy="docker run -p 40000-40014:40000-40014 battalion7244/webharbor:latest">Copy</button>
+    <div class="suite-grid">
+      <div class="panel reveal">
+        <div class="panel-head"><h3>Task coverage <small>3,518 tasks</small></h3><div class="panel-ctl"></div></div>
+        <div id="ch-coverage">
+          <p class="chart-sub">Task category <span>mutually exclusive</span></p>
+          <div class="bc-a"></div>
+          <p class="chart-sub">Task property <span>can overlap</span></p>
+          <div class="bc-b"></div>
+        </div>
+        <p class="note" style="margin:12px 0 0">LLM-based classification of all tasks. Hover a bar for counts, shares and website coverage.</p>
       </div>
-      <pre><code>docker run -p 40000-40014:40000-40014 battalion7244/webharbor:latest</code></pre>
+      <div class="panel reveal">
+        <div class="panel-head"><h3>Environment complexity <small>vs. synthetic suites</small></h3></div>
+        <div class="mini-stats">
+          <div><b>37.3</b><span>pages per environment</span></div>
+          <div><b>1,320</b><span>bundled images per environment</span></div>
+          <div><b>104.8</b><span>MiB of images per environment</span></div>
+          <div><b>6,611</b><span>lines of code per environment</span></div>
+        </div>
+        <div class="panel-ctl" style="margin-top:18px"></div>
+        <p class="chart-cap note"></p>
+        <div id="ch-complexity"></div>
+      </div>
+      <div class="panel reveal">
+        <div class="panel-head"><h3>Train / test split <small>hover a segment</small></h3></div>
+        <div class="split" id="ch-donut">
+          <div class="donut-wrap">
+            <svg class="donut" viewBox="0 0 200 200" role="img" aria-label="Inner ring: 123 train-covered websites, 15 WebVoyager websites held out, 15 random websites held out. Outer ring: 2,288 train tasks, 306 test tasks, 924 unallocated tasks."></svg>
+            <div class="donut-center"><b>3,518</b><span>tasks</span><span>on 153 websites</span></div>
+          </div>
+          <ul class="legend">
+            <li data-key="train"><i style="background:#1B4B8F"></i>Train tasks<b>2,288</b></li>
+            <li data-key="test"><i style="background:#C4713B"></i>Test tasks (verified)<b>306</b></li>
+            <li data-key="unalloc"><i style="background:#D6D3C8"></i>Unallocated tasks<b>924</b></li>
+            <li data-key="cov" style="margin-top:6px"><i style="background:#7D9BC9"></i>Train-covered websites<b>123</b></li>
+            <li data-key="wv"><i style="background:#0D7377"></i>WebVoyager sites, held out<b>15</b></li>
+            <li data-key="rnd"><i style="background:#7FC4C1"></i>Random sites, held out<b>15</b></li>
+          </ul>
+        </div>
+        <p class="note" style="margin:16px 0 0">Outer ring: tasks. Inner ring: websites. Test candidates were run with five models; only tasks where scripted verifiers and an OpenCode agent judge agree on most runs are kept, at most two per website.</p>
+      </div>
+      <div class="panel reveal">
+        <div class="panel-head"><h3>Built for RL <small>seconds per operation</small></h3><div class="panel-ctl"></div></div>
+        <div id="ch-latency"></div>
+        <p class="note" style="margin:12px 0 0">End-to-end latency in isolated, deterministically seeded sandboxes (Orchard), including data transfer and sandbox management.</p>
+        <div class="callouts" style="grid-template-columns:1fr 1fr;margin-top:18px">
+          <div class="callout"><b>SQLite</b><span>state per site, restored from a seed snapshot on reset</span></div>
+          <div class="callout sea"><b>Offline</b><span>no live-web traffic; every asset ships with the environment</span></div>
+        </div>
+      </div>
     </div>
-
-    <p style="color:var(--text-soft); line-height:1.8; margin:0;">
-      Sites are mapped to ports <code>:40000</code> through <code>:40014</code> in order:
-      Allrecipes, Amazon, Apple, ArXiv, BBC&nbsp;News, Booking, GitHub,
-      Google&nbsp;Flights, Google&nbsp;Maps, Google&nbsp;Search, Hugging&nbsp;Face,
-      Wolfram&nbsp;Alpha, Cambridge&nbsp;Dictionary, Coursera, and ESPN.
-    </p>
   </div>
 </section>
 
-<!-- =================== CONTRIBUTION =================== -->
-<section id="contribute" class="section bordered">
-  <div class="container">
-    <div class="section-head">
-      <span class="tag">06 &middot; Contribution</span>
-      <h2>Scale to 100+ sites with community power.</h2>
-      <p class="section-lede">
-        We have built 15 high-quality website environments that fully support
-        the <a href="https://github.com/MinorJerry/WebVoyager" target="_blank" rel="noopener">WebVoyager</a>
-        benchmark. Our next goal is to scale to <strong>100+ websites</strong>,
-        covering all environments in
-        <a href="https://huggingface.co/datasets/osunlp/Online-Mind2Web" target="_blank" rel="noopener">Online-Mind2Web</a>
-        (147 sites).
-        We are inviting the community to build this together.
-      </p>
+<!-- ============ RESULTS ============ -->
+<section class="section" id="results">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="kicker">05 · Results</span>
+      <h2><a href="https://huggingface.co/ChilleD/WebHarbor-4B" target="_blank" rel="noopener">A 4B agent</a> trained in WebHarbor <em>transfers to the live web</em>.</h2>
+      <p class="lead"><a href="https://huggingface.co/ChilleD/WebHarbor-4B" target="_blank" rel="noopener">WebHarbor-4B</a> starts from the same <code>OpenWebRL-4B-SFT</code> checkpoint and uses the same multimodal GRPO objective and GUI harness as OpenWebRL-4B, which was trained on 2,102 tasks across 704 live websites. Only the environments and tasks differ. All 15 WebVoyager websites are held out of training, and Online-Mind2Web's own tasks are not in the suite.</p>
     </div>
+    <div class="callouts reveal">
+      <div class="callout"><b>75.8</b><span>live-web average: +5.2 over OpenWebRL-4B and +22.2 over the shared SFT checkpoint</span></div>
+      <div class="callout warm"><b>28.8</b><span>on WebArena, the best 4B model, in environments never seen in training</span></div>
+      <div class="callout sea"><b>−2.7</b><span>drop when WebArena auto-login is disabled, vs −3.6 and −4.9 for the OpenWebRL models</span></div>
+    </div>
+    <div class="results-grid">
+      <div class="panel reveal">
+        <div class="panel-head"><h3>Live web</h3></div>
+        <div class="panel-ctl"></div>
+        <p class="chart-cap note"></p>
+        <div id="ch-live"></div>
+        <p class="note" style="margin:12px 0 0">Invalid trials (e.g. reCAPTCHA) excluded. Numbers other than WebHarbor-4B as reported by OpenWebRL.</p>
+      </div>
+      <div class="panel reveal">
+        <div class="panel-head"><h3>Benchmark fidelity <small>hover a model</small></h3></div>
+        <div id="ch-slope"><svg class="slope" viewBox="0 0 520 300" role="img" aria-label="Slope chart: success on live WebVoyager versus WebHarbor. Qwen3-VL-4B 52.6 to 62.8, GPT-5.1 55.9 to 74.7, Qwen3-VL-235B 66.4 to 76.4, Orchard-4B 74.1 to 78.5. All rankings preserved."></svg></div>
+        <div class="mini-stats" style="grid-template-columns:repeat(3,1fr);margin-top:8px">
+          <div><b>6 / 6</b><span>pairwise rankings preserved</span></div>
+          <div><b>1.00</b><span>Spearman rank correlation</span></div>
+          <div><b>0.80</b><span>Pearson score correlation</span></div>
+        </div>
+        <p class="note" style="margin:14px 0 0">Agents score 4.4–18.8 points higher on WebHarbor than on the live sites, because content drift and access restrictions no longer interfere, while their relative order is unchanged.</p>
+      </div>
+      <div class="panel reveal">
+        <div class="panel-head"><h3>WebHarbor test set <small>306 verified tasks</small></h3></div>
+        <div class="panel-ctl"></div>
+        <p class="chart-cap note"></p>
+        <div id="ch-testset"></div>
+        <p class="note" style="margin:12px 0 0">Frontier models approach saturation, while 4B agents leave plenty of headroom.</p>
+      </div>
+      <div class="panel reveal">
+        <div class="panel-head"><h3>WebArena <small>4B models, 226 tasks</small></h3><div class="panel-ctl"></div></div>
+        <div id="ch-webarena"></div>
+        <p class="note" style="margin:12px 0 0">"No auto-login" gives the credentials in the task instead of signing the agent in; the change from the auto-login score is shown in brackets.</p>
+      </div>
+      <div class="panel wide reveal">
+        <div class="panel-head"><h3>Where RL helps <small>success rate by task capability</small></h3><div class="panel-ctl"></div></div>
+        <div class="dlegend"><span><i class="dot sft"></i>OpenWebRL-4B-SFT</span><span><i class="dot owr"></i>OpenWebRL-4B</span><span><i class="dot wh"></i>WebHarbor-4B</span><span class="dgain-h">gain over OpenWebRL-4B</span></div>
+        <div id="ch-rl"></div>
+        <p class="note" style="margin:12px 0 0">WebHarbor-4B improves over OpenWebRL-4B on every capability group on both benchmarks (paired tests, p &lt; 0.01), most on authenticated, multi-page and stateful workflows.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- two tracks -->
-    <h3 class="compare-title">Two tracks to join the author list</h3>
-    <div class="impact-grid" style="margin-bottom: 40px;">
+<!-- ============ QUICKSTART ============ -->
+<section class="section" id="quickstart">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="kicker">06 · Quickstart</span>
+      <h2>One image. 153 websites. <em>One port each.</em></h2>
+      <p class="lead">All 153 environments ship in one image on Docker Hub, <a href="https://hub.docker.com/r/wildawm/webharbor" target="_blank" rel="noopener"><code>wildawm/webharbor</code></a>. Site <i>i</i> listens on port <code>40000 + i</code>, and a token-protected control plane on <code>:8101</code> resets any site to its seeded state.</p>
+    </div>
+    <div class="qs-grid">
+      <div class="reveal">
+        <div class="code">
+          <div class="code-head"><span>pull &amp; run</span><button class="copy" data-target="qs-run">Copy</button></div>
+<pre id="qs-run"><span class="c"># the control plane requires a token of at least 32 characters</span>
+<span class="k">export</span> WEBSYN_CONTROL_TOKEN=<span class="s">"$(python3 -c 'import secrets; print(secrets.token_urlsafe(48))')"</span>
+<span class="c"># all 153 sites in one image (about 20 GB)</span>
+<span class="k">docker</span> run -e WEBSYN_CONTROL_TOKEN -p 8101:8101 \
+  -p 40000-40152:40000-40152 wildawm/webharbor:latest</pre>
+        </div>
+        <ul class="qs-notes">
+          <li><span>Open <code>http://localhost:40001</code> for Amazon, <code>:40060</code> for YouTube, … through <code>:40152</code> for SEC.gov. The control plane starts once every site is ready, about 2–3 minutes in.</span></li>
+          <li><span>One site per image for Harbor evaluation and RL: <code>wildawm/webharbor:&lt;site&gt;-v1</code>, e.g. <code>wildawm/webharbor:amazon-v1</code>. To build from source instead, run <code>./scripts/build.sh</code> in the <a href="https://github.com/aiming-lab/WebHarbor" target="_blank" rel="noopener">repository</a>.</span></li>
+          <li><span>Each site has <code>sites/&lt;site&gt;/tasks.jsonl</code>; every task carries a judge rubric and a deterministic verifier at <code>sites/&lt;site&gt;/verify/</code>.</span></li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <div class="code">
+          <div class="code-head"><span>reset &amp; run an agent</span><button class="copy" data-target="qs-reset">Copy</button></div>
+<pre id="qs-reset"><span class="c"># restore one site, or all of them in parallel</span>
+<span class="k">curl</span> -H <span class="s">"Authorization: Bearer $WEBSYN_CONTROL_TOKEN"</span> \
+  -X POST http://localhost:8101/reset/amazon
+<span class="k">curl</span> -H <span class="s">"Authorization: Bearer $WEBSYN_CONTROL_TOKEN"</span> \
+  -X POST http://localhost:8101/reset-all
 
-      <div class="impact-card">
-        <h3>Track A: Contribute a new website</h3>
-        <p>
-          Using coding agent to build a new mirror site (frontend + backend + database + tasks).
-          Contributing <strong>one website</strong> qualifies you for consideration for the
-          final paper's author list, subject to review and quality standards.
-        </p>
-        <ol style="margin:16px 0 0; padding-left:20px; color:var(--text-soft); font-size:0.92rem; line-height:1.7;">
-          <li>Browse the <a href="https://docs.google.com/spreadsheets/d/1vZsrQjy9nJKze58fx4kbQtFi85NjVXIWCFyu3ShD7gk/edit?gid=0#gid=0" target="_blank" rel="noopener">website tracking sheet</a> and find an unclaimed site you're interested in.</li>
-          <li>Submit the <a href="https://forms.gle/ngcD1rzAfUEphNmRA" target="_blank" rel="noopener">contribution form</a> to claim it. We will lock it to prevent duplicate work.</li>
-          <li>Once confirmed, follow our <a href="guide-create.html">Website Contribution Guide</a> to build and submit a PR.</li>
+<span class="c"># minimal ReAct agent + LLM-as-judge grader</span>
+<span class="k">cd</span> agent_demo && uv sync && uv run playwright install chromium
+uv run python agent.py --tasks_file ../sites/amazon/tasks.jsonl \
+  --task_id <span class="s">"Amazon--0"</span> --out_dir runs/amazon0
+uv run python eval_judge.py --run_dir runs/amazon0</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMMUNITY ============ -->
+<section class="section" id="community">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="kicker">07 · Community</span>
+      <h2>Built in the open by <em>57 contributors</em>.</h2>
+      <p class="lead">WebHarbor was initiated by UNC-Chapel Hill and Microsoft and built together with volunteers from the research community, who proposed websites, steered coding agents, and reviewed each other's environments.</p>
+    </div>
+    <div class="community-grid">
+      <div class="reveal">
+        <div class="mini-stats" style="grid-template-columns:repeat(2,1fr);margin-top:0">
+          <div><b>348</b><span>GitHub pull requests, 89.9% merged</span></div>
+          <div><b>192</b><span>asset pull requests on Hugging Face</span></div>
+          <div><b>33 / 29</b><span>contributors / reviewers (22 in both roles)</span></div>
+          <div><b>3.3</b><span>people involved per website, on average</span></div>
+        </div>
+        <div class="thesis">
+          <span class="label">Contributions</span>
+          <p><b>Contributions to the current release are closed.</b> Thank you to everyone who built and reviewed a website. The <a href="guide-create.html">contribution guide</a> and <a href="guide-review.html">review guide</a> stay online for reference.</p>
+        </div>
+      </div>
+      <div class="panel people reveal">
+        <h4>Project leads</h4>
+        <p>Zhaoyang Wang, Qianhui Wu</p>
+        <h4>Core contributors</h4>
+        <p>Boyu Gou, Demi Wang, Jiacheng Zhang, Peichun Hua, Qize Li, Shi Qiu, Yifan Jiang, Yifan Zhang, Zexu Jin</p>
+        <h4>Contributors</h4>
+        <p>Baolin Peng, Bolin Shen, Chetan Bansal, Dehan Kong, Deren Lei, Dongshen Peng, Fengqing Jiang, Hao Cheng, Haoqing Wang, Jiaming Shan, Jicheng Wang, Jingguang Zhou, Jixuan He, Kaide Zeng, Kangyu Zhu, Lama Moukheiber, Mufan Qiu, Peng Xia, Qihan Sun, Qingwei Lin, Qiushi Sun, Ruichen Zhang, Shuqing Luo, Si Qin, Sicheng Fan, Tao Xiong, Wenlin Yao, Xinyu Zhang, Xinyue Zeng, Xuanrui Li, Xuchao Zhang, Yian Wang, Yichao Liu, Yiming Liang, Yiyang Zhou, Yizhu Jiao, Yuetai Li, Yurun Chen, Yuxuan Zhang, Zheyuan Yang, Zhiyuan Yao, Zhongyang Li, Zihao Li, Zili Wang, Jianfeng Gao, Huaxiu Yao</p>
+        <h4>Affiliations</h4>
+        <ol class="affils">
+          <li>University of North Carolina at Chapel Hill</li><li>Microsoft</li><li>The Ohio State University</li><li>Carnegie Mellon University</li><li>University of Michigan</li><li>The Chinese University of Hong Kong</li><li>University of Southern California</li><li>University of Delaware</li><li>Independent Researcher</li><li>Florida State University</li><li>Georgia Institute of Technology</li><li>Meta Superintelligence Labs</li><li>Stanford University</li><li>University of Washington</li><li>University of California, Santa Barbara</li><li>University of California, Davis</li><li>Queen Mary University of London</li><li>The University of Hong Kong</li><li>Virginia Tech</li><li>Zhejiang University</li><li>National University of Singapore</li><li>Nankai University</li><li>University of Illinois Urbana-Champaign</li><li>University of British Columbia</li><li>Tongji University</li>
         </ol>
       </div>
-
-      <div class="impact-card">
-        <h3>Track B: Review environments</h3>
-        <p>
-          Review submitted mirror sites by checking visual fidelity, functional
-          correctness, and task grounding. <strong>Reviewing 5 environments</strong>
-          earns a spot on the author list.
-        </p>
-        <ol style="margin:16px 0 0; padding-left:20px; color:var(--text-soft); font-size:0.92rem; line-height:1.7;">
-          <li>Browse open <a href="https://github.com/aiming-lab/WebHarbor/pulls" target="_blank" rel="noopener">Pull Requests</a> on GitHub.</li>
-          <li>Review the submitted environment: does it support all proposed tasks? Are the tasks meaningful and challenging?</li>
-          <li>Follow our recommended <a href="guide-review.html">Review Pipeline</a> for systematic verification.</li>
-        </ol>
-      </div>
-
-    </div>
-
-    <!-- acknowledgement track -->
-    <div class="thesis">
-      <span class="thesis-kicker">Acknowledgement</span>
-      <p>
-        Any improvement to existing environments (bug fixes, UI polish, data
-        enrichment, task suggestions, or even feedback) qualifies for the
-        paper's acknowledgement section. Every contribution
-        matters.
-      </p>
-    </div>
-
-    <!-- CTA buttons -->
-    <div style="display:flex; gap:14px; flex-wrap:wrap; margin-top:36px;">
-      <a class="btn btn-primary" href="https://docs.google.com/spreadsheets/d/1vZsrQjy9nJKze58fx4kbQtFi85NjVXIWCFyu3ShD7gk/edit?gid=0#gid=0" target="_blank" rel="noopener">
-        View website tracking sheet
-      </a>
-      <a class="btn btn-ghost" href="https://forms.gle/ngcD1rzAfUEphNmRA" target="_blank" rel="noopener">
-        Submit contribution form
-      </a>
-      <a class="btn btn-ghost" href="https://github.com/aiming-lab/WebHarbor/pulls" target="_blank" rel="noopener">
-        Review open PRs
-      </a>
     </div>
   </div>
 </section>
 
-<!-- =================== CITATION =================== -->
-<section id="citation" class="section bordered citation-section">
-  <div class="container">
-    <div class="section-head">
-      <span class="tag">Citation</span>
-      <h2>BibTeX</h2>
-    </div>
-    <div class="code-block">
-      <div class="code-head">
-        <span class="code-lbl">bibtex</span>
-        <button class="copy-btn" data-copy="@misc{webharbor2026,&#10;  title        = {WebHarbor: Docking Real Websites for Evolving GUI Agent Environments},&#10;  author       = {{WebHarbor Team and Contributors}},&#10;  year         = {2026},&#10;  url          = {https://aiming-lab.github.io/webharbor.github.io},&#10;  note         = {Project website.}&#10;}">Copy</button>
-      </div>
-      <pre><code>@misc{webharbor2026,
+<!-- ============ CITE ============ -->
+<section class="section cite" id="cite">
+  <div class="wrap">
+    <span class="kicker">Citation</span>
+    <h2>Cite WebHarbor</h2>
+    <div class="code">
+      <div class="code-head"><span>bibtex</span><button class="copy" data-target="bibtex">Copy</button></div>
+<pre id="bibtex">@misc{webharbor2026,
   title        = {WebHarbor: Docking Real Websites for Evolving GUI Agent Environments},
   author       = {{WebHarbor Team and Contributors}},
   year         = {2026},
   url          = {https://aiming-lab.github.io/webharbor.github.io},
   note         = {Project website.}
-}</code></pre>
+}</pre>
     </div>
   </div>
 </section>
 
-
 </main>
 
-<!-- =================== LIGHTBOX =================== -->
-<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Demo preview">
-  <button class="lb-close" id="lb-close" aria-label="Close">&times;</button>
-  <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous">&lsaquo;</button>
-  <button class="lb-nav lb-next" id="lb-next" aria-label="Next">&rsaquo;</button>
-  <div class="lb-stage">
-    <img class="lb-img" id="lb-img" alt="" />
-    <div class="lb-caption" id="lb-caption">
-      <div class="lb-title" id="lb-title"></div>
-      <div class="lb-sub"   id="lb-sub"></div>
+<footer>
+  <div class="wrap">
+    <div><span class="accent">⚓</span> <b>WebHarbor</b> · UNC-Chapel Hill × Microsoft × the community<br>Questions: <span>webharborcomm at gmail dot com</span> · <span>zhaoyang at cs dot unc dot edu</span></div>
+    <div class="foot-links">
+      <a href="https://github.com/aiming-lab/WebHarbor" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://huggingface.co/datasets/ChilleD/WebHarbor" target="_blank" rel="noopener">Dataset</a>
+      <a href="guide-create.html">Contribution guide</a>
+      <a href="guide-review.html">Review guide</a>
     </div>
+  </div>
+</footer>
+
+<!-- ============ TRAJECTORY PLAYER ============ -->
+<div class="player" role="dialog" aria-modal="true" aria-label="Website task walkthrough" aria-hidden="true">
+  <div class="player-box">
+    <div class="player-main">
+      <div class="browser">
+        <div class="browser-bar">
+          <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="urlbar"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a3.5 3.5 0 0 0-3.5 3.5V6H4a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1h-.5V4.5A3.5 3.5 0 0 0 8 1Zm2 5H6V4.5a2 2 0 1 1 4 0V6Z"/></svg><span class="u"></span></span>
+          <span class="mirror-of"></span>
+        </div>
+        <div class="stage">
+          <img class="frame frame-a is-hidden" alt="Agent view of the website">
+          <img class="frame frame-b is-hidden" alt="">
+          <div class="target"></div>
+          <div class="ripple"></div>
+          <svg class="cursor" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2.5 19 13l-6.6 1.2L16 21l-3 1.4-3.6-6.9L4 19.5z" fill="#fff" stroke="#0B1222" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          <div class="bubble"></div>
+          <div class="answer"></div>
+          <div class="loading">Loading trajectory…</div>
+        </div>
+      </div>
+      <div class="controls">
+        <button class="ctl prev" aria-label="Previous step"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 2h2v12H3zM14 2.5v11L6 8z"/></svg></button>
+        <button class="ctl play" aria-label="Pause"><svg class="i-pause" viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="2" width="3.5" height="12" rx="1"/><rect x="9.5" y="2" width="3.5" height="12" rx="1"/></svg><svg class="i-play" viewBox="0 0 16 16" fill="currentColor"><path d="M4 2.5v11l9.5-5.5z"/></svg></button>
+        <button class="ctl next" aria-label="Next step"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M11 2h2v12h-2zM2 2.5v11L10 8z"/></svg></button>
+        <div class="segs"></div>
+        <button class="ctl speed" aria-label="Playback speed">1×</button>
+      </div>
+    </div>
+    <aside class="player-side">
+      <div class="side-head">
+        <div class="site"></div>
+        <div class="meta"></div>
+        <button class="close" aria-label="Close"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 2l10 10M12 2 2 12"/></svg></button>
+      </div>
+      <div class="task"><div class="h">Task</div><p></p></div>
+      <div class="side-steps"><div class="h">Agent steps</div><ol></ol></div>
+      <div class="side-foot">
+        <span class="grow"></span>
+        <button class="prev-site" aria-label="Previous website">←</button>
+        <button class="next-site" aria-label="Next website">Next site →</button>
+      </div>
+    </aside>
   </div>
 </div>
 
-<script src="assets/main.js"></script>
-<script>
-  // --- Validation chart: model ranking across benchmarks ----------------
-  (function renderValidationChart() {
-    function init() {
-      var el = document.getElementById("validation-chart");
-      if (!el || typeof Plotly === "undefined") return;
-
-      var benchmarks = ["WebHarbor-WebVoyager", "WebVoyager", "Online-Mind2Web", "Deepshop"];
-      var models = [
-        { name: "Qwen3-VL-4B-Thinking",        scores: [62.8, 52.6, 32.0, 33.3], color: "#9CB7DC" },
-        { name: "Qwen3-VL-235B-A22B-Thinking", scores: [76.4, 66.4, 63.7, 56.7], color: "#4D72AE" },
-        { name: "Orchard-GUI-4B",              scores: [78.5, 74.1, 67.0, 64.0], color: "#1B4B8F" }
-      ];
-
-      var traces = models.map(function (m) {
-        return {
-          type: "bar",
-          name: m.name,
-          x: benchmarks,
-          y: m.scores,
-          text: m.scores.map(function (v) { return v.toFixed(1); }),
-          textposition: "outside",
-          textfont: { family: "Instrument Sans, system-ui, sans-serif", size: 12, color: "#0C1222" },
-          marker: { color: m.color, line: { color: "#0F2E5A", width: 0.4 } },
-          hovertemplate: "<b>%{x}</b><br>" + m.name + ": %{y}<extra></extra>"
-        };
-      });
-
-      var layout = {
-        barmode: "group",
-        bargap: 0.28,
-        bargroupgap: 0.08,
-        margin: { l: 56, r: 24, t: 18, b: 70 },
-        font: { family: "Instrument Sans, system-ui, sans-serif", color: "#3D4559", size: 13 },
-        yaxis: {
-          title: { text: "Success Rate", font: { size: 13, color: "#3D4559" } },
-          range: [0, 92],
-          gridcolor: "#E8E5DC",
-          zerolinecolor: "#D6D3C8",
-          tickfont: { size: 12, color: "#6B7280" }
-        },
-        xaxis: {
-          tickfont: { size: 13, color: "#0C1222" },
-          tickangle: 0,
-          ticklen: 14,
-          tickcolor: "rgba(0,0,0,0)"
-        },
-        legend: {
-          orientation: "h",
-          y: -0.18,
-          x: 0.5,
-          xanchor: "center",
-          font: { size: 12, color: "#3D4559" }
-        },
-        shapes: [
-          {
-            type: "rect",
-            xref: "x",
-            yref: "paper",
-            x0: -0.5,
-            x1: 0.5,
-            y0: 0,
-            y1: 1,
-            fillcolor: "#FDF0E6",
-            opacity: 0.6,
-            line: { width: 0 },
-            layer: "below"
-          }
-        ],
-        plot_bgcolor: "rgba(0,0,0,0)",
-        paper_bgcolor: "rgba(0,0,0,0)"
-      };
-
-      Plotly.newPlot(el, traces, layout, {
-        displayModeBar: false,
-        responsive: true
-      });
-    }
-
-    if (typeof Plotly !== "undefined") {
-      init();
-    } else {
-      // Plotly is loaded via `defer`, so wait for DOMContentLoaded.
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", init);
-      } else {
-        // DOM ready but Plotly script may still be loading — poll briefly.
-        var tries = 0;
-        var iv = setInterval(function () {
-          if (typeof Plotly !== "undefined") { clearInterval(iv); init(); }
-          else if (++tries > 50) { clearInterval(iv); }
-        }, 80);
-      }
-    }
-  })();
-</script>
+<script type="application/json" id="chart-data">{"coverage":{"categories":[{"label":"Information / search","tasks":2282,"share":64.9,"sites":151},{"label":"Account / profile","tasks":161,"share":4.6,"sites":98},{"label":"Content / communication","tasks":100,"share":2.8,"sites":46},{"label":"Transaction / booking","tasks":448,"share":12.7,"sites":95},{"label":"Settings / other state","tasks":527,"share":15.0,"sites":119}],"properties":[{"label":"Authentication required","tasks":1117,"share":31.8,"sites":135},{"label":"Persistent state change","tasks":1253,"share":35.6,"sites":141},{"label":"Cross-page reasoning","tasks":1888,"share":53.7,"sites":151}]},"complexity":[{"name":"WebArena-Infinity","total":{"pages":115,"images":0,"assets":0.0,"lines":61536},"mean":{"pages":8.8,"images":0.0,"assets":0.0,"lines":4733.5}},{"name":"AutoWebWorld","total":{"pages":636,"images":2303,"assets":183.3,"lines":104074},"mean":{"pages":21.9,"images":79.4,"assets":6.3,"lines":3588.8}},{"name":"CUA-Gym","total":{"pages":1401,"images":56,"assets":3.2,"lines":579474},"mean":{"pages":14.3,"images":0.6,"assets":0.03,"lines":5913.0}},{"name":"WebHarbor","ours":true,"total":{"pages":5711,"images":201946,"assets":16030.5,"lines":1011419},"mean":{"pages":37.3,"images":1319.9,"assets":104.8,"lines":6610.6}}],"split":{"rings":[{"r":84,"w":20,"unit":"tasks","parts":[{"key":"train","label":"Train tasks","value":2288,"color":"#1B4B8F"},{"key":"test","label":"Test tasks (verified)","value":306,"color":"#C4713B"},{"key":"unalloc","label":"Unallocated tasks","value":924,"color":"#D6D3C8"}]},{"r":58,"w":16,"unit":"websites","parts":[{"key":"cov","label":"Train-covered websites","value":123,"color":"#7D9BC9"},{"key":"wv","label":"WebVoyager websites, held out","value":15,"color":"#0D7377"},{"key":"rnd","label":"Random websites, held out","value":15,"color":"#7FC4C1"}]}]},"latency":[{"label":"Initialization","mean":7.43,"median":6.75,"p90":9.37},{"label":"Reset to seeded state","mean":6.68,"median":6.0,"p90":9.0},{"label":"Verifier","mean":4.04,"median":4.0,"p90":7.0,"cls":"alt"}],"live":[{"name":"GPT-4o","group":"prop","wv":65.1,"om2w":34.6,"avg":49.9,"reported":true},{"name":"Gemini-3-flash","group":"prop","wv":85.6,"om2w":44.8,"avg":65.2,"reported":true},{"name":"GPT-5","group":"prop","wv":90.6,"om2w":57.7,"avg":74.2,"reported":true},{"name":"OpenAI CUA preview","group":"prop","wv":70.9,"om2w":58.3,"avg":64.6,"reported":true},{"name":"Gemini CUA preview","group":"prop","wv":88.6,"om2w":57.3,"avg":73.0,"reported":true},{"name":"UI-TARS-1.5-7B","group":"open","wv":66.4,"om2w":31.3,"avg":48.9,"reported":true},{"name":"GLM-4.1V-9B-Thinking","group":"open","wv":66.8,"om2w":33.9,"avg":50.4,"reported":true},{"name":"Fara-7B","group":"open","wv":73.5,"om2w":34.1,"avg":53.8,"reported":true},{"name":"MolmoWeb-4B","group":"open","wv":75.2,"om2w":31.3,"avg":53.3,"reported":true},{"name":"MolmoWeb-8B","group":"open","wv":78.2,"om2w":35.3,"avg":56.8,"reported":true},{"name":"Qwen3-VL-4B-Thinking","group":"4b","wv":52.6,"om2w":32.0,"avg":42.3,"reported":true},{"name":"OpenWebRL-4B-SFT","group":"4b","wv":60.2,"om2w":47.0,"avg":53.6,"reported":true},{"name":"OpenWebRL-4B (RL)","group":"4b","wv":74.1,"om2w":67.0,"avg":70.6,"reported":true},{"name":"WebHarbor-4B","group":"4b","wv":81.2,"om2w":70.4,"avg":75.8,"ours":true}],"slope":[{"name":"Qwen3-VL-4B","live":52.6,"wh":62.8,"color":"#A9BCDB","rank":4},{"name":"GPT-5.1","live":55.9,"wh":74.7,"color":"#7D9BC9","rank":3},{"name":"Qwen3-VL-235B","live":66.4,"wh":76.4,"color":"#1B4B8F","rank":2},{"name":"Orchard-4B","live":74.1,"wh":78.5,"color":"#C4713B","rank":1}],"testset":[{"model":"GPT-4.1","harness":"GUI","verifier":26.4,"judge":37.9,"agree":93.5},{"model":"GPT-4.1","harness":"OpenCode","verifier":1.0,"judge":1.3,"agree":99.6},{"model":"GPT-5.5","harness":"GUI","verifier":26.9,"judge":27.4,"agree":98.6},{"model":"GPT-5.5","harness":"OpenCode","verifier":79.7,"judge":90.7,"agree":90.2},{"model":"GPT-6-Astra","harness":"GUI","verifier":86.7,"judge":95.4,"agree":90.3},{"model":"GPT-6-Astra","harness":"OpenCode","verifier":83.0,"judge":95.7,"agree":88.1},{"model":"Qwen3.6-35B-A3B","harness":"GUI","verifier":36.8,"judge":43.4,"agree":92.5},{"model":"Qwen3.6-35B-A3B","harness":"OpenCode","verifier":57.4,"judge":66.0,"agree":88.7},{"model":"Qwen3-VL-4B (base)","harness":"GUI","verifier":19.7,"judge":24.5,"agree":94.9,"small":true},{"model":"OpenWebRL-4B-SFT","harness":"GUI","verifier":29.1,"judge":35.5,"agree":90.6,"small":true},{"model":"OpenWebRL-4B","harness":"GUI","verifier":19.7,"judge":25.7,"agree":91.6,"small":true},{"model":"WebHarbor-4B","harness":"GUI","verifier":30.0,"judge":41.5,"agree":87.0,"ours":true}],"webarena":[{"model":"Qwen3-VL-4B-Thinking","auto":17.3,"nl":15.5},{"model":"OpenWebRL-4B-SFT","auto":26.1,"nl":21.2},{"model":"OpenWebRL-4B (RL)","auto":20.4,"nl":16.8},{"model":"WebHarbor-4B","auto":28.8,"nl":26.1,"ours":true}],"rl":{"groups":["Info retrieval","Multi-page","Authentication","Stateful ops","Trans. & booking"],"series":[{"key":"sft","label":"OpenWebRL-4B-SFT"},{"key":"owr","label":"OpenWebRL-4B"},{"key":"wh","label":"WebHarbor-4B"}],"wh":[[34.8,23.2,32.6],[16.0,7.3,19.9],[29.4,17.5,30.8],[21.1,15.6,26.4],[14.7,9.1,15.2]],"wa":[[29.7,22.7,29.7],[14.9,12.8,21.3],[31.1,24.4,33.3],[22.1,17.9,28.4],[28.6,14.3,35.7]]}}</script>
+<script src="assets/home.js?v=202611012009" defer></script>
+<script src="assets/charts.js?v=202611012009" defer></script>
 </body>
 </html>

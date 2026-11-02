@@ -441,6 +441,8 @@ table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nu
 .people h4 { font-family: var(--mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 18px 0 4px; font-weight: 600; }
 .people h4:first-child { margin-top: 0; }
 .people p { margin: 0; }
+.people .pp { white-space: nowrap; }
+.people sup { font-size: .62em; margin-left: 1px; color: var(--text-muted); }
 .affils { columns: 2; column-gap: 26px; font-size: .84rem; color: var(--text-muted); padding-left: 18px; margin: 8px 0 0; }
 .affils li { break-inside: avoid; }
 .community-grid .thesis { flex-direction: column; gap: 8px; }

@@ -449,6 +449,7 @@ table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nu
 
 /* ---------------- CITE / FOOTER ---------------- */
 .cite .code { margin-top: 24px; }
+.cite-or { margin: 18px 0 0; text-align: center; font-family: var(--mono); font-size: .78rem; letter-spacing: .08em; color: var(--text-muted); }
 footer { border-top: 1px solid var(--border-soft); padding: 40px 0 44px; font-size: .88rem; color: var(--text-muted); }
 footer .wrap { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between; }
 footer b { color: var(--text); font-family: var(--serif); font-weight: 400; font-size: 1.05rem; }

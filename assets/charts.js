@@ -104,12 +104,31 @@
   function onView(el, fn) {
     if (!el) return;
     if (!("IntersectionObserver" in window) || reduceMotion) { fn(); return; }
+    var job = { el: el, done: false, run: function () { if (job.done) return; job.done = true; io.disconnect(); fn(); } };
     var io = new IntersectionObserver(function (es) {
-      if (es.some(function (e) { return e.isIntersecting; })) { io.disconnect(); requestAnimationFrame(fn); }
+      if (es.some(function (e) { return e.isIntersecting; })) { io.disconnect(); requestAnimationFrame(job.run); }
     }, { rootMargin: "0px 0px -10% 0px" });
     io.observe(el);
-    pending.push(io);
+    pending.push(job);
   }
+  // An unrendered chart is only a few pixels tall and grows when it renders. A jump to an anchor
+  // further down would scroll past such charts, render them on the way and push the target out of
+  // place, so every pending chart before the target is rendered before the browser scrolls.
+  function renderBefore(target) {
+    pending.forEach(function (job) {
+      if (!job.done && (job.el === target || target.contains(job.el) ||
+          (job.el.compareDocumentPosition(target) & Node.DOCUMENT_POSITION_FOLLOWING))) job.run();
+    });
+  }
+  function anchorTarget(hash) {
+    if (!hash || hash.length < 2) return null;
+    try { return document.getElementById(decodeURIComponent(hash.slice(1))); } catch (e) { return null; }
+  }
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    var t = a && anchorTarget(a.getAttribute("href"));
+    if (t) renderBefore(t);
+  }, true);
 
   /* ---------------- 1. task coverage ---------------- */
   onView($("#ch-coverage"), function () {

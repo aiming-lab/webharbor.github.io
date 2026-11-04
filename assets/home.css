@@ -443,6 +443,9 @@ table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nu
 .people p { margin: 0; }
 .people .pp { white-space: nowrap; }
 .people sup { font-size: .62em; margin-left: 1px; color: var(--text-muted); }
+.people h4 .ast { margin-left: 2px; }
+.people .people-note { margin-top: 10px; font-size: .78rem; color: var(--text-muted); }
+.people-note .ast { color: var(--accent); }
 .affils { columns: 2; column-gap: 26px; font-size: .84rem; color: var(--text-muted); padding-left: 18px; margin: 8px 0 0; }
 .affils li { break-inside: avoid; }
 .community-grid .thesis { flex-direction: column; gap: 8px; }
